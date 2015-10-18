@@ -1,0 +1,865 @@
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/paper-fab-transitions/paper-fab-speed-dial.html">
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/paper-item/paper-item.html">
+
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/controllets/paper-card-controllet/paper-card-controllet.html"/>
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/controllets/search-panel-controllet/search-panel-controllet.html"/>
+
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/paper-card/paper-card.html">
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/paper-button/paper-button.html">
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/bower_components/paper-styles/color.html">
+
+
+<script type="text/javascript" src="http://192.168.232.128/ow_static/plugins/private_room/js/masonry.pkgd.min.js"></script>
+
+<style is="custom-style">
+
+    paper-toolbar.toolbar-main
+    {
+        --paper-toolbar-background:#2196F3;
+        -moz-box-shadow: 0 0 20px 5px #999;
+        -webkit-box-shadow: 0 0 20px 5px #999;
+    }
+
+    .paper-card-container
+    {
+        padding:70px 70px 70px 70px;
+    }
+
+    paper-card-controllet
+    {
+        float:left;
+        padding-bottom: 50px;
+        margin: 0 0 40px 30px;
+    }
+
+    paper-fab.add-paper-fab {
+        position: absolute;
+        bottom: 25px;
+        right: 50px;
+        --paper-fab-background:#2196F3;
+    }
+
+    paper-fab-speed-dial.add-paper-fab {
+        position: absolute;
+        bottom: 25px;
+        right: 50px;
+    }
+    paper-fab{
+        --paper-fab-background:#2196F3;
+    }
+
+    .grid
+    {
+        width: 100%;
+        z-index: 0;
+    }
+
+    .grid:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    .grid-item {
+        float: left;
+        /*border: 2px solid #333;
+        height: 200px;
+        width: 200px;*/
+        overflow: hidden;
+        border-width: 1em;
+        border-radius: 0.125rem;
+        box-shadow: 0.125em 0.125em 0.1125em 0.125em rgba(0, 0, 0, 0.25);
+    }
+
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        setTimeout(function() {
+            $('.grid').masonry({
+                // options
+                itemSelector: '.grid-item',
+                columnWidth: 120
+            });
+        },1000);
+    });
+</script>
+
+<paper-drawer-panel force-narrow>
+
+    <div drawer>
+
+        <paper-toolbar class="toolbar-drawer">
+            <div class="title">Options</div>
+        </paper-toolbar>
+
+        <paper-menu selected="0">
+            <paper-item>Item 1</paper-item>
+            <paper-item>Item 2</paper-item>
+        </paper-menu>
+
+    </div>
+
+    <div main class="fullbleed layout vertical" style="background-color:#e8e8e8">
+
+        <paper-scroll-header-panel class="flex" fixed>
+
+            <paper-toolbar class="toolbar-main">
+                <paper-icon-button paper-drawer-toggle icon="menu" on-tap="menuAction"></paper-icon-button>
+                <div class="title">Private Room</div>
+                <search-panel-controllet></search-panel-controllet>
+                <!--<paper-icon-button icon="more-vert" on-tap="moreAction"></paper-icon-button>-->
+            </paper-toolbar>
+
+
+            <div class="layout vertical justified paper-card-container">
+                <div class="horizontal layout">
+
+                    {literal}
+<!--                    <div class="grid">
+                        <paper-card-controllet
+                                class="grid-item"
+                                width="200"
+                                height="200"
+                                type="text"
+                                elevation="3"
+                                legend="Lorem ipsum dolor sit"
+                                icon="create">
+                            Lorem ipsum dolor sit amet
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                width="200"
+                                height="200"
+                                type="text"
+                                elevation="3"
+                                legend="Lorem ipsum dolor sit"
+                                icon="create">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                width="300"
+                                height="300"
+                                type="datalet"
+                                elevation="3"
+                                legend="Datatable"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/datatable-datalet/datatable-datalet.html" />
+                            <datatable-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52"
+                                               data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                               fields='["result,records,Lat","result,records,Lng"]'></datatable-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                elevation="3"
+                                width="300"
+                                height="300"
+                                legend="Linechart"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/linechart-datalet/linechart-datalet.html" />
+                            <linechart-datalet
+                                    data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52"
+                                    fields='["result,records,Lat", "result,records,Lng"]'
+                                    data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'>
+                            </linechart-datalet>
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                elevation="3"
+                                width="300"
+                                height="300"
+                                legend="Datatable"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/datatable-datalet/datatable-datalet.html" />
+                            <datatable-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52"
+                                               data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                               fields='["result,records,Lat","result,records,Lng"]'></datatable-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                elevation="3"
+                                width="300"
+                                height="300"
+                                legend="Barchart"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/barchart-datalet/barchart-datalet.html" />
+                            <barchart-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52&amp;limit=10000"
+                                              data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                              fields='["result,records,Lat","result,records,Lng"]'></barchart-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="link"
+                                elevation="3"
+                                width="300"
+                                height="300"
+                                legend="Link"
+                                icon="link">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/preview-datalet/preview-datalet.html" />
+                            <preview-datalet data-url="http://deep.routetopa.eu" url="http://deep.routetopa.eu">
+                            </preview-datalet>
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="link"
+                                elevation="3"
+                                width="300"
+                                height="300"
+                                legend="Link"
+                                icon="link">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/preview-datalet/preview-datalet.html" />
+                            <preview-datalet data-url="http://spod.routetopa.eu/" url="http://spod.routetopa.eu/">
+                            </preview-datalet>
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                type="datalet"
+                                class="grid-item"
+                                elevation="3"
+                                width="300"
+                                height="300"
+                                legend="Link"
+                                icon="link">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/preview-datalet/preview-datalet.html" />
+                            <preview-datalet data-url="http://lorempixel.com/300/300" url="http://lorempixel.com/640/480">
+                            </preview-datalet>
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                elevation="3"
+                                width="400"
+                                height="400"
+                                legend="Columnchart 3D"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/column3Dchart-datalet/column3Dchart-datalet.html" />
+                            <column3Dchart-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52&amp;limit=10000"
+                                                   data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                                   fields='["result,records,Lat","result,records,Lng"]'></column3Dchart-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                elevation="3"
+                                width="300"
+                                height="300"
+                                legend="Map"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/leafletjs-datalet/leafletjs-datalet.html" />
+                            <leafletjs-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52&amp;limit=10000"
+                                               data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                               fields='["result,records,Lat","result,records,Lng"]'></leafletjs-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                elevation="3"
+                                width="300"
+                                height="300"
+                                legend="Treemap"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/treemap-datalet/treemap-datalet.html" />
+                            <treemap-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=0cb600fc-19ad-4aaf-9794-1e6ea851840a&amp;limit=10000"
+                                             fields='["result,records,categoria","result,records,capitolo","result,records,movimento"]'></treemap-datalet>
+                        </paper-card-controllet>
+                    </div>-->
+<!--                    <div class="grid">
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+                    </div>-->
+<!--                    <div class="grid">
+                        <paper-card-controllet
+                                class="grid-item"
+                                width="200"
+                                height="200"
+                                type="text"
+                                elevation="3"
+                                legend="Lorem ipsum dolor sit"
+                                icon="create">
+                            Lorem ipsum dolor sit amet
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                elevation="3"
+                                legend="Image"
+                                icon="perm-media">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                width="200"
+                                height="200"
+                                type="text"
+                                elevation="3"
+                                legend="Lorem ipsum dolor sit"
+                                icon="create">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                width="200"
+                                height="200"
+                                type="datalet"
+                                elevation="3"
+                                legend="Datatable"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/datatable-datalet/datatable-datalet.html" />
+                            <datatable-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52"
+                                               data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                               fields='["result,records,Lat","result,records,Lng"]'></datatable-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                elevation="3"
+                                width="200"
+                                height="200"
+                                legend="Linechart"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/linechart-datalet/linechart-datalet.html" />
+                            <linechart-datalet
+                                    data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52"
+                                    fields='["result,records,Lat", "result,records,Lng"]'
+                                    data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'>
+                            </linechart-datalet>
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                elevation="3"
+                                width="200"
+                                height="200"
+                                legend="Datatable"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/datatable-datalet/datatable-datalet.html" />
+                            <datatable-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52"
+                                               data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                               fields='["result,records,Lat","result,records,Lng"]'></datatable-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                elevation="3"
+                                width="200"
+                                height="200"
+                                legend="Barchart"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/barchart-datalet/barchart-datalet.html" />
+                            <barchart-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52&amp;limit=10000"
+                                              data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                              fields='["result,records,Lat","result,records,Lng"]'></barchart-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="link"
+                                elevation="3"
+                                width="200"
+                                height="200"
+                                legend="Link"
+                                icon="link">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/preview-datalet/preview-datalet.html" />
+                            <preview-datalet data-url="http://deep.routetopa.eu" url="http://deep.routetopa.eu">
+                            </preview-datalet>
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="link"
+                                elevation="3"
+                                width="200"
+                                height="200"
+                                legend="Link"
+                                icon="link">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/preview-datalet/preview-datalet.html" />
+                            <preview-datalet data-url="http://spod.routetopa.eu/" url="http://spod.routetopa.eu/">
+                            </preview-datalet>
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                type="datalet"
+                                class="grid-item"
+                                elevation="3"
+                                width="200"
+                                height="200"
+                                legend="Link"
+                                icon="link">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/preview-datalet/preview-datalet.html" />
+                            <preview-datalet data-url="http://lorempixel.com/300/300" url="http://lorempixel.com/640/480">
+                            </preview-datalet>
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                elevation="3"
+                                width="200"
+                                height="200"
+                                legend="Columnchart 3D"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/column3Dchart-datalet/column3Dchart-datalet.html" />
+                            <column3Dchart-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52&amp;limit=10000"
+                                                   data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                                   fields='["result,records,Lat","result,records,Lng"]'></column3Dchart-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                elevation="3"
+                                width="200"
+                                height="200"
+                                legend="Map"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/leafletjs-datalet/leafletjs-datalet.html" />
+                            <leafletjs-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52&amp;limit=10000"
+                                               data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                               fields='["result,records,Lat","result,records,Lng"]'></leafletjs-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                elevation="3"
+                                width="200"
+                                height="200"
+                                legend="Treemap"
+                                icon="assessment">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/treemap-datalet/treemap-datalet.html" />
+                            <treemap-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=0cb600fc-19ad-4aaf-9794-1e6ea851840a&amp;limit=10000"
+                                             fields='["result,records,categoria","result,records,capitolo","result,records,movimento"]'></treemap-datalet>
+                        </paper-card-controllet>
+                    </div>-->
+<!--                    <div class="grid" id="cards">
+
+                    <paper-card>
+                        <div class="card-content">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/datatable-datalet/datatable-datalet.html" />
+                            <datatable-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52"
+                                               data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                               fields='["result,records,Lat","result,records,Lng"]'></datatable-datalet>
+                        </div>
+                    </paper-card>
+
+                    <paper-card>
+                        <div class="card-content">
+                            <div class="title">
+                                <div class="medium">Title</div>
+                                <div class="small">subtitle</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/linechart-datalet/linechart-datalet.html" />
+                            <linechart-datalet
+                                    data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52"
+                                    fields='["result,records,Lat", "result,records,Lng"]'
+                                    data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'>
+                            </linechart-datalet>
+                        </div>
+                    </paper-card>
+
+                    <paper-card class="grid-item">
+                        <div class="card-content">
+                            <div>Cards are a convenient means of displaying content composed of different types of objects.
+                                <br><br>
+                            </div>
+                        </div>
+                    </paper-card>
+
+                    <paper-card class="fancy">
+                        <div class="card-content">
+                            <div class="avatar">:)</div>
+                            <div class="title">
+                                <div class="medium">Title</div>
+                                <div class="small">subtitle</div>
+                            </div>
+                        </div>
+                        &lt;!&ndash; take this out of the content class so that it can span the whole card &ndash;&gt;
+                        <img src="http://lorempixel.com/350/150">
+                        <div class="card-content">
+                            <div class="big">Usu eu novum principes, vel quodsi aliquip ea.</div>
+                            <div class="medium">Ut labores minimum atomorum pro. Laudem tibique ut has.</div>
+                            <div class="small">Usu eu novum principes, vel quodsi aliquip ea.</div>
+                        </div>
+                    </paper-card>
+
+                    </div>-->
+                    <div class="grid">
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                width="200"
+                                height="200"
+                                type="text"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                legend="Testo libero messo alla sbricuda della sbridellona">
+                            Lorem ipsum dolor sit amet
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="image"
+                                width="200"
+                                height="200"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                legend="Image">
+                            <img src="http://lorempixel.com/300/400" />
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                width="200"
+                                height="200"
+                                type="text"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                legend="Lorem ipsum dolor sit">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                width="300"
+                                height="300"
+                                type="datalet"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                legend="Datatable">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/datatable-datalet/datatable-datalet.html" />
+                            <datatable-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52"
+                                               data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                               fields='["result,records,Lat","result,records,Lng"]'></datatable-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                width="300"
+                                height="300"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                legend="Linechart">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/linechart-datalet/linechart-datalet.html" />
+                            <linechart-datalet
+                                    data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52"
+                                    fields='["result,records,Lat", "result,records,Lng"]'
+                                    data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'>
+                            </linechart-datalet>
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                width="300"
+                                height="300"
+                                legend="Datatable">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/datatable-datalet/datatable-datalet.html" />
+                            <datatable-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52"
+                                               data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                               fields='["result,records,Lat","result,records,Lng"]'></datatable-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                width="300"
+                                height="300"
+                                legend="Barchart">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/barchart-datalet/barchart-datalet.html" />
+                            <barchart-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52&amp;limit=10000"
+                                              data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                              fields='["result,records,Lat","result,records,Lng"]'></barchart-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="link"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                width="300"
+                                height="300"
+                                legend="Link">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/preview-datalet/preview-datalet.html" />
+                            <preview-datalet data-url="http://deep.routetopa.eu" url="http://deep.routetopa.eu">
+                            </preview-datalet>
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="link"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                width="300"
+                                height="300"
+                                legend="Link">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/preview-datalet/preview-datalet.html" />
+                            <preview-datalet data-url="http://spod.routetopa.eu/" url="http://spod.routetopa.eu/">
+                            </preview-datalet>
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                type="datalet"
+                                class="grid-item"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                width="300"
+                                height="300"
+                                legend="Link">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/preview-datalet/preview-datalet.html" />
+                            <preview-datalet data-url="http://lorempixel.com/300/300" url="http://lorempixel.com/640/480">
+                            </preview-datalet>
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                width="400"
+                                height="400"
+                                legend="Columnchart 3D">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/column3Dchart-datalet/column3Dchart-datalet.html" />
+                            <column3Dchart-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52&amp;limit=10000"
+                                                   data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                                   fields='["result,records,Lat","result,records,Lng"]'></column3Dchart-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                width="300"
+                                height="300"
+                                legend="Map">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/leafletjs-datalet/leafletjs-datalet.html" />
+                            <leafletjs-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=73e02092-85a1-434e-85fe-0c9a43aa9a52&amp;limit=10000"
+                                               data='[{"name":"Lat","data":["53.276756","53.292931","53.302898","53.300243","53.298164","53.288616","53.289355","53.291079","53.290821","53.29379","53.287643","53.291972","53.286525","53.275129","53.353928","53.337788","53.29351","53.298347","53.288258","53.301186","53.323658","53.307698","53.269628","53.278712","53.304775","53.354752","53.318701","53.318685","53.292207","53.350815","53.291897","53.311745","53.323914","53.303761","53.323364","53.318694","53.312791","53.284294","53.285252","53.275452","53.286827","53.285969","53.284588","53.322411","53.320473","53.326302","53.327789","53.328438","53.276916","53.280309","53.346848","53.286888","53.357319","53.327431","53.34013","53.35957","53.319225","53.354549","53.287251"]},{"name":"Lng","data":[-6.330636,-6.369188,-6.377638,-6.37315,-6.370351,-6.369087,-6.374198,-6.381254,-6.314317,-6.308947,-6.327513,-6.311702,-6.331816,-6.353177,-6.403566,-6.407617,-6.356142,-6.354325,-6.357712,-6.352163,-6.341043,-6.357479,-6.298599,-6.323576,-6.350269,-6.384773,-6.368532,-6.368465,-6.33173,-6.449379,-6.437651,-6.398541,-6.352131,-6.419432,-6.352694,-6.367317,-6.390409,-6.462957,-6.365775,-6.417233,-6.357302,-6.361824,-6.375171,-6.409432,-6.421922,-6.35878,-6.370147,-6.38395,-6.3569,-6.358631,-6.424753,-6.397032,-6.424466,-6.432434,-6.428533,-6.425714,-6.429607,-6.421223,-6.374881],"_colorIndex":0,"_symbolIndex":0}]'
+                                               fields='["result,records,Lat","result,records,Lng"]'></leafletjs-datalet>
+
+                        </paper-card-controllet>
+
+                        <paper-card-controllet
+                                class="grid-item"
+                                type="datalet"
+                                text="Lorem Ipsum ? un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum ? considerato il testo segnaposto standard sin dal sedicesimo secolo."
+                                width="300"
+                                height="300"
+                                legend="Treemap">
+                            <link rel="import" href="http://192.168.232.128/DEEalerProvider/COMPONENTS/datalets/treemap-datalet/treemap-datalet.html" />
+                            <treemap-datalet data-url="http://ckan.routetopa.eu/api/action/datastore_search?resource_id=0cb600fc-19ad-4aaf-9794-1e6ea851840a&amp;limit=10000"
+                                             fields='["result,records,categoria","result,records,capitolo","result,records,movimento"]'></treemap-datalet>
+                        </paper-card-controllet>
+
+                    </div>
+                    {/literal}
+
+                </div>
+            </div>
+
+        </paper-scroll-header-panel>
+
+        <paper-fab-speed-dial direction="top" class="bottom-right add-paper-fab">
+            <paper-fab icon="add" class="dropdown-trigger"></paper-fab>
+            <div class="dropdown-content">
+                <paper-fab mini icon="folder"></paper-fab>
+                <paper-fab mini icon="create"></paper-fab>
+                <paper-fab mini icon="link"></paper-fab>
+                <paper-fab mini icon="assessment"></paper-fab>
+                <paper-fab mini icon="perm-media"></paper-fab>
+            </div>
+        </paper-fab-speed-dial>
+
+    </div>
+
+</paper-drawer-panel>
