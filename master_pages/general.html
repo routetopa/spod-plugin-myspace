@@ -4,7 +4,8 @@
         <div class="ow_menu_fullpage">
             <div class="ow_menu_fullpage_wrap">{$main_menu}</div>
         </div>
-        <div class="clearfix" style="background-color: #2196F3;">
+        <div class="clearfix" style="
+        background-color: #2196F3;">
             <a class="ow_logo ow_left" href="{$siteUrl}"></a>
             <div class="ow_nav_btn"></div>
             <div class="ow_console_right">
@@ -43,3 +44,27 @@
     </div>
 
 </div>
+
+{decorator name='floatbox'}
+<script type="text/javascript">
+    $(window).scroll(function() {
+        var $menuwrappos = $('.ow_menu_wrap').offset().top;
+        if ($(this).scrollTop() > $menuwrappos) {
+            $('.ow_page_wrap').addClass('ow_hidden_menu');
+        }
+        else {
+            $('.ow_page_wrap').removeClass('ow_hidden_menu');
+        }
+    });
+    $('.ow_nav_btn').click(function() {
+        if ($('body').hasClass('ow_menu_active')) {
+            $('body').removeClass('ow_menu_active');
+        }
+        else {
+            $('body').addClass('ow_menu_active');
+        }
+    })
+    $('.ow_menu_fullpage_wrap a').click(function() {
+        $('body').removeClass('ow_menu_active');
+    })
+</script>

@@ -26,9 +26,11 @@ body, html {
 body .ow_footer_menu
 {
     padding: 0px;
-    margin: 10px;
+    margin: 0px;
     text-transform: uppercase;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 body .ow_footer
@@ -40,5 +42,13 @@ body .ow_footer
     position: relative;
     margin-top: 0px;
     clear: both;
+}
+
+body .ow_footer .ow_copyright {
+    float: left;
+    padding-left: 10px;
+    font-size: 90%;
+    max-width: 280px;
+    padding-top: 10px;
 }
 /* MAIN CSS OVERRIDE */
