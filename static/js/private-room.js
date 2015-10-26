@@ -2,8 +2,6 @@ SPODPR = {};
 
 SPODPR.addTextLinkCard = function (e)
 {
-    //console.log(e);
-
     var cardData = {
         comment : e.detail.data.comment,
         content :  e.detail.data.type == 'text' ? e.detail.data.text : e.detail.data.link,

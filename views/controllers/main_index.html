@@ -105,6 +105,7 @@
         paperCard.setAttribute('width', '200');
         paperCard.setAttribute('height', '200');
         paperCard.setAttribute('card-id', id);
+        paperCard.setAttribute('comment', data.comment);
 
         if(data.params != undefined)
         {
@@ -117,7 +118,6 @@
         {
             paperCard.setAttribute('card-type', data.type);
             paperCard.setAttribute('card-title', data.title);
-            paperCard.setAttribute('comment', data.comment);
 
             if(data.type == 'text')
                 paperCard.$.content.innerHTML = data.content;
@@ -905,12 +905,12 @@
                                 {else}
                                     width="200"
                                     height="200"
-                                    comment="{$card->card->comment}"
                                 {/if}
 
                                 card-type="{$card->cardType}"
                                 card-title="{$card->card->title}"
-                                card-id="{$card->cardId}">
+                                card-id="{$card->cardId}"
+                                comment="{$card->card->comment}">
 
                             {if $card->isDatalet}
                                 <link rel="import" href="{$components_url}datalets/{$card->component}/{$card->component}.html" />
