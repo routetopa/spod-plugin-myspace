@@ -104,23 +104,35 @@
         paperCard.setAttribute('class', 'grid-item');
         paperCard.setAttribute('width', '200');
         paperCard.setAttribute('height', '200');
+        paperCard.setAttribute('card-id', '');
 
         if(data.params != undefined)
         {
             var dataletParams = JSON.parse(data.params);
-            paperCard.setAttribute('type', 'datalet');
+            paperCard.setAttribute('card-type', 'datalet');
             paperCard.setAttribute('card-title', 'datalet');
             paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+dataletParams["data-url"]+'" data="" fields=\'['+data.fields+']\'></'+data.component+'>';
         }
         else
         {
-            paperCard.setAttribute('type', data.type);
+            paperCard.setAttribute('card-type', data.type);
             paperCard.setAttribute('card-title', data.title);
-            paperCard.$.content.innerHTML = data.content;
+            paperCard.setAttribute('comment', data.comment);
+
+            if(data.type == 'text')
+                paperCard.$.content.innerHTML = data.content;
+            else
+                paperCard.$.content.innerHTML =  '<preview-datalet data-url="undefined" url="'+data.content+'"></preview-datalet>';
+
         }
 
         //document.getElementById('grid-container').appendChild(paperCard);
         $('.grid').masonry().append(paperCard).masonry('appended', paperCard).masonry();
+    }
+
+    function remove_card(card)
+    {
+        $('.grid').masonry('remove',card).masonry('layout');
     }
 
     function open_creator(type)
@@ -896,8 +908,9 @@
                                     comment="{$card->card->comment}"
                                 {/if}
 
-                                type="{$card->cardType}"
-                                card-title="{$card->card->title}">
+                                card-type="{$card->cardType}"
+                                card-title="{$card->card->title}"
+                                card-id="{$card->cardId}">
 
                             {if $card->isDatalet}
                                 <link rel="import" href="{$components_url}datalets/{$card->component}/{$card->component}.html" />
@@ -906,7 +919,12 @@
                                                     fields='[{$card->fields}]'>
                                 </{$card->component}>
                             {else}
-                                {$card->card->content}
+                                {if $card->cardType == 'text'}
+                                    {$card->card->content}
+                                {else}
+                                    <link rel="import" href="{$components_url}datalets/preview-datalet/preview-datalet.html" />
+                                    <preview-datalet data-url="undefined" url="{$card->card->content}"></preview-datalet>
+                                {/if}
                             {/if}
 
                         </paper-card-controllet>

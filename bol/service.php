@@ -39,6 +39,7 @@ class SPODPR_BOL_Service
     {
         $example = new OW_Example();
         $example->andFieldEqual('ownerId', $userId);
+        $example->setOrder('timestamp');
         $result = SPODPR_BOL_PrivateRoomDao::getInstance()->findListByExample($example);
         return $result;
     }
@@ -80,6 +81,15 @@ class SPODPR_BOL_Service
         $card->status    = 'approved';
         $card->privacy   = 'everybody';
         SPODPR_BOL_PrivateRoomDao::getInstance()->save($card);
+    }
+
+    public function deleteCard($ownerId, $type, $cardId)
+    {
+        $ex = new OW_Example();
+        $ex->andFieldEqual('id', $cardId);
+        $ex->andFieldEqual('ownerId', $ownerId);
+        //$ex->andFieldEqual('cardType', $type);
+        SPODPR_BOL_PrivateRoomDao::getInstance()->deleteByExample($ex);
     }
 
 }

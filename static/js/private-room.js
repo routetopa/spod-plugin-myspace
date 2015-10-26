@@ -2,11 +2,11 @@ SPODPR = {};
 
 SPODPR.addTextLinkCard = function (e)
 {
-    console.log(e);
+    //console.log(e);
 
     var cardData = {
         comment : e.detail.data.comment,
-        content : e.detail.data.text,//link in caso di type link
+        content :  e.detail.data.type == 'text' ? e.detail.data.text : e.detail.data.link,
         title   : e.detail.data.title,
         type    : e.detail.data.type
     };
@@ -44,12 +44,58 @@ $(document).ready(function () {
     });
 
     document.addEventListener('create-card-controllet_button-clicked', function(e) {
-        //console.log(e);
         previewFloatBox.close();
     });
 
     document.addEventListener('paper-card-controllet_delete-clicked', function(e) {
-        console.log(e);
+
+        var id   = e.detail.data.getAttribute("card-id");
+        var type = e.detail.data.getAttribute("card-type");
+
+        var deleteCard = {"id":id, "type":type};
+
+        $.ajax({
+            type: 'post',
+            url: SPODPR.ajax_delete_card,
+            data: deleteCard,
+            dataType: 'JSON',
+            success: function(data){
+                remove_card(e.detail.data);
+            },
+            error: function( XMLHttpRequest, textStatus, errorThrown ){
+                OW.error(textStatus);
+            },
+            complete: function(){}
+        });
+
+    });
+
+    document.addEventListener('create-card-controllet_add-clicked', function(e){
+        SPODPR.addTextLinkCard(e);
+    });
+
+    document.addEventListener('search-panel-controllet_content-changed', function(e){
+
+        var cards = document.querySelectorAll('paper-card-controllet');
+        for(var i=0; i < cards.length; i++)
+        {
+            var title   = cards[i].cardTitle;
+            var comment = cards[i].comment;
+            var type    = cards[i].cardType;
+
+            var searchFlag = title.indexOf(e.detail.searchKey) == -1 && comment.indexOf(e.detail.searchKey) == -1 && type.indexOf(e.detail.searchKey) == -1;
+
+            if(!searchFlag || e.detail.searchKey == "")
+            {
+                cards[i].style.display = "inline-block";
+            }
+            else
+            {
+                cards[i].style.display = "none";
+            }
+        }
+
+        $('.grid').masonry();
     });
 
 });
