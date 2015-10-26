@@ -18,7 +18,7 @@ SPODPR.addTextLinkCard = function (e)
         dataType: 'JSON',
         success: function(data){
             previewFloatBox.close();
-            add_card(cardData);
+            add_card(cardData, data.id);
         },
         error: function( XMLHttpRequest, textStatus, errorThrown ){
             OW.error(textStatus);

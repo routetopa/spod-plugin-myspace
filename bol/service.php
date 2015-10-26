@@ -69,6 +69,8 @@ class SPODPR_BOL_Service
         $card->status    = 'approved';
         $card->privacy   = 'everybody';
         SPODPR_BOL_PrivateRoomDao::getInstance()->save($card);
+
+        return $card->id;
     }
 
     public function addTextLinkCard($ownerId, $type, $title, $content, $comment)
@@ -81,6 +83,8 @@ class SPODPR_BOL_Service
         $card->status    = 'approved';
         $card->privacy   = 'everybody';
         SPODPR_BOL_PrivateRoomDao::getInstance()->save($card);
+
+        return $card->id;
     }
 
     public function deleteCard($ownerId, $type, $cardId)

@@ -95,7 +95,7 @@
         previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {text:'testo'} , {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
     }
 
-    function add_card(data)
+    function add_card(data, id)
     {
         var url_components = SPODPR.components_url;
 
@@ -104,7 +104,7 @@
         paperCard.setAttribute('class', 'grid-item');
         paperCard.setAttribute('width', '200');
         paperCard.setAttribute('height', '200');
-        paperCard.setAttribute('card-id', '');
+        paperCard.setAttribute('card-id', id);
 
         if(data.params != undefined)
         {
