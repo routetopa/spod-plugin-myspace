@@ -56,7 +56,7 @@ class SPODPR_BOL_Service
         $dtId = ODE_BOL_Service::getInstance()->addPrivateRoomDatalet(
             $component,
             $fields,
-            OW::getUser()->getId(),
+            $ownerId,
             $params,
             $data
         );
@@ -64,7 +64,19 @@ class SPODPR_BOL_Service
         $card = new SPODPR_BOL_PrivateRoom();
         $card->ownerId   = $ownerId;
         $card->cardType  = 'datalet';
-        $card->card      = '{"dataletId":'.$dtId.', "legend":"datalet"}';
+        $card->card      = '{"dataletId":'.$dtId.', "title":"datalet"}';
+        $card->status    = 'approved';
+        $card->privacy   = 'everybody';
+        SPODPR_BOL_PrivateRoomDao::getInstance()->save($card);
+    }
+
+    public function addTextLinkCard($ownerId, $type, $title, $content, $comment)
+    {
+
+        $card = new SPODPR_BOL_PrivateRoom();
+        $card->ownerId   = $ownerId;
+        $card->cardType  = $type;
+        $card->card      = json_encode(array("title" => $title, "content" => $content, "comment" => $comment));
         $card->status    = 'approved';
         $card->privacy   = 'everybody';
         SPODPR_BOL_PrivateRoomDao::getInstance()->save($card);

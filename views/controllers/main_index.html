@@ -87,29 +87,6 @@
                 columnWidth: 120
             });
         },1000);
-
-        document.addEventListener('paper-card-controllet_details-clicked', function(e) {
-
-            SPODPR.ControlletPresets =
-            {
-                'selected-fields'   : e.detail.data.getAttribute("fields"),
-                'selected-datalet'  : e.detail.data.getAttribute("datalet").replace("-datalet", ""),
-                'datalet-preset'    : e.detail.data.getAttribute("preset")
-            };
-
-            open_ode();
-
-        });
-
-        document.addEventListener('create-card-controllet_button-clicked', function(e) {
-            console.log(e);
-            previewFloatBox.close();
-        });
-
-        document.addEventListener('paper-card-controllet_delete-clicked', function(e) {
-            console.log(e);
-        });
-
     });
 
     function open_ode()
@@ -121,17 +98,26 @@
     function add_card(data)
     {
         var url_components = SPODPR.components_url;
-        var dataletParams = JSON.parse(data.params);
 
         //var paperCard = document.registerElement('paper-card-controllet');
         var paperCard = document.createElement('paper-card-controllet');
         paperCard.setAttribute('class', 'grid-item');
         paperCard.setAttribute('width', '200');
         paperCard.setAttribute('height', '200');
-        paperCard.setAttribute('type', 'datalet');
-        paperCard.setAttribute('legend', 'datalet');
 
-        paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+dataletParams["data-url"]+'" data="" fields=\'['+data.fields+']\'></'+data.component+'>';
+        if(data.params != undefined)
+        {
+            var dataletParams = JSON.parse(data.params);
+            paperCard.setAttribute('type', 'datalet');
+            paperCard.setAttribute('card-title', 'datalet');
+            paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+dataletParams["data-url"]+'" data="" fields=\'['+data.fields+']\'></'+data.component+'>';
+        }
+        else
+        {
+            paperCard.setAttribute('type', data.type);
+            paperCard.setAttribute('card-title', data.title);
+            paperCard.$.content.innerHTML = data.content;
+        }
 
         //document.getElementById('grid-container').appendChild(paperCard);
         $('.grid').masonry().append(paperCard).masonry('appended', paperCard).masonry();
@@ -907,10 +893,11 @@
                                 {else}
                                     width="200"
                                     height="200"
+                                    comment="{$card->card->comment}"
                                 {/if}
 
                                 type="{$card->cardType}"
-                                legend="{$card->card->legend}">
+                                card-title="{$card->card->title}">
 
                             {if $card->isDatalet}
                                 <link rel="import" href="{$components_url}datalets/{$card->component}/{$card->component}.html" />

@@ -12,11 +12,14 @@ class SPODPR_CTRL_Main extends OW_ActionController
         $this->assign('components_url', SPODPR_COMPONENTS_URL);
         $this->assign('plugin_root_dir', OW::getPluginManager()->getPlugin('spodpr')->getStaticUrl());
 
+        OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodpr')->getStaticJsUrl() . 'private-room.js', 'text/javascript');
+
         $js = UTIL_JsGenerator::composeJsString('
-                SPODPR = {}
                 SPODPR.components_url = {$components_url}
+                SPODPR.ajax_add_text_link_card = {$ajax_add_text_link_card}
             ', array(
             'components_url' => SPODPR_COMPONENTS_URL,
+            'ajax_add_text_link_card' => OW::getRouter()->urlFor('SPODPR_CTRL_Ajax', 'addTextLinkCard')
         ));
 
         OW::getDocument()->addOnloadScript($js);
@@ -29,6 +32,7 @@ class SPODPR_CTRL_Main extends OW_ActionController
         foreach($bolCards as $bolCard)
         {
             $card = new SPODPR_CLASS_Card();
+            $card->isDatalet = false;
             $card->ownerId = $bolCard->ownerId;
             $card->cardType = $bolCard->cardType;
             $card->card = json_decode($bolCard->card);
