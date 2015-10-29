@@ -89,13 +89,42 @@
         },1000);
     });
 
-    function open_ode()
+    function test_sobstitute_card()
     {
-        ODE.pluginPreview = 'private-room';
-        previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {text:'testo'} , {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
+        var data = JSON.parse('{"component": "barchart-datalet", "params": {"data-url": "http://ckan.routetopa.eu/api/action/datastore_search?resource_id=c3b52992-ba61-4a73-a637-0f2e1ca26aab", "title": "undefined", "x-axis-label": "undefined", "y-axis-label": "undefined", "suffix": "undefined" }, "fields": "", "_colorIndex": 0, "dataletId": "26" }');
+        data.params = JSON.stringify(data.params);
+        var id = 98;
+
+        var card = $("[card-id="+id+"]");
+        /*var sibling_card = $(card[0]).prev();
+
+        card[0].remove();
+        var mod_card = create_card(data, id);
+
+        if(sibling_card.length == 0)
+            $('.grid').prepend(mod_card);
+        else
+            $(sibling_card[0]).after(mod_card);*/
+
+        var mod_card = create_card(data, id);
+        card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
+    }
+
+    function sobstitute_card(data, id)
+    {
+        var card = $("[card-id="+id+"]");
+        var mod_card = create_card(data, id);
+        card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
     }
 
     function add_card(data, id)
+    {
+        var card = create_card(data, id);
+        //document.getElementById('grid-container').appendChild(paperCard);
+        $('.grid').masonry().append(card).masonry('appended', card).masonry();
+    }
+
+    function create_card(data, id)
     {
         var url_components = SPODPR.components_url;
 
@@ -126,18 +155,13 @@
 
         }
 
-        //document.getElementById('grid-container').appendChild(paperCard);
-        $('.grid').masonry().append(paperCard).masonry('appended', paperCard).masonry();
+        return paperCard;
+
     }
 
     function remove_card(card)
     {
         $('.grid').masonry('remove',card).masonry('layout');
-    }
-
-    function open_creator(type)
-    {
-        previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {type:type} , {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
     }
 
 </script>
@@ -898,7 +922,7 @@
                                 {if $card->isDatalet}
                                     width="200"
                                     height="200"
-                                    dataletId="{$card->dataletId}"
+                                    datalet-id="{$card->dataletId}"
                                     datalet="{$card->component}"
                                     preset='{$card->preset}'
                                     fields='{$card->fields}'
@@ -939,11 +963,11 @@
         <paper-fab-speed-dial direction="top" class="bottom-right add-paper-fab">
             <paper-fab icon="add" class="dropdown-trigger"></paper-fab>
             <div class="dropdown-content">
-                <paper-fab mini icon="link" onclick="open_creator('link');"></paper-fab>
-                <paper-fab mini icon="create" onclick="open_creator('text');"></paper-fab>
+                <paper-fab mini icon="link" onclick="SPODPR.openCardCreator('link');"></paper-fab>
+                <paper-fab mini icon="create" onclick="SPODPR.openCardCreator('text');"></paper-fab>
                 <!--<paper-fab mini icon="folder"></paper-fab>-->
                 <!--<paper-fab mini icon="perm-media"></paper-fab>-->
-                <paper-fab mini icon="assessment" onclick="open_ode();"></paper-fab>
+                <paper-fab mini icon="assessment" onclick="SPODPR.openOde();"></paper-fab>
             </div>
         </paper-fab-speed-dial>
         {/literal}

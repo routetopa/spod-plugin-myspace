@@ -28,4 +28,19 @@ class SPODPR_CTRL_Ajax extends OW_ActionController
         echo json_encode(array("status" => "ok"));
         exit;
     }
+
+    public function modDataletCard()
+    {
+        SPODPR_BOL_Service::getInstance()->modPrivateRoomDatalet(
+            OW::getUser()->getId(),
+            $_REQUEST['dataletId'],
+            $_REQUEST['component'],
+            $_REQUEST['fields'],
+            $_REQUEST['params'],
+            $_REQUEST['data']
+        );
+
+        echo json_encode(array("status" => "ok"));
+        exit;
+    }
 }

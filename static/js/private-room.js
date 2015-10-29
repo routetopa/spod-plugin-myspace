@@ -26,18 +26,36 @@ SPODPR.addTextLinkCard = function (e)
 
 };
 
+SPODPR.openOde = function ()
+{
+    ODE.pluginPreview = 'private-room';
+    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {text:'testo'} , {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
+};
+
+SPODPR.openCardCreator = function (type)
+{
+    previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {type:type} , {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
+};
+
 $(document).ready(function () {
 
     document.addEventListener('paper-card-controllet_details-clicked', function(e) {
 
-        SPODPR.ControlletPresets =
+        if(e.detail.data.getAttribute("card-type") == 'datalet')
         {
-            'selected-fields'   : e.detail.data.getAttribute("fields"),
-            'selected-datalet'  : e.detail.data.getAttribute("datalet").replace("-datalet", ""),
-            'datalet-preset'    : e.detail.data.getAttribute("preset")
-        };
+            SPODPR.cardOpened = e.detail.data.getAttribute("card-id");
+            SPODPR.dataletOpened = e.detail.data.getAttribute("datalet-id");
+            ODE.pluginPreview = 'private-room';
 
-        open_ode();
+            SPODPR.ControlletPresets =
+            {
+                'selected-fields': e.detail.data.getAttribute("fields"),
+                'selected-datalet': e.detail.data.getAttribute("datalet").replace("-datalet", ""),
+                'datalet-preset': e.detail.data.getAttribute("preset")
+            };
+
+            SPODPR.openOde();
+        }
 
     });
 

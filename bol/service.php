@@ -52,18 +52,23 @@ class SPODPR_BOL_Service
         return $result;
     }
 
-    public function addDataletCard($ownerId, $component, $fields, $params, $data='', $comment='')
+    public function dataletCard($userId, $component, $fields, $params, $data='', $comment='', $dataletId='', $cardId='')
     {
-        $dtId = ODE_BOL_Service::getInstance()->addPrivateRoomDatalet(
-            $component,
-            $fields,
-            $ownerId,
-            $params,
-            $data
-        );
+        $dtId = ODE_BOL_Service::getInstance()->privateRoomDatalet($component, $fields, $userId, $params, $data, $dataletId);
 
-        $card = new SPODPR_BOL_PrivateRoom();
-        $card->ownerId   = $ownerId;
+        if(empty($cardId))
+        {
+            $card = new SPODPR_BOL_PrivateRoom();
+        }
+        else
+        {
+            $example = new OW_Example();
+            $example->andFieldEqual('id', $cardId);
+            $example->andFieldEqual('ownerId', $userId);
+            $card = SPODPR_BOL_PrivateRoomDao::getInstance()->findObjectByExample($example);
+        }
+
+        $card->ownerId   = $userId;
         $card->cardType  = 'datalet';
         $card->card      = json_encode(array("dataletId" => $dtId, "title" => $component, "comment" => $comment));
         $card->status    = 'approved';
