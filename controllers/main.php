@@ -9,6 +9,7 @@ class SPODPR_CTRL_Main extends OW_ActionController
         OW::getDocument()->getMasterPage()->setTemplate(OW::getPluginManager()->getPlugin('spodpr')->getRootDir() . 'master_pages/general.html');
         $this->assign('cards', SPODPR_CLASS_Helper::getInstance()->getUserPrivateRoom(OW::getUser()->getId()));
 
+
         $this->assign('components_url', SPODPR_COMPONENTS_URL);
         $this->assign('plugin_root_dir', OW::getPluginManager()->getPlugin('spodpr')->getStaticUrl());
 
