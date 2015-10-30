@@ -14,12 +14,12 @@ class SPODPR_CLASS_Helper
         return self::$classInstance;
     }
 
-    public function getUserPrivateRoom($userId)
+    public function getUserPrivateRoom($userId, $onlyDatalet=false)
     {
-        return $this->processCard(SPODPR_BOL_Service::getInstance()->getUserPrivateRoom($userId));
+        return $this->processCard(SPODPR_BOL_Service::getInstance()->getUserPrivateRoom($userId), $onlyDatalet);
     }
 
-    private function processCard($bolCards)
+    private function processCard($bolCards, $onlyDatalet)
     {
         $cards = array();
 
@@ -48,7 +48,17 @@ class SPODPR_CLASS_Helper
                 }
             }
 
-            array_push($cards, $card);
+            if($onlyDatalet)
+            {
+                if ($card->isDatalet)
+                {
+                    array_push($cards, $card);
+                }
+            }
+            else
+            {
+                array_push($cards, $card);
+            }
 
         }
         return $cards;
