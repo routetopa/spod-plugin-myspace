@@ -16,6 +16,20 @@
 <link rel="import" href="{$components_url}bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="{$components_url}bower_components/paper-styles/color.html">
 
+<!-- DATALET -->
+<link rel="import" href="{$components_url}datalets/areachart-datalet/areachart-datalet.html">
+<link rel="import" href="{$components_url}datalets/barchart-datalet/barchart-datalet.html">
+<link rel="import" href="{$components_url}datalets/bubble3d-datalet/bubble3d-datalet.html">
+<link rel="import" href="{$components_url}datalets/column3Dchart-datalet/column3Dchart-datalet.html">
+<link rel="import" href="{$components_url}datalets/datatable-datalet/datatable-datalet.html">
+<link rel="import" href="{$components_url}datalets/donutpie3dchart-datalet/donutpie3dchart-datalet.html">
+<link rel="import" href="{$components_url}datalets/leafletjs-datalet/leafletjs-datalet.html">
+<link rel="import" href="{$components_url}datalets/linechart-datalet/linechart-datalet.html">
+<link rel="import" href="{$components_url}datalets/preview-datalet/preview-datalet.html">
+<link rel="import" href="{$components_url}datalets/treemap-datalet/treemap-datalet.html">
+<link rel="import" href="{$components_url}datalets/columnchart-datalet/columnchart-datalet.html">
+<!-- DATALET -->
+
 <script type="text/javascript" src="{$plugin_root_dir}js/masonry.pkgd.min.js"></script>
 {literal}
 <style is="custom-style">
@@ -89,7 +103,7 @@
         },1500);
     });
 
-    function test_sobstitute_card()
+    function test_replace_card()
     {
         var data = JSON.parse('{"component": "barchart-datalet", "params": {"data-url": "http://ckan.routetopa.eu/api/action/datastore_search?resource_id=c3b52992-ba61-4a73-a637-0f2e1ca26aab", "title": "undefined", "x-axis-label": "undefined", "y-axis-label": "undefined", "suffix": "undefined" }, "fields": "", "_colorIndex": 0, "dataletId": "26" }');
         data.params = JSON.stringify(data.params);
@@ -110,10 +124,13 @@
         card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
     }
 
-    function sobstitute_card(data, id)
+    function replace_card(data, id)
     {
         var card = $("[card-id="+id+"]");
         var mod_card = create_card(data, id);
+        card[0].setAttribute('comment', data.comment);
+        card[0].setAttribute('card-title', 'datalet');
+        card[0].setAttribute('card-title', data.component);
         card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
     }
 
@@ -126,9 +143,9 @@
 
     function create_card(data, id)
     {
-        var url_components = SPODPR.components_url;
-
+        //var url_components = SPODPR.components_url;
         //var paperCard = document.registerElement('paper-card-controllet');
+
         var paperCard = document.createElement('paper-card-controllet');
         paperCard.setAttribute('class', 'grid-item');
         paperCard.setAttribute('width', '200');
@@ -140,7 +157,7 @@
         {
             var dataletParams = JSON.parse(data.params);
             paperCard.setAttribute('card-type', 'datalet');
-            paperCard.setAttribute('card-title', 'datalet');
+            paperCard.setAttribute('card-title', data.component);
             paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+dataletParams["data-url"]+'" data="" fields=\'['+data.fields+']\'></'+data.component+'>';
         }
         else
@@ -218,7 +235,6 @@
                                 comment="{$card->card->comment}">
 
                             {if $card->isDatalet}
-                                <link rel="import" href="{$components_url}datalets/{$card->component}/{$card->component}.html" />
                                 <{$card->component} data-url="{$card->params->dataUrl}"
                                                     data='{$card->data}'
                                                     fields='[{$card->fields}]'>
@@ -227,7 +243,6 @@
                                 {if $card->cardType == 'text'}
                                     {$card->card->content}
                                 {else}
-                                    <link rel="import" href="{$components_url}datalets/preview-datalet/preview-datalet.html" />
                                     <preview-datalet data-url="undefined" url="{$card->card->content}"></preview-datalet>
                                 {/if}
                             {/if}

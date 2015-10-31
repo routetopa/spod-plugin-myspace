@@ -65,24 +65,28 @@ $(document).ready(function () {
 
     document.addEventListener('paper-card-controllet_delete-clicked', function(e) {
 
-        var id   = e.detail.data.getAttribute("card-id");
-        var type = e.detail.data.getAttribute("card-type");
+        if(confirm("Delete ?"))
+        {
+            var id = e.detail.data.getAttribute("card-id");
+            var type = e.detail.data.getAttribute("card-type");
 
-        var deleteCard = {"id":id, "type":type};
+            var deleteCard = {"id": id, "type": type};
 
-        $.ajax({
-            type: 'post',
-            url: SPODPR.ajax_delete_card,
-            data: deleteCard,
-            dataType: 'JSON',
-            success: function(data){
-                remove_card(e.detail.data);
-            },
-            error: function( XMLHttpRequest, textStatus, errorThrown ){
-                OW.error(textStatus);
-            },
-            complete: function(){}
-        });
+            $.ajax({
+                type: 'post',
+                url: SPODPR.ajax_delete_card,
+                data: deleteCard,
+                dataType: 'JSON',
+                success: function (data) {
+                    remove_card(e.detail.data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    OW.error(textStatus);
+                },
+                complete: function () {
+                }
+            });
+        }
 
     });
 
