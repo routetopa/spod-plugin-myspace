@@ -78,10 +78,21 @@ class SPODPR_BOL_Service
         return $card->id;
     }
 
-    public function addTextLinkCard($ownerId, $type, $title, $content, $comment)
+    public function textLinkCard($ownerId, $type, $title, $content, $comment, $id)
     {
 
-        $card = new SPODPR_BOL_PrivateRoom();
+        if(empty($id))
+        {
+            $card = new SPODPR_BOL_PrivateRoom();
+        }
+        else
+        {
+            $example = new OW_Example();
+            $example->andFieldEqual('id', $id);
+            $example->andFieldEqual('ownerId', $ownerId);
+            $card = SPODPR_BOL_PrivateRoomDao::getInstance()->findObjectByExample($example);
+        }
+
         $card->ownerId   = $ownerId;
         $card->cardType  = $type;
         $card->card      = json_encode(array("title" => $title, "content" => $content, "comment" => $comment));

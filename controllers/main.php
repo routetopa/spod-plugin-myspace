@@ -17,12 +17,12 @@ class SPODPR_CTRL_Main extends OW_ActionController
 
         $js = UTIL_JsGenerator::composeJsString('
                 SPODPR.components_url = {$components_url}
-                SPODPR.ajax_add_text_link_card = {$ajax_add_text_link_card}
+                SPODPR.ajax_text_link_card = {$ajax_text_link_card}
                 SPODPR.ajax_delete_card = {$ajax_delete_card}
                 SPODPR.ajax_mod_datalet_card = {$ajax_mod_datalet_card}
             ', array(
             'components_url' => SPODPR_COMPONENTS_URL,
-            'ajax_add_text_link_card' => OW::getRouter()->urlFor('SPODPR_CTRL_Ajax', 'addTextLinkCard'),
+            'ajax_text_link_card' => OW::getRouter()->urlFor('SPODPR_CTRL_Ajax', 'textLinkCard'),
             'ajax_delete_card' => OW::getRouter()->urlFor('SPODPR_CTRL_Ajax', 'deleteCard'),
             'ajax_mod_datalet_card' => OW::getRouter()->urlFor('SPODPR_CTRL_Ajax', 'modDataletCard'),
         ));

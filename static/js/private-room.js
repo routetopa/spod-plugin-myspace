@@ -1,22 +1,26 @@
 SPODPR = {};
 
-SPODPR.addTextLinkCard = function (e)
+SPODPR.textLinkCard = function (e)
 {
     var cardData = {
         comment : e.detail.data.comment,
-        content :  e.detail.data.type == 'text' ? e.detail.data.text : e.detail.data.link,
-        title   : e.detail.data.title,
-        type    : e.detail.data.type
+        content : e.detail.data.type == 'text' ? e.detail.data.text : e.detail.data.link,
+        title   : e.detail.data.cardTitle,
+        type    : e.detail.data.type,
+        id      : e.detail.data.getAttribute("card-id") == null ? '' : e.detail.data.getAttribute("card-id")
     };
 
     $.ajax({
         type: 'post',
-        url: SPODPR.ajax_add_text_link_card,
+        url: SPODPR.ajax_text_link_card,
         data: cardData,
         dataType: 'JSON',
         success: function(data){
             previewFloatBox.close();
-            add_card(cardData, data.id);
+            if(cardData.id == "")
+                add_card(cardData, data.id);
+            else
+                replace_text_link_card(cardData, data.id)
         },
         error: function( XMLHttpRequest, textStatus, errorThrown ){
             OW.error(textStatus);
@@ -34,27 +38,55 @@ SPODPR.openOde = function ()
 
 SPODPR.openCardCreator = function (type)
 {
-    previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {type:type} , {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
+    var params = {type:type};
+    previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {type:params} , {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
 };
 
 $(document).ready(function () {
 
     document.addEventListener('paper-card-controllet_details-clicked', function(e) {
 
-        if(e.detail.data.getAttribute("card-type") == 'datalet')
+        switch(e.detail.data.getAttribute("card-type"))
         {
-            SPODPR.cardOpened = e.detail.data.getAttribute("card-id");
-            SPODPR.dataletOpened = e.detail.data.getAttribute("datalet-id");
-            ODE.pluginPreview = 'private-room';
+            case 'datalet' :
+                SPODPR.cardOpened = e.detail.data.getAttribute("card-id");
+                SPODPR.dataletOpened = e.detail.data.getAttribute("datalet-id");
+                ODE.pluginPreview = 'private-room';
 
-            SPODPR.ControlletPresets =
-            {
-                'selected-fields': e.detail.data.getAttribute("fields"),
-                'selected-datalet': e.detail.data.getAttribute("datalet").replace("-datalet", ""),
-                'datalet-preset': e.detail.data.getAttribute("preset")
-            };
+                SPODPR.ControlletPresets =
+                {
+                    'selected-fields': e.detail.data.getAttribute("fields"),
+                    'selected-datalet': e.detail.data.getAttribute("datalet").replace("-datalet", ""),
+                    'datalet-preset': e.detail.data.getAttribute("preset")
+                };
 
-            SPODPR.openOde();
+                SPODPR.openOde();
+                break;
+
+            case 'text'    :
+                var params = {type:e.detail.data.getAttribute("card-type"),
+                    title:e.detail.data.getAttribute("card-title"),
+                    content:e.detail.data.$.content.textContent,
+                    comment:e.detail.data.getAttribute("comment"),
+                    cardId:e.detail.data.getAttribute("card-id")};
+
+                previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {params:params},
+                    {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
+                break;
+
+            case 'link'    :
+                var params = {type:e.detail.data.getAttribute("card-type"),
+                    title:e.detail.data.getAttribute("card-title"),
+                    link:e.detail.data.getAttribute("card-link"),
+                    comment:e.detail.data.getAttribute("comment"),
+                    cardId:e.detail.data.getAttribute("card-id")};
+
+                previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {params:params},
+                    {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
+                break;
+
+            default        : break
+
         }
 
     });
@@ -91,7 +123,7 @@ $(document).ready(function () {
     });
 
     document.addEventListener('create-card-controllet_add-clicked', function(e){
-        SPODPR.addTextLinkCard(e);
+        SPODPR.textLinkCard(e);
     });
 
     document.addEventListener('search-panel-controllet_content-changed', function(e){

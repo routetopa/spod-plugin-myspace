@@ -124,12 +124,20 @@
         card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
     }
 
-    function replace_card(data, id)
+
+    function replace_text_link_card(data, id)
+    {
+        var card = $("[card-id="+id+"]");
+        card[0].setAttribute('comment', data.comment);
+        card[0].setAttribute('card-title', data.title);
+        card[0].$.content.innerHTML = data.content;
+    }
+
+    function replace_datalet_card(data, id)
     {
         var card = $("[card-id="+id+"]");
         var mod_card = create_card(data, id);
         card[0].setAttribute('comment', data.comment);
-        card[0].setAttribute('card-title', 'datalet');
         card[0].setAttribute('card-title', data.component);
         card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
     }
@@ -232,7 +240,12 @@
                                 card-type="{$card->cardType}"
                                 card-title="{$card->card->title}"
                                 card-id="{$card->cardId}"
-                                comment="{$card->card->comment}">
+                                comment="{$card->card->comment}"
+
+                                {if $card->cardType == 'link'}
+                                    card-link="{$card->card->content}"
+                                {/if}
+                            >
 
                             {if $card->isDatalet}
                                 <{$card->component} data-url="{$card->params->dataUrl}"

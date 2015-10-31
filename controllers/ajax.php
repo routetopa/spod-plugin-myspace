@@ -3,14 +3,15 @@
 class SPODPR_CTRL_Ajax extends OW_ActionController
 {
 
-    public function addTextLinkCard()
+    public function textLinkCard()
     {
-        $id = SPODPR_BOL_Service::getInstance()->addTextLinkCard(
+        $id = SPODPR_BOL_Service::getInstance()->textLinkCard(
           OW::getUser()->getId(),
           $_REQUEST['type'],
           $_REQUEST['title'],
           $_REQUEST['content'],
-          $_REQUEST['comment']
+          $_REQUEST['comment'],
+          $_REQUEST['id']
         );
 
         echo json_encode(array("status" => "ok", "id" => $id));

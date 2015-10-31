@@ -1,5 +1,21 @@
 <link rel="import" href="{$components_url}controllets/create-card-controllet/create-card-controllet.html">
 
 <div style="width: 100%; height: 100%;">
-    <create-card-controllet type="{$type}"></create-card-controllet>
+    <create-card-controllet type="{$type}"
+
+      {if isset($content)}
+         card-title="{$title}"
+         text="{$content}"
+         comment="{$comment}"
+         card-id="{$cardId}"
+      {/if}
+
+      {if isset($link)}
+         card-title="{$title}"
+         link="{$link}"
+         comment="{$comment}"
+         card-id="{$cardId}"
+      {/if}
+
+    ></create-card-controllet>
 </div>
