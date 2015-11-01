@@ -166,6 +166,9 @@
             var dataletParams = JSON.parse(data.params);
             paperCard.setAttribute('card-type', 'datalet');
             paperCard.setAttribute('card-title', data.component);
+            paperCard.setAttribute('datalet', data.component);
+            paperCard.setAttribute('preset', data.params);
+            paperCard.setAttribute('fields', data.fields);
             paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+dataletParams["data-url"]+'" data="" fields=\'['+data.fields+']\'></'+data.component+'>';
         }
         else
