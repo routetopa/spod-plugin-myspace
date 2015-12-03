@@ -35,19 +35,19 @@ SPODPR.openOde = function ()
     SPODPR.dataletOpened = undefined;
     SPODPR.cardOpened = undefined;
     ODE.pluginPreview = 'private-room';
-    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {text:'testo'} , {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
+    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {text:'testo'} , {width:'90%', height:'80vh', iconClass: 'ow_ic_add', title: ''});
 };
 
 SPODPR.openModOde = function ()
 {
     ODE.pluginPreview = 'private-room';
-    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {text:'testo'} , {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
+    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {text:'testo'} , {width:'90%', height:'80vh', iconClass: 'ow_ic_add', title: ''});
 };
 
 SPODPR.openCardCreator = function (type)
 {
     var params = {type:type};
-    previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {type:params} , {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
+    previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {type:params} , {width:'90%', height:'80vh', iconClass: 'ow_ic_add', title: ''});
 };
 
 $(document).ready(function () {
