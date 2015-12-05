@@ -52,7 +52,8 @@ class SPODPR_BOL_Service
         return $result;
     }
 
-    public function dataletCard($userId, $component, $fields, $params, $data='', $comment='', $dataletId='', $cardId='')
+    //public function dataletCard($userId, $component, $fields, $params, $data='', $comment='', $dataletId='', $cardId='')
+    public function dataletCard($userId, $component, $fields, $params, $data='', $dataletId='', $cardId='')
     {
         $dtId = ODE_BOL_Service::getInstance()->privateRoomDatalet($component, $fields, $userId, $params, $data, $dataletId);
 
@@ -72,7 +73,7 @@ class SPODPR_BOL_Service
 
         $card->ownerId   = $userId;
         $card->cardType  = 'datalet';
-        $card->card      = json_encode(array("dataletId" => $dtId, "title" => $paramsObj->title, "comment" => $comment));
+        $card->card      = json_encode(array("dataletId" => $dtId, "title" => $paramsObj->title, "comment" => $paramsObj->description));
         $card->status    = 'approved';
         $card->privacy   = 'everybody';
         SPODPR_BOL_PrivateRoomDao::getInstance()->save($card);

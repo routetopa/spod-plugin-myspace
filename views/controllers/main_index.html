@@ -140,9 +140,10 @@
     function replace_datalet_card(data, id)
     {
         var card = $("[card-id="+id+"]");
+        data.params = JSON.parse(data.params);
         var mod_card = create_card(data, id);
-        card[0].setAttribute('comment', data.comment);
-        card[0].setAttribute('card-title', data.component);
+        card[0].setAttribute('comment', data.params.description);
+        card[0].setAttribute('card-title', data.params.title);
         card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
     }
 
