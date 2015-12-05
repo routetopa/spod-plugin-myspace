@@ -68,9 +68,11 @@ class SPODPR_BOL_Service
             $card = SPODPR_BOL_PrivateRoomDao::getInstance()->findObjectByExample($example);
         }
 
+        $paramsObj = json_decode($params);
+
         $card->ownerId   = $userId;
         $card->cardType  = 'datalet';
-        $card->card      = json_encode(array("dataletId" => $dtId, "title" => $component, "comment" => $comment));
+        $card->card      = json_encode(array("dataletId" => $dtId, "title" => $paramsObj->title, "comment" => $comment));
         $card->status    = 'approved';
         $card->privacy   = 'everybody';
         SPODPR_BOL_PrivateRoomDao::getInstance()->save($card);

@@ -43,7 +43,7 @@
 
     .paper-card-container
     {
-        padding:70px 70px 70px 70px;
+        padding:30px 0px 0px 30px;
     }
 
     paper-card-controllet{
@@ -87,6 +87,10 @@
         /*border-width: 1em;
         border-radius: 0.125rem;
         box-shadow: 0.125em 0.125em 0.1125em 0.125em rgba(0, 0, 0, 0.25);*/
+    }
+
+    body .floatbox_canvas .floatbox_container {
+        margin-top: 50px;
     }
 
 </style>
@@ -159,13 +163,14 @@
         paperCard.setAttribute('width', '200');
         paperCard.setAttribute('height', '200');
         paperCard.setAttribute('card-id', id);
-        paperCard.setAttribute('comment', data.comment);
+
 
         if(data.params != undefined)
         {
             var dataletParams = JSON.parse(data.params);
             paperCard.setAttribute('card-type', 'datalet');
-            paperCard.setAttribute('card-title', data.component);
+            paperCard.setAttribute('card-title', dataletParams.title);
+            paperCard.setAttribute('comment', dataletParams.description);
             paperCard.setAttribute('datalet', data.component);
             paperCard.setAttribute('preset', data.params);
             paperCard.setAttribute('fields', data.fields);
@@ -175,6 +180,7 @@
         {
             paperCard.setAttribute('card-type', data.type);
             paperCard.setAttribute('card-title', data.title);
+            paperCard.setAttribute('comment', data.comment);
 
             if(data.type == 'text')
                 paperCard.$.content.innerHTML = data.content;
