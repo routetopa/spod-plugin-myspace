@@ -140,10 +140,10 @@
     function replace_datalet_card(data, id)
     {
         var card = $("[card-id="+id+"]");
-        data.params = JSON.parse(data.params);
         var mod_card = create_card(data, id);
-        card[0].setAttribute('comment', data.params.description);
-        card[0].setAttribute('card-title', data.params.title);
+        card[0].setAttribute('preset', mod_card.getAttribute('preset'));
+        card[0].setAttribute('comment', mod_card.getAttribute('comment'));
+        card[0].setAttribute('card-title', mod_card.getAttribute('card-title'));
         card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
     }
 
@@ -168,14 +168,14 @@
 
         if(data.params != undefined)
         {
-            var dataletParams = JSON.parse(data.params);
-            paperCard.setAttribute('card-type', 'datalet');
-            paperCard.setAttribute('card-title', dataletParams.title);
-            paperCard.setAttribute('comment', dataletParams.description);
-            paperCard.setAttribute('datalet', data.component);
             paperCard.setAttribute('preset', data.params);
+            data.params = JSON.parse(data.params);
+            paperCard.setAttribute('card-type', 'datalet');
+            paperCard.setAttribute('card-title', data.params.title);
+            paperCard.setAttribute('comment', data.params.description);
+            paperCard.setAttribute('datalet', data.component);
             paperCard.setAttribute('fields', data.fields);
-            paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+dataletParams["data-url"]+'" data="" fields=\'['+data.fields+']\'></'+data.component+'>';
+            paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+data.params["data-url"]+'" data="" fields=\'['+data.fields+']\'></'+data.component+'>';
         }
         else
         {
