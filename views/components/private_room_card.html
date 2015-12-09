@@ -16,38 +16,38 @@
             <paper-card-controllet
                     class="card"
 
-                    {if $card->isDatalet}
-                width="200"
-                height="200"
-                datalet-id="{$card->dataletId}"
-                datalet="{$card->component}"
-                preset='{$card->preset}'
-                fields='{$card->fields}'
-                static-data='{$card->data}'
-                {else}
-                width="200"
-                height="200"
-                {/if}
+               {if $card->isDatalet}
+                    width="200"
+                    height="200"
+                    datalet-id="{$card->dataletId}"
+                    datalet="{$card->component}"
+                    preset='{$card->preset}'
+                    fields='{$card->fields}'
+                    static-data='{$card->data}'
+               {else}
+                    width="200"
+                    height="200"
+               {/if}
 
                 card-type="{$card->cardType}"
                 card-title="{$card->card->title}"
                 card-id="{$card->cardId}"
                 comment="{$card->card->comment}"
                 >
-                {if $card->isDatalet}
-                <link rel="import" href="{$components_url}datalets/{$card->component}/{$card->component}.html" />
-                <{$card->component} data-url="{$card->params->dataUrl}"
-                data='{$card->data}'
-                fields='[{$card->fields}]'>
-            </{$card->component}>
-            {else}
-            {if $card->cardType == 'text'}
-            {$card->card->content}
-            {else}
-            <link rel="import" href="{$components_url}datalets/preview-datalet/preview-datalet.html" />
-            <preview-datalet data-url="undefined" url="{$card->card->content}"></preview-datalet>
-            {/if}
-            {/if}
+                {if $card->isDatalet && !($card->cardType == 'link')}
+                   <link rel="import" href="{$components_url}datalets/{$card->component}/{$card->component}.html" />
+                   <{$card->component} data-url="{$card->params->dataUrl}"
+                   data='{$card->data}'
+                   fields='[{$card->fields}]'>
+                   </{$card->component}>
+                {else}
+                   {if $card->cardType == 'text'}
+                      {$card->card->content}
+                   {else}
+                      <link rel="import" href="{$components_url}datalets/preview-datalet/preview-datalet.html" />
+                      <preview-datalet data-url="undefined" url="{$card->card->content}"></preview-datalet>
+                   {/if}
+                {/if}
             </paper-card-controllet>
             {/foreach}
         </generic-cards-container-controllet>

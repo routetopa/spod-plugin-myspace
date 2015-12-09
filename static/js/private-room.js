@@ -47,7 +47,7 @@ SPODPR.openModOde = function ()
 SPODPR.openCardCreator = function (type)
 {
     var params = {type:type};
-    previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {type:params} , {width:'90%', height:'85vh', iconClass: 'ow_ic_add', title: ''});
+    previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {type:params} , {width:'90%', height:'70vh', iconClass: 'ow_ic_add', title: ''});
 };
 
 $(document).ready(function () {

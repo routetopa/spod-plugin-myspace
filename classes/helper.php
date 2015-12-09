@@ -14,12 +14,12 @@ class SPODPR_CLASS_Helper
         return self::$classInstance;
     }
 
-    public function getUserPrivateRoom($userId, $onlyDatalet=false)
+    public function getUserPrivateRoom($userId, $selectedType=array())
     {
-        return $this->processCard(SPODPR_BOL_Service::getInstance()->getUserPrivateRoom($userId), $onlyDatalet);
+        return $this->processCard(SPODPR_BOL_Service::getInstance()->getUserPrivateRoom($userId), $selectedType);
     }
 
-    private function processCard($bolCards, $onlyDatalet)
+    private function processCard($bolCards, $selectedType)
     {
         $cards = array();
 
@@ -43,21 +43,28 @@ class SPODPR_CLASS_Helper
                     $card->data = $datalet->data;
                     $card->fields = $datalet->fields;
                     $card->params = json_decode($datalet->params);
-                    $card->params->dataUrl = $card->params->{'data-url'};
+                    $card->params->dataUrl = isset($card->params->{'data-url'}) ? $card->params->{'data-url'} : '' ;
                     $card->preset = $datalet->params;
                 }
             }
 
-            if($onlyDatalet)
+            if($card->cardType == 'link')
             {
-                if ($card->isDatalet)
-                {
-                    array_push($cards, $card);
-                }
+                $card->isDatalet = true;
+                $card->component = 'preview-datalet';
+                $card->preset = json_encode(array("data-url" => $card->card->content, "url" => $card->card->content));
+            }
+
+            if(empty($selectedType))
+            {
+                array_push($cards, $card);
             }
             else
             {
-                array_push($cards, $card);
+                if (in_array($card->isDatalet, $selectedType))
+                {
+                    array_push($cards, $card);
+                }
             }
 
         }

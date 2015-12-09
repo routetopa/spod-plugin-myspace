@@ -257,7 +257,7 @@
                                 {/if}
                             >
 
-                            {if $card->isDatalet}
+                            {if $card->isDatalet && !($card->cardType == 'link')}
                                 <{$card->component} data-url="{$card->params->dataUrl}"
                                                     data='{$card->data}'
                                                     fields='[{$card->fields}]'>
