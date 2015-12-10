@@ -183,10 +183,13 @@
             paperCard.setAttribute('card-title', data.title);
             paperCard.setAttribute('comment', data.comment);
 
-            if(data.type == 'text')
+            if(data.type == 'text') {
                 paperCard.$.content.innerHTML = data.content;
-            else
-                paperCard.$.content.innerHTML =  '<preview-datalet data-url="undefined" url="'+data.content+'"></preview-datalet>';
+            }
+            else {
+                paperCard.setAttribute('card-link', data.content);
+                paperCard.$.content.innerHTML = '<preview-datalet data-url="undefined" url="' + data.content + '"></preview-datalet>';
+            }
 
         }
 
