@@ -156,9 +156,6 @@
 
     function create_card(data, id)
     {
-        //var url_components = SPODPR.components_url;
-        //var paperCard = document.registerElement('paper-card-controllet');
-
         var paperCard = document.createElement('paper-card-controllet');
         paperCard.setAttribute('class', 'grid-item');
         paperCard.setAttribute('width', '200');
@@ -185,12 +182,10 @@
 
             if(data.type == 'text') {
                 paperCard.$.content.innerHTML = data.content;
-            }
-            else {
+            } else {
                 paperCard.setAttribute('card-link', data.content);
                 paperCard.$.content.innerHTML = '<preview-datalet data-url="undefined" url="' + data.content + '"></preview-datalet>';
             }
-
         }
 
         return paperCard;
