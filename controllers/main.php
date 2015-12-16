@@ -12,6 +12,7 @@ class SPODPR_CTRL_Main extends OW_ActionController
 
         $this->assign('components_url', SPODPR_COMPONENTS_URL);
         $this->assign('plugin_root_dir', OW::getPluginManager()->getPlugin('spodpr')->getStaticUrl());
+        $this->assign('user_language', BOL_LanguageService::getInstance()->getCurrent()->tag);
 
         OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodpr')->getStaticJsUrl() . 'private-room.js', 'text/javascript');
 
