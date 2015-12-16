@@ -79,7 +79,7 @@ $(document).ready(function () {
                     cardId:e.detail.data.getAttribute("card-id")};
 
                 previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {params:params},
-                    {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
+                    {width:'70%', height:'70vh', iconClass: 'ow_ic_add', title: ''});
                 break;
 
             case 'link'    :
@@ -90,7 +90,7 @@ $(document).ready(function () {
                     cardId:e.detail.data.getAttribute("card-id")};
 
                 previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {params:params},
-                    {width:'90%', height:'65vh', iconClass: 'ow_ic_add', title: ''});
+                    {width:'70%', height:'70vh', iconClass: 'ow_ic_add', title: ''});
                 break;
 
             default        : break
