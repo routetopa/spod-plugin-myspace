@@ -15,6 +15,7 @@ class SPODPR_CTRL_Main extends OW_ActionController
         $this->assign('user_language', BOL_LanguageService::getInstance()->getCurrent()->tag);
 
         OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodpr')->getStaticJsUrl() . 'private-room.js', 'text/javascript');
+        OW::getDocument()->addScript(SPODPR_COMPONENTS_URL . 'bower_components/l20n/dist/compat/web/l20n.min.js');
 
         $js = UTIL_JsGenerator::composeJsString('
                 SPODPR.components_url = {$components_url}

@@ -3,7 +3,7 @@ SPODPR = {};
 SPODPR.textLinkCard = function (e)
 {
     var cardData = {
-        comment : e.detail.data.comment,
+        comment : e.detail.data.description,
         content : e.detail.data.type == 'text' ? e.detail.data.text : e.detail.data.link,
         title   : e.detail.data.cardTitle,
         type    : e.detail.data.type,
@@ -130,7 +130,7 @@ $(document).ready(function () {
 
     });
 
-    document.addEventListener('create-card-controllet_add-clicked', function(e){
+    document.addEventListener('create-card-controllet_data', function(e){
         SPODPR.textLinkCard(e);
     });
 
