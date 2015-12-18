@@ -5,6 +5,11 @@ class SPODPR_CTRL_Main extends OW_ActionController
 
     public function index()
     {
+        if (!OW::getUser()->isAuthenticated())
+        {
+            throw new Redirect404Exception();
+        }
+
         OW::getDocument()->addStyleSheet(OW::getPluginManager()->getPlugin('spodpr')->getStaticUrl() . 'css/private_room.css');
         OW::getDocument()->getMasterPage()->setTemplate(OW::getPluginManager()->getPlugin('spodpr')->getRootDir() . 'master_pages/general.html');
         $this->assign('cards', SPODPR_CLASS_Helper::getInstance()->getUserPrivateRoom(OW::getUser()->getId()));
