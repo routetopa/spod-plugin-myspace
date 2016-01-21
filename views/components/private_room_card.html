@@ -4,13 +4,16 @@
 <link rel="import" href="{$components_url}controllets/generic-cards-container-controllet/generic-cards-container-controllet.html"/>
 
 <div class="{$css_class}">
-    <animated-button-container-controllet id="share_from_private_room"
-                                          height="400"
-                                          width="480"
-                                          icon="perm-media"
-                                          icon-width="36"
-                                          icon-height="36"
-                                          background-button-color="#00aabf">
+    <!--<animated-button-container-controllet id="share_from_private_room"-->
+                                          <!--height="400"-->
+                                          <!--width="480"-->
+                                          <!--icon="perm-media"-->
+                                          <!--icon-width="36"-->
+                                          <!--icon-height="36"-->
+                                          <!--background-button-color="#00aabf">-->
+
+    <animated-button-container-controllet id="share_from_private_room">
+
         <generic-cards-container-controllet>
             {foreach $cards as $card}
             <paper-card-controllet
@@ -51,6 +54,7 @@
             </paper-card-controllet>
             {/foreach}
         </generic-cards-container-controllet>
+
     </animated-button-container-controllet>
 </div>
 <!-- PRIVATE ROOM -->
