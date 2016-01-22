@@ -1,0 +1,105 @@
+<link rel="import" href="{$components_url}bower_components/paper-fab/paper-fab.html">
+
+<style>
+    #scroll_content{
+        position: relative;
+        overflow: auto;
+    }
+    div.cell{
+        padding: 20px;
+        margin: 20px;
+    }
+
+    ul.cell-list {
+        list-style-type: circle;
+        position: relative;
+        left: 40px;
+    }
+
+    li{
+        margin-left: 20px;
+    }
+
+    paper-fab.opinion-button{
+        background:#5B646A;
+    }
+</style>
+
+<h2>MySpace helper</h2>
+<p>
+    MySpace is the place where each user can manage datalets, text and
+    link in a personal area, as a reminder or for later use within a post
+    (in What's new or in the Public rooms of the Agora).
+</p>
+<div id="scroll_content">
+    <div class="horizontal layout">
+
+        <img src="{$staticResourcesUrl}images/myspace1.png" style="width: 50%; height: 50%;">
+
+        <div class="vetical layout cell">
+            <p>
+                Each content is placed in a "card". You can add in a card a URL, a
+                datalet (visualization of a dataset) or plain text, simply by clicking
+                <b>on the big "+" button</b> in the bottom right.
+                In order to display the content of a card, just click on the blue
+                button in the middle of the card. Each card has also a title (in black
+                background) and a comment (below the title). For each card, on the
+                top, you can modify (pencil icon) or delete it (basket)
+                The layout of the cards follows the temporal order (most recent first).
+                You can create different types of cards:
+                <ul class="cell-list">
+                    <li>
+                        <b>Link card</b> <paper-fab mini icon="link" aria-disabled="false" elevation="1"></paper-fab>
+                    </li>
+                    <li>
+                        <b>Text</b> card <paper-fab mini icon="text-format" aria-disabled="false" elevation="1"></paper-fab>
+                    </li>
+                    <li>
+                        <b>OpenData Visualization</b> <paper-fab mini icon="assessment" aria-disabled="false" elevation="1"></paper-fab>
+                    </li>
+                </ul>
+            </p>
+
+            <p>
+                On top-right corner you can:
+                <ul class="cell-list">
+                    <li>
+                        <b>Modify</b> the related card <paper-fab mini icon="create" aria-disabled="false" elevation="1" class="opinion-button"></paper-fab>
+                    </li>
+                    <li>
+                        <b>Delete</b> the related card <paper-fab mini icon="delete" aria-disabled="false" elevation="1" class="opinion-button"></paper-fab>
+                    </li>
+                </ul>
+            </p>
+
+            <p>
+               To <b>display content</b> just click on the blue button in the middle of the card. When a user tries to view its own datalets in their private space, SPOD does not contacts the actual data provider but retrieves the data from its own database.
+               This allows in a great speed improvement and in a better user experience
+            </p>
+        </div>
+    </div>
+    <div class="horizontal layout">
+
+       <img src="{$staticResourcesUrl}images/myspace2.png" style="width: 50%; height: 50%;">
+
+        <div class="vetical layout cell">
+            <p>
+                It is possible to create a datalet using the Controllet interface
+                while to create text or URL (links) a specific interface is offered
+                (with a preview on the right).
+            </p>
+        </div>
+    </div>
+    <div class="horizontal layout cell">
+
+        <img src="{$staticResourcesUrl}images/myspace3.png" style="width: 60%; height: 100%;">
+
+        <div class="vetical layout cell">
+            <p>
+                You will be able to use the contents created in the this area to post
+                visualizations or links in the What's New area (in the figure on the
+                left) or in the Public Rooms within the Agora.
+            </p>
+        </div>
+    </div>
+</div>
