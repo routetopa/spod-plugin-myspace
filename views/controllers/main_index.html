@@ -10,24 +10,33 @@
 
 <link rel="import" href="{$components_url}controllets/paper-card-controllet/paper-card-controllet.html"/>
 <link rel="import" href="{$components_url}controllets/search-panel-controllet/search-panel-controllet.html"/>
-<link rel="import" href="{$components_url}controllets/animated-grid-controllet/animated-grid-controllet.html"/>
-<link rel="import" href="{$components_url}controllets/fullsize-page-with-card-controllet/fullsize-page-with-card-controllet.html">
-<link rel="import" href="{$components_url}controllets/room-controllet/room-controllet.html">
 
 <link rel="import" href="{$components_url}bower_components/paper-card/paper-card.html">
 <link rel="import" href="{$components_url}bower_components/paper-button/paper-button.html">
 <link rel="import" href="{$components_url}bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="{$components_url}bower_components/paper-styles/color.html">
 
+<!-- DATALET -->
+<link rel="import" href="{$components_url}datalets/areachart-datalet/areachart-datalet.html">
+<link rel="import" href="{$components_url}datalets/barchart-datalet/barchart-datalet.html">
+<link rel="import" href="{$components_url}datalets/bubble3d-datalet/bubble3d-datalet.html">
+<link rel="import" href="{$components_url}datalets/column3Dchart-datalet/column3Dchart-datalet.html">
+<link rel="import" href="{$components_url}datalets/datatable-datalet/datatable-datalet.html">
+<link rel="import" href="{$components_url}datalets/donutpie3dchart-datalet/donutpie3dchart-datalet.html">
+<link rel="import" href="{$components_url}datalets/leafletjs-datalet/leafletjs-datalet.html">
+<link rel="import" href="{$components_url}datalets/linechart-datalet/linechart-datalet.html">
+<link rel="import" href="{$components_url}datalets/preview-datalet/preview-datalet.html">
+<link rel="import" href="{$components_url}datalets/treemap-datalet/treemap-datalet.html">
+<link rel="import" href="{$components_url}datalets/columnchart-datalet/columnchart-datalet.html">
+<!-- DATALET -->
 
-<link rel="import" href="{$components_url}bower_components/neon-animation/neon-animated-pages.html">
-<link rel="import" href="{$components_url}bower_components/paper-styles/paper-styles.html">
-<link rel="import" href="{$components_url}bower_components/neon-animation/neon-animations.html">
+<script type="text/javascript" src="{$plugin_root_dir}js/masonry.pkgd.min.js"></script>
 
-<link rel="import" href="{$components_url}bower_components/polymer-element-catalog/app/elements/app-sidebar/app-sidebar.html">
-
+<link rel="localization" href="{$components_url}locales/{$user_language}.l20n">
 
 {literal}
+
+
 <style is="custom-style">
 
     paper-toolbar.toolbar-main
@@ -37,96 +46,162 @@
         -webkit-box-shadow: 0 0 20px 5px #999;
     }
 
-    paper-fab
+    .paper-card-container
     {
+        padding:30px 0px 0px 30px;
+    }
+
+    paper-card-controllet{
+        margin-bottom : 20px;
+    }
+
+    paper-fab.add-paper-fab {
         position: absolute;
-        bottom: 55px;
-        right: 40px;
+        bottom: 25px;
+        right: 50px;
         --paper-fab-background:#2196F3;
     }
 
-    .ow_console_right {
+    paper-fab-speed-dial.add-paper-fab {
         position: absolute;
-        right: 0px;
+        bottom: 55px;
+        right: 40px;
+    }
+    paper-fab{
+        --paper-fab-background:#2196F3;
+    }
+
+    .grid
+    {
+        width: 100%;
+        z-index: 0;
+    }
+
+    .grid:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    .grid-item {
+        float: left;
+        /*border: 2px solid #333;
+        height: 200px;
+        width: 200px;
+        overflow: hidden;*/
+        /*border-width: 1em;
+        border-radius: 0.125rem;
+        box-shadow: 0.125em 0.125em 0.1125em 0.125em rgba(0, 0, 0, 0.25);*/
+    }
+
+    body .floatbox_canvas .floatbox_container {
+        margin-top: 50px;
     }
 
 </style>
 
 <script type="text/javascript">
+
     $(document).ready(function () {
-
-        var scope = document.querySelector('template[is="dom-bind"]');
-
-        scope._onTileClick = function(event) {
-            $("#add_room_button").hide();
-            this.$['fullsize-card'].color      = event.detail.data.color;
-            this.$['fullsize-card'].publicRoom = event.detail.data.id;
-            ODE.publicRoom = event.detail.data.id;
-            this.$.pages.selected = 1;
-        };
-
-        scope._onFullsizeClick = function(event) {
-            $("#add_room_button").show();
-            this.$['fullsize-card'].publicRoom = undefined;
-            this.$.pages.selected = 0;
-        };
-
-        window.addEventListener('fullsize-page-with-card-controllet_attached', function(){
-            var match = window.location.hash.match(/\/[0-9]*/g);
-            if(match)
-            {
-                var roomId = match[0].replace("/","");
-                $("#add_room_button").hide();
-                $("#fullsize-card")[0].color = $("#"+roomId).css('background-color');
-                $("#fullsize-card")[0].publicRoom = roomId;
-                ODE.publicRoom = roomId;
-                $("#pages")[0].selected = 1;
-            }
-        });
-
+        //setTimeout(function() {
+            $('.grid').masonry({
+                // options
+                itemSelector: '.grid-item',
+                columnWidth: 120
+            });
+        //},1500);
     });
 
-    function addRoom(event)
+    function test_replace_card()
     {
-        previewFloatBox.close();
-        var room = createRoom(event);
-        $('.grid').prepend(room).masonry('reloadItems').masonry('layout');
+        var data = JSON.parse('{"component": "barchart-datalet", "params": {"data-url": "http://ckan.routetopa.eu/api/action/datastore_search?resource_id=c3b52992-ba61-4a73-a637-0f2e1ca26aab", "title": "undefined", "x-axis-label": "undefined", "y-axis-label": "undefined", "suffix": "undefined" }, "fields": "", "_colorIndex": 0, "dataletId": "26" }');
+        data.params = JSON.stringify(data.params);
+        var id = 98;
 
-        var myPublicRoomMenu = document.getElementById('my-public-room-menu');
-        var paperItem     = document.createElement('paper-item');
-        var paperItemBody = document.createElement('paper-item-body');
-        paperItem.setAttribute("onclick","SPODPUBLICROOM.handleSuggestedDataset("+event.id+")");
-        paperItemBody.setAttribute("two-lines","");
-        paperItemBody.innerHTML = event.subject;
-        paperItem.appendChild(paperItemBody);
-        myPublicRoomMenu.insertBefore(paperItem, myPublicRoomMenu.firstChild);
+        var card = $("[card-id="+id+"]");
+        /*var sibling_card = $(card[0]).prev();
+
+        card[0].remove();
+        var mod_card = create_card(data, id);
+
+        if(sibling_card.length == 0)
+            $('.grid').prepend(mod_card);
+        else
+            $(sibling_card[0]).after(mod_card);*/
+
+        var mod_card = create_card(data, id);
+        card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
     }
 
-    /*    function addFakeRoom()
-     {
-     var event = {id:"--", body:"--",subject:"--"};
-     addRoom(event);
-     }*/
 
-    function createRoom(event)
+    function replace_text_link_card(data, id)
     {
-        var room = document.createElement('room-controllet');
-
-        room.setAttribute('room-owner', ODE.currentUsername);
-        room.setAttribute('room-shape', '["few","few","few"]');
-        room.setAttribute('room-id', event.id);
-        room.setAttribute('body', event.body);
-        room.setAttribute('subject', event.subject);
-        room.setAttribute('timestamp', 'Now');
-        room.setAttribute('room-color', '#2C29FF');
-        room.setAttribute('datasets', '0');
-        room.setAttribute('comments', '0');
-        room.setAttribute('room-width', 'grid-item-w20');
-        room.setAttribute('room-height', 'grid-item-h200');
-        room.setAttribute('room-views', '0');
-
-        return room;
+        var card = $("[card-id="+id+"]");
+        card[0].setAttribute('comment', data.comment);
+        card[0].setAttribute('card-title', data.title);
+        card[0].$.content.innerHTML = data.content;
     }
+
+    function replace_datalet_card(data, id)
+    {
+        var card = $("[card-id="+id+"]");
+        var mod_card = create_card(data, id);
+        card[0].setAttribute('preset', mod_card.getAttribute('preset'));
+        card[0].setAttribute('comment', mod_card.getAttribute('comment'));
+        card[0].setAttribute('card-title', mod_card.getAttribute('card-title'));
+        card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
+    }
+
+    function add_card(data, id)
+    {
+        var card = create_card(data, id);
+        //document.getElementById('grid-container').appendChild(paperCard);
+        $('.grid').masonry().append(card).masonry('appended', card).masonry();
+    }
+
+    function create_card(data, id)
+    {
+        var paperCard = document.createElement('paper-card-controllet');
+        paperCard.setAttribute('class', 'grid-item');
+        paperCard.setAttribute('width', '200');
+        paperCard.setAttribute('height', '200');
+        paperCard.setAttribute('card-id', id);
+
+
+        if(data.params != undefined)
+        {
+            paperCard.setAttribute('preset', data.params);
+            data.params = JSON.parse(data.params);
+            paperCard.setAttribute('card-type', 'datalet');
+            paperCard.setAttribute('card-title', data.params.title);
+            paperCard.setAttribute('comment', data.params.description);
+            paperCard.setAttribute('datalet', data.component);
+            paperCard.setAttribute('fields', data.fields);
+            paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+data.params["data-url"]+'" data="" fields=\'['+data.fields+']\'></'+data.component+'>';
+        }
+        else
+        {
+            paperCard.setAttribute('card-type', data.type);
+            paperCard.setAttribute('card-title', data.title);
+            paperCard.setAttribute('comment', data.comment);
+
+            if(data.type == 'text') {
+                paperCard.$.content.innerHTML = data.content;
+            } else {
+                paperCard.setAttribute('card-link', data.content);
+                paperCard.$.content.innerHTML = '<preview-datalet data-url="undefined" url="' + data.content + '"></preview-datalet>';
+            }
+        }
+
+        return paperCard;
+
+    }
+
+    function remove_card(card)
+    {
+        $('.grid').masonry('remove',card).masonry('layout');
+    }
+
 </script>
 {/literal}
 
@@ -135,76 +210,86 @@
     <div drawer>
 
         <paper-toolbar class="toolbar-drawer">
-            <div class="title">My Public Room</div>
+            <div class="title">Options</div>
         </paper-toolbar>
 
-        <app-sidebar drawer>
-            <paper-menu id="my-public-room-menu">
-                {foreach $userPublicRooms as $userRoom}
-                <paper-item onclick="SPODPUBLICROOM.handleSuggestedDataset({$userRoom->id})">
-                    <!--<iron-icon icon="warning"></iron-icon>-->
-                    <paper-item-body two-lines>
-                        <div>{$userRoom->subject}</div>
-                    </paper-item-body>
-                </paper-item>
-                {/foreach}
-            </paper-menu>
-        </app-sidebar>
+        <paper-menu selected="0">
+        <!--<paper-item>Item 1</paper-item>
+            <paper-item>Item 2</paper-item>-->
+        </paper-menu>
 
     </div>
 
-    <div main class="fullbleed layout vertical">
+    <div main class="fullbleed layout vertical" style="background-color:#e8e8e8">
 
-        <paper-toolbar class="toolbar-main">
-            <paper-icon-button paper-drawer-toggle icon="menu" on-tap="menuAction"></paper-icon-button>
-            <!--<div class="title">Agora</div>-->
-            <div class="clearfix" style="background-color:#2196F3;">
-                <a class="ow_logo ow_left" href="{$siteUrl}"></a>
-                <div class="ow_nav_btn"></div>
-                <div class="ow_console_right">
-                    {$console}
-                </div>
-                <div class="ow_menu_wrap">{component class='BASE_CMP_MainMenu' responsive=true}</div>
-            </div>
-            <!--<search-panel-controllet right-direction="true"></search-panel-controllet>-->
-            <!--<paper-icon-button icon="more-vert" on-tap="moreAction"></paper-icon-button>-->
-        </paper-toolbar>
+            <paper-toolbar class="toolbar-main">
+                <paper-icon-button paper-drawer-toggle icon="menu" on-tap="menuAction"></paper-icon-button>
+                <div class="title">My space</div>
+                <search-panel-controllet right-direction="true"></search-panel-controllet>
+                <!--<paper-icon-button icon="more-vert" on-tap="moreAction"></paper-icon-button>-->
+            </paper-toolbar>
 
         <paper-scroll-header-panel class="flex" fixed>
 
-            <template is="dom-bind">
-                <neon-animated-pages id="pages" selected="0" style="height: 100%; width: 100%;">
+            <div class="layout vertical justified paper-card-container">
+                <div class="horizontal layout">
+                    <div class="grid" id="grid-container">
+                    {foreach $cards as $card}
+                        <paper-card-controllet
+                                class="grid-item"
 
-                    <animated-grid-controllet on-tile-click="_onTileClick">
-                        {foreach $rooms as $room}
+                                {if $card->isDatalet}
+                                    width="200"
+                                    height="200"
+                                    datalet-id="{$card->dataletId}"
+                                    datalet="{$card->component}"
+                                    preset='{$card->preset}'
+                                    fields='{$card->fields}'
+                                {else}
+                                    width="200"
+                                    height="200"
+                                {/if}
 
-                        <room-controllet
-                                room-owner="{$room->owner}"
-                                room-shape='["{$room->colorStep}",{if $room->comments > $commentsMedian}"many"{else}"few"{/if},{if $room->opendata > $openDataMedian}"many"{else}"few"{/if}]'
-                                room-id="{$room->id}"
-                                body="{$room->body}"
-                                subject="{$room->subject}"
-                                timestamp="{$room->timestamp}"
-                                room-color="#{$room->color}"
-                                datasets="{$room->opendata}"
-                                comments="{$room->comments}"
-                                room-width={if $room->opendata > $openDataMedian}"grid-item-w40"{else}"grid-item-w20"{/if}
-                            room-height={if $room->comments > $commentsMedian}"grid-item-h400"{else}"grid-item-h200"{/if}
-                            room-views={$room->views}
-                            ></room-controllet>
-                        {/foreach}
-                    </animated-grid-controllet>
+                                card-type="{$card->cardType}"
+                                card-title="{$card->card->title}"
+                                card-id="{$card->cardId}"
+                                comment="{$card->card->comment}"
 
-                    <fullsize-page-with-card-controllet id="fullsize-card" hero-id="hero" on-click="_onFullsizeClick">
-                    </fullsize-page-with-card-controllet>
+                                {if $card->cardType == 'link'}
+                                    card-link="{$card->card->content}"
+                                {/if}
+                            >
 
-                </neon-animated-pages>
-            </template>
+                            {if $card->isDatalet && !($card->cardType == 'link')}
+                                <{$card->component} data-url="{$card->params->dataUrl}"
+                                                    data='{$card->data}'
+                                                    fields='[{$card->fields}]'>
+                                </{$card->component}>
+                            {else}
+                                {if $card->cardType == 'text'}
+                                    {$card->card->content}
+                                {else}
+                                    <preview-datalet data-url="undefined" url="{$card->card->content}"></preview-datalet>
+                                {/if}
+                            {/if}
+
+                        </paper-card-controllet>
+                    {/foreach}
+                    </div>
+                </div>
+            </div>
 
         </paper-scroll-header-panel>
 
         {literal}
-        <paper-fab id="add_room_button" icon="add" onclick="SPODPUBLICROOM.addRoom()" title="{text key="spodpublic+add_room"}"></paper-fab>
+        <paper-fab-speed-dial direction="top" class="bottom-right add-paper-fab">
+            <paper-fab icon="add" title='{text key="spodpr+add_card"}' class="dropdown-trigger"></paper-fab>
+            <div class="dropdown-content">
+                <paper-fab title='{text key="spodpr+create_link"}'    mini icon="link" onclick="SPODPR.openCardCreator('link');"></paper-fab>
+                <paper-fab title='{text key="spodpr+create_text"}'    mini icon="text-format" onclick="SPODPR.openCardCreator('text');"></paper-fab>
+                <paper-fab title='{text key="spodpr+create_datalet"}' mini icon="assessment" onclick="SPODPR.openOde();"></paper-fab>
+            </div>
+        </paper-fab-speed-dial>
         {/literal}
 
     </div>
