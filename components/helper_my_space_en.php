@@ -1,5 +1,5 @@
 <?php
-class SPODPR_CMP_HelperMySpace extends ODE_CMP_Helper
+class SPODPR_CMP_HelperMySpaceEn extends ODE_CMP_Helper
 {
     public function __construct()
     {

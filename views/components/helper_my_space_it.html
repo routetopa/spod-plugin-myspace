@@ -1,0 +1,183 @@
+<link rel="import" href="{$components_url}bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="{$components_url}bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
+<link rel="import" href="{$components_url}bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="{$components_url}bower_components/paper-styles/color.html">
+<link rel="import" href="{$components_url}bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<style>
+    .floatbox_header{
+        display: none;
+    }
+
+    .floatbox_body{
+        font-family: 'Roboto', sans-serif;
+        background-color: #eeeeee;
+        padding : 3px;
+    }
+
+    paper-fab.opinion-button{
+        background:#5B646A;
+        left: 15px;
+    }
+
+    #scroll_content{
+        position: relative;
+        overflow: scroll;
+    }
+    div.cell{
+        padding: 20px;
+        margin-left: 20px;
+    }
+
+    ul.cell-list {
+        list-style-type: circle;
+    }
+
+    li{
+        margin-left: 20px;
+    }
+
+    paper-scroll-header-panel {
+        /*position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;*/
+        height: 70vh;
+    }
+
+    .tall {
+        background-color: #2196F3;
+    }
+
+    .tall .title {
+        padding: 20px;
+        font-size: 40px;
+        color: #ffffff;
+        /*width: 30%;*/
+        position: relative;
+        float: left;
+    }
+
+    .tall .description{
+        padding: 20px;
+        font-size: 15px;
+        color: #ffffff;
+        /*width: 70%;*/
+        position: relative;
+        float: left;
+    }
+
+    .sect{
+        border: 1px solid #bebebe; padding: 16px; margin: 16px; border-radius: 5px; background-color: #fff; color: #555;
+    }
+
+    .section-number{
+        display: inline-block; height: 64px; width: 64px; border-radius: 50%; background: #ddd; line-height: 64px; font-size: 30px; color: #666; text-align: center;
+    }
+
+    .section-title{
+        font-size: 22px; padding-top: 18px; color: #888;margin-left: 20px;
+    }
+</style>
+
+<div class="layout vertical">
+
+    <div class="tall">
+        <div class="title">My space helper</div>
+        <div class="description">
+            In "My space" l'utente pu&ograve; creare contenuti come datalets, link e testo in un area personale e non accessibile dagli altri utenti.
+            I contenuti possono essere utilizzati successivamente all'interno di posts nelle sezioni &quot;Novit&agrave;&quot; e nelle &quot;Stanze Pubbliche&quot;.
+        </div>
+    </div>
+
+    <div class="content" id="scroll_content">
+
+        <div class="sect">
+            <div class="horizontal layout cell">
+                <img src="{$staticResourcesUrl}images/myspace1.png" style="width: 50%; height: 50%;">
+
+                <div class="cell">
+                    <div class="horizontal layout cell">
+                        <div class="section-number">1</div>
+                        <div class="section-title">Le carte</div>
+                    </div>
+                    <div class="vetical layout cell">
+                        <p>
+                            Ogni contenuto &egrave; piazzato in una carta. Puoi creare diversi tipi di contenuto come link a pagine web, datalet(visualizzazioni di OpenData)
+                            o testo semplice, attraverso il menu accessibile dal bottone blu &#x201c;+&#x201d; posizionato in basso a destra. Ogni carta ha un titolo(con sfondo nero)
+                            e un commento(sotto al titolo). Puoi modificare il contenuto della carta(icona &#x201c;penna&#x201d;) o cancellarla completamente(icona &#x201c;cestino&#x201d;)
+                            o visualizzare a tutto schermo il suo contenuto(icona blu sul titolo). la disposizione delle carte segue l&#x2019;ordine temporale con cui sono state create.
+                            Per creare i diversi tipi di carte dal menu :
+                        <ul class="cell-list">
+                            <li>
+                                <b>Link</b> <paper-fab mini icon="link" aria-disabled="false" elevation="1"></paper-fab>
+                            </li>
+                            <li>
+                                <b>Testo</b> card <paper-fab mini icon="text-format" aria-disabled="false" elevation="1"></paper-fab>
+                            </li>
+                            <li>
+                                <b>Visualizzazioni  di OpenData</b> <paper-fab mini icon="assessment" aria-disabled="false" elevation="1"></paper-fab>
+                            </li>
+                        </ul>
+                        </p>
+
+                        <p>
+                            Sull'angolo destro della carta:
+                        <ul class="cell-list">
+                            <li>
+                                <b>Modificare</b> la carta <paper-fab mini icon="create" aria-disabled="false" elevation="1" class="opinion-button"></paper-fab>
+                            </li>
+                            <li>
+                                <b>Cancellare</b> la carta <paper-fab mini icon="delete" aria-disabled="false" elevation="1" class="opinion-button"></paper-fab>
+                            </li>
+                        </ul>
+                        </p>
+
+                        <p>
+                            Quando un utente visualizza una datalet dal &#x201c;My space&#x201d;, SPOD non contatter&agrave; il data provider ma utilizzer&agrave; i dati statici memorizzati
+                            nel suo database. Questo permette di ottenere un considerevole  aumento delle prestazioni per una migliore esperienza da parte dell&#x2019;utente in presenza di
+                            un numero consistente di visualizzazioni.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sect">
+            <div class="horizontal layout cell">
+                <img src="{$staticResourcesUrl}images/myspace2.png" style="width: 50%; height: 50%;">
+
+                <div class="cell">
+                    <div class="horizontal layout cell">
+                        <div class="section-number">2</div>
+                        <div class="section-title">Carte test e url</div>
+                    </div>
+                    <div>
+                        Per la creazione delle visualizzazioni di OpenData, SPOD fornisce un unica interfaccia disponibile ovunque sia possibile postarle(la controllet di creazione datalet).
+                        Per le carte link e test sar&agrave; disponibile una interfaccia dedicata.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sect">
+            <div class="horizontal layout cell">
+                <img src="{$staticResourcesUrl}images/myspace3.png" style="width: 60%; height: 100%;">
+
+                <div class="cell">
+                    <div class="horizontal layout cell">
+                        <div class="section-number">3</div>
+                        <div class="section-title">Come usare le carte</div>
+                    </div>
+                    <div>
+                        Una volta creati i contenuti, sar&agrave; sempre possibile utilizzare i link e le datalets nei post nelle sezioni
+                        &#x201c;Novit&agrave;&#x201d; e nelle &#x201c;stanze pubbliche&#x201d; presenti nell&#x2019;Agora.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
