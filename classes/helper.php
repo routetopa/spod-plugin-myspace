@@ -50,10 +50,6 @@ class SPODPR_CLASS_Helper
                     $card->params->title        = isset($card->params->{'title'})        ? $card->params->{'title'} : '' ;
                     $card->params->description  = isset($card->params->{'description'})  ? $card->params->{'description'} : '' ;
 
-                    echo '---';
-                    var_dump($card->params);
-                    echo '---';
-
                     $card->preset = $datalet->params;
                 }
             }
