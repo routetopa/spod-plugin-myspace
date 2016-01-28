@@ -180,7 +180,13 @@
             paperCard.setAttribute('comment', data.params.description);
             paperCard.setAttribute('datalet', data.component);
             paperCard.setAttribute('fields', data.fields);
-            paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+data.params["data-url"]+'" data="" fields=\'['+data.fields+']\'></'+data.component+'>';
+            paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+data.params["data-url"]+'" data="" fields=\'['+data.fields+']\' ' +
+                    'description="'+((data.params["description"] == undefined) ? "" : data.params["description"])+'"'+
+                    'title="'+((data.params["title"] == undefined) ? "" : data.params["title"])+'"'+
+                    'x-axis-label="'+((data.params["x-axis-label"] == undefined) ? "" : data.params["x-axis-label"])+'"'+
+                    'y-axis-label="'+((data.params["y-axis-label"] == undefined) ? "" : data.params["y-axis-label"])+'"'+
+                    'suffix="'+((data.params["suffix"] == undefined) ? "" : data.params["suffix"])+'"'+
+                    '</'+data.component+'>';
         }
         else
         {
@@ -265,8 +271,13 @@
 
                             {if $card->isDatalet && !($card->cardType == 'link')}
                                 <{$card->component} data-url="{$card->params->dataUrl}"
-                                                    data='{$card->data}'
-                                                    fields='[{$card->fields}]'>
+                                                        data='{$card->data}'
+                                                      fields='[{$card->fields}]'
+                                                       title="{$card->params->title}"
+                                                 description="{$card->params->description}"
+                                                x-axis-label="{$card->params->xAxisLabel}">
+                                                y-axis-label="{$card->params->yAxisLabel}">
+                                                      suffix="{$card->params->suffix}">
                                 </{$card->component}>
                             {else}
                                 {if $card->cardType == 'text'}
