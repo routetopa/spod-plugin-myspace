@@ -78,7 +78,7 @@ class SPODPR_BOL_Service
         $card->privacy   = 'everybody';
         SPODPR_BOL_PrivateRoomDao::getInstance()->save($card);
 
-        return $card->id;
+        return array("card-id" => $card->id, "datalet-id" => $dtId);
     }
 
     public function textLinkCard($ownerId, $type, $title, $content, $comment, $id)

@@ -142,34 +142,37 @@
         card[0].$.content.innerHTML = data.content;
     }
 
-    function replace_datalet_card(data, id)
+    function replace_datalet_card(data)
     {
-        var card = $("[card-id="+id+"]");
-        var mod_card = create_card(data, id);
+        var card = $("[card-id="+data.cardId+"]");
+        var mod_card = create_card(data, data.cardId, data.dataletId);
         card[0].setAttribute('preset', mod_card.getAttribute('preset'));
         card[0].setAttribute('comment', mod_card.getAttribute('comment'));
         card[0].setAttribute('card-title', mod_card.getAttribute('card-title'));
+        card[0].setAttribute('fields', mod_card.getAttribute('fields'));
+        card[0].setAttribute('datalet', mod_card.getAttribute('datalet'));
         card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
     }
 
-    function add_card(data, id)
+    function add_card(data, cardId, dataletId)
     {
-        var card = create_card(data, id);
+        var card = create_card(data, cardId, dataletId);
         //document.getElementById('grid-container').appendChild(paperCard);
         $('.grid').masonry().append(card).masonry('appended', card).masonry();
     }
 
-    function create_card(data, id)
+    function create_card(data, cardId, dataletId)
     {
         var paperCard = document.createElement('paper-card-controllet');
         paperCard.setAttribute('class', 'grid-item');
         paperCard.setAttribute('width', '200');
         paperCard.setAttribute('height', '200');
-        paperCard.setAttribute('card-id', id);
+        paperCard.setAttribute('card-id', cardId);
 
 
         if(data.params != undefined)
         {
+            paperCard.setAttribute('datalet-id', dataletId);
             paperCard.setAttribute('preset', data.params);
             data.params = JSON.parse(data.params);
             paperCard.setAttribute('card-type', 'datalet');
