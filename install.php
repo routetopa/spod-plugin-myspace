@@ -1,7 +1,7 @@
 <?php
 
-//$path = OW::getPluginManager()->getPlugin('ode')->getRootDir() . 'langs.zip';
-//BOL_LanguageService::getInstance()->importPrefixFromZip($path, 'ode');
+$path = OW::getPluginManager()->getPlugin('spodpr')->getRootDir() . 'langs.zip';
+BOL_LanguageService::getInstance()->importPrefixFromZip($path, 'spodpr');
 
 $sql = 'DROP TABLE IF EXISTS `' . OW_DB_PREFIX . 'spodpr_private_room`;
 CREATE TABLE `' . OW_DB_PREFIX . 'spodpr_private_room` (
