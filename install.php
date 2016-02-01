@@ -3,8 +3,7 @@
 $path = OW::getPluginManager()->getPlugin('spodpr')->getRootDir() . 'langs.zip';
 BOL_LanguageService::getInstance()->importPrefixFromZip($path, 'spodpr');
 
-$sql = 'DROP TABLE IF EXISTS `' . OW_DB_PREFIX . 'spodpr_private_room`;
-CREATE TABLE `' . OW_DB_PREFIX . 'spodpr_private_room` (
+$sql = 'CREATE TABLE IF NOT EXISTS `' . OW_DB_PREFIX . 'spodpr_private_room` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ownerId` int(11) NOT NULL,
   `cardType` text,
