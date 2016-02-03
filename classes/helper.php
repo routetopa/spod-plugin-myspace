@@ -40,8 +40,8 @@ class SPODPR_CLASS_Helper
                     $card->isDatalet = true;
                     $card->dataletId = $datalet->id;
                     $card->component = $datalet->component;
-                    $card->data = $datalet->data;
-                    $card->fields = $datalet->fields;
+                    $card->data = $this->htmlSpecialChar($datalet->data);
+                    $card->fields = $this->htmlSpecialChar($datalet->fields);
                     $card->params = json_decode($datalet->params);
                     $card->params->dataUrl      = isset($card->params->{'data-url'})     ? $card->params->{'data-url'} : '' ;
                     $card->params->xAxisLabel   = isset($card->params->{'x-axis-label'}) ? $card->params->{'x-axis-label'} : '' ;
@@ -75,5 +75,10 @@ class SPODPR_CLASS_Helper
 
         }
         return $cards;
+    }
+
+    protected function htmlSpecialChar($string)
+    {
+        return str_replace("'","&#39;", $string);
     }
 }

@@ -180,7 +180,8 @@
             paperCard.setAttribute('comment', data.params.description);
             paperCard.setAttribute('datalet', data.component);
             paperCard.setAttribute('fields', data.fields);
-            paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+data.params["data-url"]+'" data="" fields=\'['+data.fields+']\' ' +
+            paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+data.params["data-url"]+'" data="" ' +
+                    'fields=\'['+data.fields.replace("'", "&#39;")+']\' ' +
                     'description="'+((data.params["description"] == undefined) ? "" : data.params["description"])+'"'+
                     'title="'+((data.params["title"] == undefined) ? "" : data.params["title"])+'"'+
                     'x-axis-label="'+((data.params["x-axis-label"] == undefined) ? "" : data.params["x-axis-label"])+'"'+
