@@ -23,7 +23,8 @@ class SPODPR_CTRL_Ajax extends OW_ActionController
         SPODPR_BOL_Service::getInstance()->deleteCard(
             OW::getUser()->getId(),
             $_REQUEST['type'],
-            $_REQUEST['id']
+            $_REQUEST['id'],
+            $_REQUEST['dataletId']
         );
 
         echo json_encode(array("status" => "ok"));

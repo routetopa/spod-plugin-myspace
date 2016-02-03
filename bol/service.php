@@ -106,12 +106,20 @@ class SPODPR_BOL_Service
         return $card->id;
     }
 
-    public function deleteCard($ownerId, $type, $cardId)
+    public function deleteCard($ownerId, $type, $cardId, $dataletId)
     {
         $ex = new OW_Example();
         $ex->andFieldEqual('id', $cardId);
         $ex->andFieldEqual('ownerId', $ownerId);
-        //$ex->andFieldEqual('cardType', $type);
+
+        if(!empty($dataletId))
+        {
+            $e = new OW_Example();
+            $e->andFieldEqual('id', $dataletId);
+            $e->andFieldEqual('ownerId', $ownerId);
+            ODE_BOL_DataletDao::getInstance()->deleteByExample($e);
+        }
+
         SPODPR_BOL_PrivateRoomDao::getInstance()->deleteByExample($ex);
     }
 

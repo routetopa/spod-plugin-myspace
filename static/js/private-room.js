@@ -109,8 +109,9 @@ $(document).ready(function () {
         {
             var id = e.detail.data.getAttribute("card-id");
             var type = e.detail.data.getAttribute("card-type");
+            var dataletId  = e.detail.data.getAttribute("datalet-id") ? e.detail.data.getAttribute("datalet-id") : '';
 
-            var deleteCard = {"id": id, "type": type};
+            var deleteCard = {"id": id, "type": type, "dataletId": dataletId};
 
             $.ajax({
                 type: 'post',
