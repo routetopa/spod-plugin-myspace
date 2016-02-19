@@ -43,6 +43,7 @@ class SPODPR_CLASS_Helper
                     $card->data = $this->htmlSpecialChar($datalet->data);
                     $card->fields = $this->htmlSpecialChar($datalet->fields);
                     $card->params = json_decode($datalet->params);
+                    $card->params->filters      = isset($card->params->{'filters'})      ? $card->params->{'filters'} : '' ;
                     $card->params->dataUrl      = isset($card->params->{'data-url'})     ? $card->params->{'data-url'} : '' ;
                     $card->params->xAxisLabel   = isset($card->params->{'x-axis-label'}) ? $card->params->{'x-axis-label'} : '' ;
                     $card->params->yAxisLabel   = isset($card->params->{'y-axis-label'}) ? $card->params->{'y-axis-label'} : '' ;
