@@ -183,6 +183,8 @@
             paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+data.params["data-url"]+'" data="" ' +
                     'fields=\'['+data.fields.replace("'", "&#39;")+']\' ' +
                     'filters=\'['+data.params.filters.replace("'", "&#39;")+']\' ' +
+                    'aggregators=\'['+data.params.aggregators.replace("'", "&#39;")+']\' ' +
+                    'orders=\'['+data.params.orders.replace("'", "&#39;")+']\' ' +
                     'description="'+((data.params["description"] == undefined) ? "" : data.params["description"])+'"'+
                     'title="'+((data.params["title"] == undefined) ? "" : data.params["title"])+'"'+
                     'x-axis-label="'+((data.params["x-axis-label"] == undefined) ? "" : data.params["x-axis-label"])+'"'+
@@ -276,6 +278,8 @@
                                                         data='{$card->data}'
                                                       fields='[{$card->fields}]'
                                                      filters='[{$card->params->filters}]'
+                                                     aggregators='[{$card->params->aggregators}]'
+                                                     orders='[{$card->params->orders}]'
                                                        title="{$card->params->title}"
                                                  description="{$card->params->description}"
                                                 x-axis-label="{$card->params->xAxisLabel}"
