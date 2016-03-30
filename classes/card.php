@@ -10,4 +10,5 @@ class SPODPR_CLASS_Card extends SPODPR_BOL_PrivateRoom
     public $params;
     public $component;
     public $preset;
+    public $parameters;
 }

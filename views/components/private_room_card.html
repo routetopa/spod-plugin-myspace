@@ -10,21 +10,14 @@
         <generic-cards-container-controllet>
             {foreach $cards as $card}
             <paper-card-controllet
-                    class="card"
-
-               {if $card->isDatalet}
-                    width="200"
-                    height="200"
-                    datalet-id="{$card->dataletId}"
-                    datalet="{$card->component}"
-                    preset='{$card->preset}'
-                    fields='{$card->fields}'
-                    static-data='{$card->data}'
-               {else}
-                    width="200"
-                    height="200"
-               {/if}
-
+                class="card"
+                width="200"
+                height="200"
+                datalet-id="{$card->dataletId}"
+                datalet="{$card->component}"
+                preset='{$card->preset}'
+                fields='{$card->fields}'
+                static-data='{$card->data}'
                 card-type="{$card->cardType}"
                 card-title="{$card->card->title}"
                 card-id="{$card->cardId}"
@@ -32,9 +25,7 @@
                 >
                 {if $card->isDatalet && !($card->cardType == 'link')}
                    <link rel="import" href="{$components_url}datalets/{$card->component}/{$card->component}.html" />
-                   <{$card->component} data-url="{$card->params->dataUrl}"
-                   data='{$card->data}'
-                   fields='[{$card->fields}]'>
+                   <{$card->component} data='{$card->data}' fields='[{$card->fields}]' {$card->parameters}>
                    </{$card->component}>
                 {else}
                    {if $card->cardType == 'text'}

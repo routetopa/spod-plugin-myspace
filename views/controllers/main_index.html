@@ -48,7 +48,7 @@
 
     .paper-card-container
     {
-        padding:30px 0px 0px 30px;
+        /*padding:30px 0px 0px 30px;*/
     }
 
     paper-card-controllet{
@@ -180,17 +180,16 @@
             paperCard.setAttribute('comment', data.params.description);
             paperCard.setAttribute('datalet', data.component);
             paperCard.setAttribute('fields', data.fields);
+
+            var keys = Object.keys(data.params);
+            var datalet_code = "";
+
+            for(var i = 0; i < keys.length; i++){
+                datalet_code += ' ' + keys[i] + '=\'' + data.params[keys[i]] +'\'';
+            }
+
             paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+data.params["data-url"]+'" data="" ' +
-                    'fields=\'['+data.fields.replace("'", "&#39;")+']\' ' +
-                    'filters=\'['+data.params.filters.replace("'", "&#39;")+']\' ' +
-                    'aggregators=\'['+data.params.aggregators.replace("'", "&#39;")+']\' ' +
-                    'orders=\'['+data.params.orders.replace("'", "&#39;")+']\' ' +
-                    'description="'+((data.params["description"] == undefined) ? "" : data.params["description"])+'"'+
-                    'title="'+((data.params["title"] == undefined) ? "" : data.params["title"])+'"'+
-                    'x-axis-label="'+((data.params["x-axis-label"] == undefined) ? "" : data.params["x-axis-label"])+'"'+
-                    'y-axis-label="'+((data.params["y-axis-label"] == undefined) ? "" : data.params["y-axis-label"])+'"'+
-                    'suffix="'+((data.params["suffix"] == undefined) ? "" : data.params["suffix"])+'"'+
-                    '</'+data.component+'>';
+                    'fields=\'['+data.fields.replace("'", "&#39;")+']\' ' + datalet_code + '</'+data.component+'>';
         }
         else
         {
@@ -249,42 +248,27 @@
                     <div class="grid" id="grid-container">
                     {foreach $cards as $card}
                         <paper-card-controllet
-                                class="grid-item"
 
-                                {if $card->isDatalet}
-                                    width="200"
-                                    height="200"
-                                    datalet-id="{$card->dataletId}"
-                                    datalet="{$card->component}"
-                                    preset='{$card->preset}'
-                                    fields='{$card->fields}'
-                                {else}
-                                    width="200"
-                                    height="200"
-                                {/if}
+                            class="grid-item"
+                            width="200"
+                            height="200"
+                            datalet-id="{$card->dataletId}"
+                            datalet="{$card->component}"
+                            preset='{$card->preset}'
+                            fields='{$card->fields}'
+                            card-type="{$card->cardType}"
+                            card-title="{$card->card->title}"
+                            card-id="{$card->cardId}"
+                            comment="{$card->card->comment}"
 
-                                card-type="{$card->cardType}"
-                                card-title="{$card->card->title}"
-                                card-id="{$card->cardId}"
-                                comment="{$card->card->comment}"
+                            {if $card->cardType == 'link'}
+                                card-link="{$card->card->content}"
+                            {/if}
 
-                                {if $card->cardType == 'link'}
-                                    card-link="{$card->card->content}"
-                                {/if}
                             >
 
                             {if $card->isDatalet && !($card->cardType == 'link')}
-                                <{$card->component} data-url="{$card->params->dataUrl}"
-                                                        data='{$card->data}'
-                                                      fields='[{$card->fields}]'
-                                                     filters='[{$card->params->filters}]'
-                                                     aggregators='[{$card->params->aggregators}]'
-                                                     orders='[{$card->params->orders}]'
-                                                       title="{$card->params->title}"
-                                                 description="{$card->params->description}"
-                                                x-axis-label="{$card->params->xAxisLabel}"
-                                                y-axis-label="{$card->params->yAxisLabel}"
-                                                      suffix="{$card->params->suffix}">
+                                <{$card->component} data='{$card->data}' fields='[{$card->fields}]' {$card->parameters}>
                                 </{$card->component}>
                             {else}
                                 {if $card->cardType == 'text'}
