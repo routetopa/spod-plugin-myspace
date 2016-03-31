@@ -181,8 +181,8 @@
             paperCard.setAttribute('preset', data.params);
             data.params = JSON.parse(data.params);
             paperCard.setAttribute('card-type', 'datalet');
-            paperCard.setAttribute('card-title', data.params.title);
-            paperCard.setAttribute('comment', data.params.description);
+            paperCard.setAttribute('card-title', (typeof data.params.title != 'undefined') ? data.params.title : "");
+            paperCard.setAttribute('comment',(typeof data.params.description != 'undefined') ? data.params.description : "");
             paperCard.setAttribute('datalet', data.component);
             paperCard.setAttribute('fields', data.fields);
 
@@ -199,8 +199,8 @@
         else
         {
             paperCard.setAttribute('card-type', data.type);
-            paperCard.setAttribute('card-title', data.title);
-            paperCard.setAttribute('comment', data.comment);
+            paperCard.setAttribute('card-title', (typeof data.title != 'undefined') ? data.title : "");
+            paperCard.setAttribute('comment', (typeof data.comment != 'undefined') ? data.comment : "");
 
             if(data.type == 'text') {
                 paperCard.$.content.innerHTML = data.content;
