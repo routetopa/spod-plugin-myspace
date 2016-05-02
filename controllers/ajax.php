@@ -77,7 +77,7 @@ class SPODPR_CTRL_Ajax extends OW_ActionController
         exit;
     }
 
-    public function modDataletCard()
+    private function modDataletCard()
     {
         $clean = array();
         $clean['dataletId'] = "";
