@@ -3,35 +3,12 @@
 class SPODPR_CTRL_Ajax extends OW_ActionController
 {
 
-    private function validateTextInputVsSqlInjection($input){
-        return !preg_match("/(script)|(&lt;)|(&gt;)|(%3c)|(%3e)".
-            "|(SELECT)|(UPDATE)|(INSERT)|(DELETE)|(GRANT)|(REVOKE)|(UNION)".
-            "|(select)|(update)|(insert)|(delete)|(grant)|(revoke)|(union)|(database)".
-            "|(--)|(;)".
-            "|(&amp;lt;)|(&amp;gt;)/", $input);
-    }
-
     public function textLinkCard()
     {
-        $clean = array();
-        $clean['type'] = "";
-        $clean['title'] = "";
-        $clean['content'] = "";
-        $clean['comment'] = "";
-        $clean['id'] = "";
-        if($this->validateTextInputVsSqlInjection($_REQUEST['type']) &&
-           $this->validateTextInputVsSqlInjection($_REQUEST['title']) &&
-           $this->validateTextInputVsSqlInjection($_REQUEST['content']) &&
-           $this->validateTextInputVsSqlInjection($_REQUEST['comment']) &&
-           $this->validateTextInputVsSqlInjection($_REQUEST['id']))
-        {
-            $clean['id']      = strval(intval($_REQUEST['id']));
-            $clean['type']    = filter_var($_REQUEST['type'], FILTER_SANITIZE_STRING);
-            $clean['title']   = filter_var($_REQUEST['title'], FILTER_SANITIZE_STRING);
-            $clean['content'] = filter_var($_REQUEST['content'], FILTER_SANITIZE_STRING);
-            $clean['comment'] = filter_var($_REQUEST['comment'], FILTER_SANITIZE_STRING);
-        }else{
-            echo json_encode(array("status" => "error", "message" => "Insane inputs provided"));
+        $clean = ODE_CLASS_InputFilter::getInstance()->sanitizeInputs($_REQUEST);
+        if ($clean == null){
+            /*echo json_encode(array("status" => "error", "massage" => 'Insane inputs detected'));*/
+            OW::getFeedback()->info(OW::getLanguage()->text('cocreationep', 'insane_user_email_value'));
             exit;
         }
 
@@ -50,19 +27,10 @@ class SPODPR_CTRL_Ajax extends OW_ActionController
 
     public function deleteCard()
     {
-        $clean = array();
-        $clean['type'] = "";
-        $clean['dataletId'] = "";
-        $clean['id'] = "";
-        if($this->validateTextInputVsSqlInjection($_REQUEST['type']) &&
-            $this->validateTextInputVsSqlInjection($_REQUEST['dataletId']) &&
-            $this->validateTextInputVsSqlInjection($_REQUEST['id']))
-        {
-            $clean['id']        = strval(intval($_REQUEST['id']));
-            $clean['dataletId'] = strval(intval($_REQUEST['dataletId']));
-            $clean['type']      = filter_var($_REQUEST['type'], FILTER_SANITIZE_STRING);
-        }else{
-            echo json_encode(array("status" => "error", "message" => "Insane inputs provided"));
+        $clean = ODE_CLASS_InputFilter::getInstance()->sanitizeInputs($_REQUEST);
+        if ($clean == null){
+            /*echo json_encode(array("status" => "error", "massage" => 'Insane inputs detected'));*/
+            OW::getFeedback()->info(OW::getLanguage()->text('cocreationep', 'insane_user_email_value'));
             exit;
         }
 
