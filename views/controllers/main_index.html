@@ -273,7 +273,7 @@
                             >
 
                             {if $card->isDatalet && !($card->cardType == 'link')}
-                                <{$card->component} data='{$card->data}' fields='[{$card->fields}]' {$card->parameters}>
+                                <{$card->component} data='{$card->data}' fields='[{$card->fields}]' {$card->parameters} export_menu="0">
                                 </{$card->component}>
                             {else}
                                 {if $card->cardType == 'text'}
