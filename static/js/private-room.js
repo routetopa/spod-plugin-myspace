@@ -35,13 +35,13 @@ SPODPR.openOde = function ()
     SPODPR.dataletOpened = undefined;
     SPODPR.cardOpened = undefined;
     ODE.pluginPreview = 'private-room';
-    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {text:'testo'} , {width:'90%', height:'85vh', iconClass: 'ow_ic_add', title: ''});
+    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {} , {width:'90%', height:'85vh', iconClass: 'ow_ic_add', title: ''});
 };
 
 SPODPR.openModOde = function ()
 {
     ODE.pluginPreview = 'private-room';
-    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {text:'testo'} , {width:'90%', height:'85vh', iconClass: 'ow_ic_add', title: ''});
+    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {component:'datalets-modifier-controllet'} , {width:'90%', height:'85vh', iconClass: 'ow_ic_add', title: ''});
 };
 
 SPODPR.openCardCreator = function (type)
