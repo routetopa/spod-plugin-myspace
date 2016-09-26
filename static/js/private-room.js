@@ -74,7 +74,7 @@ $(document).ready(function () {
             case 'text'    :
                 var params = {type:e.detail.data.getAttribute("card-type"),
                     title:e.detail.data.getAttribute("card-title"),
-                    content:e.detail.data.$.content.textContent,
+                    content:e.detail.data.$.content.textContent.replace(/'/g, "&#39;"),
                     comment:e.detail.data.getAttribute("comment"),
                     cardId:e.detail.data.getAttribute("card-id")};
 
