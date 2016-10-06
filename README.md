@@ -25,5 +25,5 @@ within the *Agora*.
 To install *MySpace* plugin:
 
 * Clone this project by following the github instruction on *SPOD_INSTALLATION_DIR/ow_plugins*
-* Go to *MySpace Admin Panel* and set the *COMPONENTS URL*. The *COMPONENTS URL* is the endpoint of the repository of the *datalets* and *controllets* definitions(See **DEEP** 
-and **COMPONENTS** projects to get more information).
+* Go to *MySpace Admin Panel* and set the *COMPONENTS URL*. The *COMPONENTS URL* is the endpoint of the repository of the *datalets* and *controllets* definitions(See 
+[**DEEP**](https://github.com/routetopa/deep) and [**COMPONENTS**](https://github.com/routetopa/deep-components) projects to get more information).
