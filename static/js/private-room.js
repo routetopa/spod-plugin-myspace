@@ -167,7 +167,7 @@ $(document).ready(function () {
     });
 
     document.addEventListener('SilverDecisionsSaveEvent', function(e) {
-        console.log(e);
+        console.log(e); 
     });
 
 });
