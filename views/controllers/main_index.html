@@ -194,7 +194,7 @@
                 datalet_code += ' ' + keys[i] + '=\'' + data.params[keys[i]] +'\'';
             }
 
-            paperCard.$.content.innerHTML = '<'+data.component+' data-url="'+data.params["data-url"]+'" data="" ' +
+            paperCard.$.content.innerHTML = '<'+data.component+' disable_my_space data-url="'+data.params["data-url"]+'" data="" ' +
                     'fields=\'['+data.fields.replace("'", "&#39;")+']\' ' + datalet_code + '</'+data.component+'>';
         }
         else
@@ -274,7 +274,7 @@
                             >
 
                             {if $card->isDatalet && !($card->cardType == 'link')}
-                                <{$card->component} data='{$card->data}' fields='[{$card->fields}]' {$card->parameters} export_menu="7">
+                                <{$card->component} data='{$card->data}' fields='[{$card->fields}]' {$card->parameters} disable_my_space>
                                 </{$card->component}>
                             {else}
                                 {if $card->cardType == 'text'}
