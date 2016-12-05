@@ -50,6 +50,13 @@ SPODPR.openCardCreator = function (type)
     previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_CardCreator', {type:params} , {width:'70%', height:'70vh', iconClass: 'ow_ic_add', title: ''});
 };
 
+SPODPR.openSilverDecisions = function ()
+{
+    previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_SilverDecisionCreator', {} , {width:'90%', height:'85vh', iconClass: 'ow_ic_add', title: ''});
+};
+
+
+
 $(document).ready(function () {
 
     document.addEventListener('paper-card-controllet_details-clicked', function(e) {
@@ -74,7 +81,7 @@ $(document).ready(function () {
             case 'text'    :
                 var params = {type:e.detail.data.getAttribute("card-type"),
                     title:e.detail.data.getAttribute("card-title"),
-                    content:e.detail.data.$.content.textContent,
+                    content:e.detail.data.$.content.textContent.replace(/'/g, "&#39;"),
                     comment:e.detail.data.getAttribute("comment"),
                     cardId:e.detail.data.getAttribute("card-id")};
 
@@ -157,6 +164,10 @@ $(document).ready(function () {
         }
 
         $('.grid').masonry();
+    });
+
+    document.addEventListener('SilverDecisionsSaveEvent', function(e) {
+        console.log(e); 
     });
 
 });
