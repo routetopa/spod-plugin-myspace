@@ -27,7 +27,6 @@ SPODPR.textLinkCard = function (e)
         },
         complete: function(){}
     });
-
 };
 
 SPODPR.openOde = function ()
@@ -54,8 +53,6 @@ SPODPR.openSilverDecisions = function ()
 {
     previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_SilverDecisionCreator', {} , {width:'90%', height:'85vh', iconClass: 'ow_ic_add', title: ''});
 };
-
-
 
 $(document).ready(function () {
 
@@ -167,7 +164,11 @@ $(document).ready(function () {
     });
 
     document.addEventListener('SilverDecisionsSaveEvent', function(e) {
-        console.log(e); 
+        //console.log(e);
+        var json_tree = {"json-tree" : e.detail.replace("\n", "")};
+        var data = {component:"decision-tree-datalet", data:"", fields:'', params:JSON.stringify(json_tree)};
+        ODE.dataletParameters = data;
+        ODE.privateRoomDatalet();
     });
 
 });
