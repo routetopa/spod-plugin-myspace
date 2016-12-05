@@ -1,0 +1,18 @@
+<link rel="import" href="{$components_url}datalets/decision-tree-datalet/decision-tree-datalet.html" />
+
+<style>
+
+    .container {
+        width: 1200px;
+        height: 600px;
+        position: relative;
+        left: calc((100% - 1200px) / 2);
+    }
+
+</style>
+
+{literal}
+<div class="container">
+    <decision-tree-datalet id="tree" json-tree="" config="{readOnly:false}"></decision-tree-datalet>
+</div>
+{/literal}
