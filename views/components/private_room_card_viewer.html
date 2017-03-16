@@ -17,6 +17,9 @@ padding: 0px 0px 0px 0px;
 
 .paper_card_container {
     margin: 15px
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 {/literal}
@@ -24,6 +27,10 @@ padding: 0px 0px 0px 0px;
 
 <link rel="import" href="{$components_url}controllets/paper-card-controllet/paper-card-controllet.html"/>
 <link rel="import" href="{$components_url}controllets/generic-cards-container-controllet/generic-cards-container-controllet.html"/>
+
+{foreach $card_definition as $definition}
+<link rel="import" href="{$components_url}datalets/{$definition}/{$definition}.html"/>
+{/foreach}
 
 <div class="paper_card_container">
     <generic-cards-container-controllet>
