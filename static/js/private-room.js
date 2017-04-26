@@ -34,13 +34,13 @@ SPODPR.openOde = function ()
     SPODPR.dataletOpened = undefined;
     SPODPR.cardOpened = undefined;
     ODE.pluginPreview = 'private-room';
-    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {} , {width:'90%', height:'85vh', iconClass: 'ow_ic_add', title: ''});
+    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {} , {top:'56px', width:'calc(100vw - 112px)', height:'calc(100vh - 112px)', iconClass: 'ow_ic_add', title: ''});
 };
 
 SPODPR.openModOde = function ()
 {
     ODE.pluginPreview = 'private-room';
-    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {component:'datalets-modifier-controllet'} , {width:'90%', height:'85vh', iconClass: 'ow_ic_add', title: ''});
+    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {component:'datalets-modifier-controllet'} , {top:'56px', width:'calc(100vw - 112px)', height:'calc(100vh - 112px)', iconClass: 'ow_ic_add', title: ''});
 };
 
 SPODPR.openCardCreator = function (type)
@@ -51,7 +51,7 @@ SPODPR.openCardCreator = function (type)
 
 SPODPR.openSilverDecisions = function ()
 {
-    previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_SilverDecisionCreator', {} , {width:'90%', height:'85vh', iconClass: 'ow_ic_add', title: ''});
+    previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_SilverDecisionCreator', {} , {top:'56px', width:'calc(100vw - 112px)', height:'calc(100vh - 112px)', iconClass: 'ow_ic_add', title: ''});
 };
 
 $(document).ready(function () {
