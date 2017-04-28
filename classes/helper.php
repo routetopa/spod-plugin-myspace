@@ -66,7 +66,7 @@ class SPODPR_CLASS_Helper
             }
             else
             {
-                if (in_array($card->isDatalet, $selectedType))
+                if (in_array($card->cardType, $selectedType))
                 {
                     array_push($cards, $card);
                 }

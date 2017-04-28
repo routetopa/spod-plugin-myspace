@@ -23,6 +23,9 @@ class SPODPR_CTRL_Main extends OW_ActionController
         OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodpr')->getStaticJsUrl() . 'private-room.js', 'text/javascript');
         //OW::getDocument()->addScript(SPODPR_COMPONENTS_URL . 'bower_components/l20n/dist/compat/web/l20n.min.js');
 
+        // ADD DATALET DEFINITIONS
+        $this->assign('datalet_definition_import', ODE_CLASS_Tools::getInstance()->get_all_datalet_definitions());
+
         $js = UTIL_JsGenerator::composeJsString('
                 SPODPR.components_url = {$components_url}
                 SPODPR.ajax_text_link_card = {$ajax_text_link_card}
