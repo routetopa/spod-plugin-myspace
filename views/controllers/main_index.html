@@ -102,7 +102,7 @@
 
     function test_replace_card()
     {
-        var data = JSON.parse('{"component": "barchart-datalet", "params": {"data-url": "http://ckan.routetopa.eu/api/action/datastore_search?resource_id=c3b52992-ba61-4a73-a637-0f2e1ca26aab", "title": "undefined", "x-axis-label": "undefined", "y-axis-label": "undefined", "suffix": "undefined" }, "fields": "", "_colorIndex": 0, "dataletId": "26" }');
+        var data = JSON.parse('{"component": "barchart-datalet", "params": {"data-url": "http://ckan.routetopa.eu/api/action/datastore_search?resource_id=c3b52992-ba61-4a73-a637-0f2e1ca26aab", "title": "undefined", "x-axis-label": "undefined", "y-axis-label": "undefined", "suffix": "undefined" }, "_colorIndex": 0, "dataletId": "26" }');
         data.params = JSON.stringify(data.params);
         var id = 98;
 
@@ -137,7 +137,6 @@
         card[0].setAttribute('preset', mod_card.getAttribute('preset'));
         card[0].setAttribute('comment', mod_card.getAttribute('comment'));
         card[0].setAttribute('card-title', mod_card.getAttribute('card-title'));
-        card[0].setAttribute('fields', mod_card.getAttribute('fields'));
         card[0].setAttribute('datalet', mod_card.getAttribute('datalet'));
         card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
     }
@@ -151,6 +150,7 @@
 
     function create_card(data, cardId, dataletId)
     {
+        debugger
         var paperCard = document.createElement('paper-card-controllet');
         paperCard.setAttribute('class', 'grid-item');
         paperCard.setAttribute('width', '200');
@@ -163,23 +163,22 @@
             paperCard.setAttribute('datalet-id', dataletId);
             paperCard.setAttribute('preset', data.params);
             data.params = JSON.parse(data.params);
-            paperCard.setAttribute('card-type', 'datalet');
-            paperCard.setAttribute('card-title', (typeof data.params.title != 'undefined') ? data.params.title : "");
-            paperCard.setAttribute('comment',(typeof data.params.description != 'undefined') ? data.params.description : "");
-            paperCard.setAttribute('datalet', data.component);
-            paperCard.setAttribute('fields', data.fields);
 
             var keys = Object.keys(data.params);
             var datalet_code = "";
 
             for(var i = 0; i < keys.length; i++){
-                datalet_code += ' ' + keys[i] + '=\'' + data.params[keys[i]] +'\'';
+                datalet_code += ' ' + keys[i] + '=\'' + data.params[keys[i]].replace(/\'/g, "&#39;") +'\'';
             }
 
-            data.fields = data.fields ? data.fields.replace("'", "&#39;") : '';
+            paperCard.setAttribute('card-type', 'datalet');
+            paperCard.setAttribute('card-title', (typeof data.params.datalettitle != 'undefined') ? data.params.datalettitle : "");
+            paperCard.setAttribute('comment',(typeof data.params.description != 'undefined') ? data.params.description : "");
+            paperCard.setAttribute('datalet', data.component);
 
-            paperCard.$.content.innerHTML = '<'+data.component+' disable_my_space data-url="'+data.params["data-url"]+'" data="" ' +
-                    'fields=\'['+data.fields+']\' ' + datalet_code + '</'+data.component+'>';
+
+
+            paperCard.$.content.innerHTML = '<'+data.component+' disable_my_space data-url="'+data.params["data-url"]+'" data="" ' + datalet_code + '</'+data.component+'>';
         }
         else
         {
@@ -245,9 +244,8 @@
                             datalet-id="{$card->dataletId}"
                             datalet="{$card->component}"
                             preset='{$card->preset}'
-                            fields='{$card->fields}'
                             card-type="{$card->cardType}"
-                            card-title="{$card->card->title}"
+                            card-title="{$card->dataletTitle}"
                             card-id="{$card->cardId}"
                             comment="{$card->card->comment}"
 
@@ -258,7 +256,7 @@
                             >
 
                             {if $card->isDatalet && !($card->cardType == 'link')}
-                                <{$card->component} data='{$card->data}' fields='[{$card->fields}]' {$card->parameters} disable_my_space>
+                                <{$card->component} data='{$card->data}' {$card->parameters} disable_my_space>
                                 </{$card->component}>
                             {else}
                                 {if $card->cardType == 'text'}

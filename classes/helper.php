@@ -41,15 +41,16 @@ class SPODPR_CLASS_Helper
                     $card->dataletId = $datalet->id;
                     $card->component = $datalet->component;
                     $card->data = $this->htmlSpecialChar($datalet->data);
-                    $card->fields = $this->htmlSpecialChar($datalet->fields);
                     $card->params = json_decode($datalet->params);
+                    $card->dataletTitle = $card->params->datalettitle;
 
                     foreach ($card->params as $key => $value)
                     {
-                        $card->parameters .= $key. "='" . $value . "' ";
+                        $card->parameters .= $key. "='" . $this->htmlSpecialChar($value) . "' ";
+//                        $card->parameters .= $key. '="' . $value . '" ';
                     }
 
-                    $card->preset = $datalet->params;
+                    $card->preset = $this->htmlSpecialChar($datalet->params);
                 }
             }
 
