@@ -5,21 +5,6 @@
 <link rel="import" href="{$components_url}bower_components/iron-flex-layout/iron-flex-layout.html">
 
 <style>
-    .floatbox_header{
-        display: none;
-    }
-
-    .floatbox_body{
-        font-family: 'Roboto', sans-serif;
-        background-color: #eeeeee;
-        padding : 3px;
-    }
-
-    paper-fab.opinion-button{
-        background:#5B646A;
-        left: 15px;
-    }
-
     #scroll_content{
         position: relative;
         overflow: scroll;
@@ -37,14 +22,6 @@
         margin-left: 20px;
     }
 
-    paper-scroll-header-panel {
-        /*position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;*/
-        height: 70vh;
-    }
 
     .tall {
         background-color: #2196F3;
@@ -86,8 +63,8 @@
     <div class="tall">
         <div class="title">Mon espace assistance</div>
         <div class="description">
-            Mon espace coorespond au lieu o&ugrave; chaque utilisateur peu contr&ocirc;ler ses datalets, textes, liens et ses informations personnelles,
-            et planifier des rappels d'actions pour une utilisation ult&eacute;rieure (ex: dans la section &quot;quoi de nouveau ?&quot;, dans l'espace public de l'Agora)
+            Mon espace coorespond au lieu où chaque utilisateur peu contrôler ses datalets, textes, liens et ses informations personnelles,
+            et planifier des rappels d'actions pour une utilisation ultérieure (ex: dans la section "quoi de nouveau ?", dans l'espace public de l' Agora)
         </div>
     </div>
 
@@ -95,7 +72,7 @@
 
         <div class="sect">
             <div class="horizontal layout cell">
-                <img src="{$staticResourcesUrl}images/myspace1.png" style="width: 50%; height: 50%;">
+                <img src="{$staticResourcesUrl}images/myspace1_fr.png" style="width: 50%; height: 50%;">
 
                 <div class="cell">
                     <div class="horizontal layout cell">
@@ -104,42 +81,43 @@
                     </div>
                     <div class="vetical layout cell">
                         <p>
-                            Chaque contenu est plac&eacute; dans une &quot;carte&quot;. Vous pouvez ajouter dans une carte: un URL,
-                            un datalet (visualisation de jeux de donn&eacute;es) ou un texte entier, en cliquant sur le bouton &quot;+&quot;
-                            en bas &agrave; droite. Afin d'afficher le contenu de la carte, vous devez simplement cliquer sur le bouton bleu
-                            dans le milieu de la carte. Chaque carte peut &eacute;galement se voir attribuer un titre (en fond noir) et un
-                            commentaire (sous le titre). Pour chaque carte, sur la partie sup&eacute;rieure, vous pouvez le modifier (icone crayon)
-                            ou le supprimer (panier). La disposition des cartes suit un ordre chronologique (les plus r&eacute;cents). Vous pouvez
-                            cr&eacute;er diff&eacute;rents types de cartes:
+                            Chaque contenu est placé dans une "carte". Vous pouvez ajouter dans une carte: un URL, un datalet
+                            (visualisation de jeux de données) ou un texte entier, en cliquant sur le bouton "+" en bas à droite.
+                            Afin d'afficher le contenu de la carte, vous devez simplement cliquer sur le bouton bleu dans le milieu de la carte.
+                            Chaque carte peut également se voir attribuer un titre (en fond noir) et un commentaire (sous le titre).
+                            Pour chaque carte, sur la partie supérieure, vous pouvez le modifier (icone crayon) ou le supprimer (panier).
+                            La disposition des cartes suit un ordre chronologique (les plus récents).
+                            Vous pouvez créer différents types de cartes:
+
                         <ul class="cell-list">
                             <li>
-                                <b>Carte li&eacute;e</b> <paper-fab mini icon="link" aria-disabled="false" elevation="1"></paper-fab>
+                                <b> Carte liée;</b> <paper-fab mini icon="link" aria-disabled="false" elevation="1"></paper-fab>
                             </li>
                             <li>
-                                <b>Texte li&eacute;</b> <paper-fab mini icon="text-format" aria-disabled="false" elevation="1"></paper-fab>
+                                <b>Texte lié;</b> <paper-fab mini icon="text-format" aria-disabled="false" elevation="1"></paper-fab>
                             </li>
                             <li>
-                                <b>Visualisation des donn&eacute;es ouvertes</b> <paper-fab mini icon="assessment" aria-disabled="false" elevation="1"></paper-fab>
+                                <b>Visualisation des données ouvertes</b> <paper-fab mini icon="assessment" aria-disabled="false" elevation="1"></paper-fab>
+                            </li>
+                        </ul>
+                        </p>
+                        <p>
+                            En haut à droite vous pouvez:
+                        <ul class="cell-list">
+                            <li>
+                                <b>Modifier</b> la carte liée <paper-fab mini icon="create" aria-disabled="false" elevation="1" class="opinion-button"></paper-fab>
+                            </li>
+                            <li>
+                                <b>Supprimer</b> la carte liée <paper-fab mini icon="delete" aria-disabled="false" elevation="1" class="opinion-button"></paper-fab>
                             </li>
                         </ul>
                         </p>
 
                         <p>
-                            En haut &agrave; droite vous pouvez:
-                        <ul class="cell-list">
-                            <li>
-                                <b>Modifier</b> la carte li&eacute;e <paper-fab mini icon="create" aria-disabled="false" elevation="1" class="opinion-button"></paper-fab>
-                            </li>
-                            <li>
-                                <b>Supprimer</b> la carte li&eacute;e <paper-fab mini icon="delete" aria-disabled="false" elevation="1" class="opinion-button"></paper-fab>
-                            </li>
-                        </ul>
-                        </p>
-
-                        <p>
-                            Afin d'afficher le contenu, vous devez cliquer sur le bouton bleu dans le milieu de la carte. Lorsque l'utilisateur tente de visualiser
-                            ses propres datalets dans l'espace priv&eacute;, le SPOD ne contacte pas les fournisseurs de donn&eacute;es actuels mais r&eacute;cup&egrave;re
-                            les donn&eacute;es &agrave; partir de leur source. Cela permet une meilleure exp&eacute;rience-utilisateur.
+                            Afin d'afficher le contenu, vous devez cliquer sur le bouton bleu dans le milieu de la carte.
+                            Lorsque l'utilisateur tente de visualiser ses propres datalets dans l'espace privé,
+                            le SPOD ne contacte pas les fournisseurs de données actuels mais récupère les données à partir de leur source.
+                            Cela permet une meilleure expérience-utilisateur.
                         </p>
                     </div>
                 </div>
@@ -148,7 +126,7 @@
 
         <div class="sect">
             <div class="horizontal layout cell">
-                <img src="{$staticResourcesUrl}images/myspace2.png" style="width: 50%; height: 50%;">
+                <img src="{$staticResourcesUrl}images/myspace2_fr.png" style="width: 50%; height: 50%;">
 
                 <div class="cell">
                     <div class="horizontal layout cell">
@@ -156,9 +134,8 @@
                         <div class="section-title">Texte et Cartes URL</div>
                     </div>
                     <div>
-                        Il est possible de cr&eacute;er un datalet en utilisant l'interface de contr&ocirc;le alors
-                        que pour cr&eacute;er un espace texte ou URL (liens) une interface sp&eacute;cifique est
-                        propos&eacute;e (avec un aper&ccedil;u &agrave; droite)
+                        Il est possible de créer un datalet en utilisant l'interface de contrôle alors que pour créer
+                        un espace texte ou URL (liens) une interface spécifique est proposée (avec un aperçu à droite).
                     </div>
                 </div>
             </div>
@@ -166,7 +143,7 @@
 
         <div class="sect">
             <div class="horizontal layout cell">
-                <img src="{$staticResourcesUrl}images/myspace3.png" style="width: 60%; height: 100%;">
+                <img src="{$staticResourcesUrl}images/myspace3_fr.png" style="width: 60%; height: 100%;">
 
                 <div class="cell">
                     <div class="horizontal layout cell">
@@ -174,9 +151,8 @@
                         <div class="section-title">Utiliser les cartes</div>
                     </div>
                     <div>
-                        Vous pouvez utiliser le contenu cr&eacute;&eacute; dans cette zone pour poster une visualisation
-                        ou cr&eacute;er un lien dans la zone &quot;quoi de nouveau ?&quot; (dans la figure &agrave; gauche)
-                        ou un espace public &agrave; l'int&eacute;rieur de l'Agora
+                        Vous pouvez utiliser le contenu créé dans cette zone pour poster une visualisation ou créer un
+                        lien dans la zone "quoi de nouveau ?" (dans la figure à gauche) ou un espace public à l'intérieur de l' Agora.
                     </div>
                 </div>
             </div>
