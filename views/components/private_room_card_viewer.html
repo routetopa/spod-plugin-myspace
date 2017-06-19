@@ -43,7 +43,7 @@ padding: 0px 0px 0px 0px;
             datalet-id="{$card->dataletId}"
             datalet="{$card->component}"
             preset='{$card->preset}'
-            fields='{$card->fields}'
+            fields=''
             card-type="{$card->cardType}"
             card-title="{$card->card->title}"
             card-id="{$card->cardId}"
@@ -56,7 +56,7 @@ padding: 0px 0px 0px 0px;
     >
 
         {if $card->isDatalet && !($card->cardType == 'link')}
-            <{$card->component} data='{$card->data}' fields='[{$card->fields}]' {$card->parameters} disable_my_space></{$card->component}>
+            <{$card->component} data='{$card->data}' {$card->parameters} disable_my_space></{$card->component}>
         {else}
         <preview-datalet data-url="undefined" url="{$card->card->content}"></preview-datalet>
         {/if}
