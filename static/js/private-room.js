@@ -84,13 +84,13 @@ SPODPR.modifyCard = function (e)
     {
         case 'datalet':
             let dataletId = e.target.parentElement.getAttribute('datalet-id');
-            let dataletType = e.target.parentElement.getAttribute('datalet-type').replace("-datalet", "");
             let dataletPreset = e.target.parentElement.getAttribute('datalet-preset');
 
             SPODPR.cardOpened = cardId;
             SPODPR.dataletOpened = dataletId;
             ODE.pluginPreview = 'private-room';
 
+            let dataletType = $(e.target).next().next()[0].getAttribute('datalet-type').replace("-datalet", "");
             if(dataletType === "decision-tree")
             {
                 let json_tree = JSON.parse(dataletPreset)["json-tree"];
@@ -275,7 +275,6 @@ function create_card(data, cardId, dataletId) {
     var card = document.createElement('div');
     card.setAttribute('class', 'card');
     card.setAttribute('card-id', cardId);
-    card.setAttribute('card-type', data.type);
 
     var mod = document.createElement('div');
     mod.setAttribute('class', 'circle_button modify');
@@ -286,6 +285,9 @@ function create_card(data, cardId, dataletId) {
     card.appendChild(del);
 
     if (data["params"] != undefined) {
+        card.setAttribute('card-type', "datalet");
+        card.setAttribute('datalet-id', dataletId);
+        card.setAttribute('datalet-preset', data["params"]);
 
         var preview_datalet = document.createElement('preview-datalet');
         preview_datalet.setAttribute('datalet-id', dataletId);
@@ -298,6 +300,8 @@ function create_card(data, cardId, dataletId) {
         card.appendChild(preview_datalet);
     }
     else {
+        card.setAttribute('card-type', data.type);
+
         var preview_link = document.createElement('preview-link');
         preview_link.setAttribute('preview-type', data.type);
         preview_link.setAttribute('preview-title', data.title);
