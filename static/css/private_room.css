@@ -130,7 +130,7 @@ div.add {
     position: fixed;
     z-index: 1;
 
-    bottom: 48px;
+    bottom: 64px;
     right: 48px;
 
     height: 56px;
@@ -145,31 +145,6 @@ div.add {
 
 div.add:before {
     content: '+';
-}
-
-div.find {
-    position: absolute;
-    z-index: 1;
-
-    top: 48px;
-    right: 48px;
-
-    height: 56px;
-    width: 56px;
-
-    line-height: 56px;
-    font-size: 32px;
-    color: #212121;
-    text-align: center;
-    cursor: pointer;
-
-    background: url("../images/search.svg") center no-repeat;
-    background-color: #00BCD4;
-}
-
-div.find:hover {
-    background: url("../images/search_hover.svg") center no-repeat;
-    background-color: #00ACC1;
 }
 
 div.subAdd {
@@ -228,19 +203,120 @@ div#addDatalet:hover {
 }
 
 div#addSD.opened {
-    bottom: 298px;
+    bottom: 314px;
     opacity: 1;
 }
 div#addLink.opened {
-    bottom: 238px;
+    bottom: 254px;
     opacity: 1;
 }
 div#addText.opened {
-    bottom: 178px;
+    bottom: 194px;
     opacity: 1;
 }
 div#addDatalet.opened {
-    bottom: 118px;
+    bottom: 134px;
     opacity: 1;
 }
 
+div.find {
+    position: fixed;
+    z-index: 1;
+
+    top: 64px;
+    right: 48px;
+
+    height: 56px;
+    width: 56px;
+
+    line-height: 56px;
+    font-size: 32px;
+    color: #212121;
+    text-align: center;
+    cursor: pointer;
+
+    background: url("../images/search.svg") center no-repeat;
+    background-color: #00BCD4;
+}
+
+div.find:hover {
+    background: url("../images/search_hover.svg") center no-repeat;
+    background-color: #00ACC1;
+}
+
+div.search_input {
+    position: fixed;
+    z-index: 1;
+
+    top: 78px;
+    right: 120px;
+
+    /*height: 32px;*/
+    padding: 4px;
+    border-radius: 4px;
+
+    background-color: #00BCD4;
+
+    width: 0;
+    opacity: 0;
+    transition: 1s;
+}
+
+div.search_input input {
+    background-color: #FAFAFA;
+    border: none;
+    /*border-bottom: 2px solid #FAFAFA;*/
+
+    height: 16px;
+    line-height: 16px;
+    padding: 2px;
+
+    /*-webkit-animation: seconds 1.0s forwards;*/
+    /*-webkit-animation-iteration-count: 1;*/
+    /*-webkit-animation-delay: 5s;*/
+    /*animation: seconds 1.0s forwards;*/
+    /*animation-iteration-count: 1;*/
+    /*animation-delay: 1.1s;*/
+    /*width: 0;*/
+    /*opacity: 0;*/
+    width: calc(100% - 4px);
+    transition: width 1s;
+}
+
+div.search_input input:focus {
+    outline:none;
+    border: none;
+    /*border-bottom: 2px solid #000000;*/
+}
+
+div.search_input.opened {
+    width: 192px;
+    opacity: 1;
+}
+
+div.search_input.opened input{
+    /*width: 188px;*/
+}
+
+/*@-webkit-keyframes seconds {*/
+    /*0% {*/
+        /*opacity: 0;*/
+    /*}*/
+    /*99% {*/
+        /*opacity: 0;*/
+    /*}*/
+    /*100% {*/
+        /*opacity: 1;*/
+    /*}*/
+/*}*/
+/*@keyframes seconds {*/
+    /*0% {*/
+        /*opacity: 0;*/
+    /*}*/
+    /*99% {*/
+        /*opacity: 0;*/
+    /*}*/
+    /*100% {*/
+        /*opacity: 1;*/
+    /*}*/
+/*}*/

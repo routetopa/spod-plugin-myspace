@@ -40,6 +40,15 @@ SPODPR.dropdownTrigger = function ()
     }
 }
 
+SPODPR.leftTrigger = function ()
+{
+    if($(".search_input").css("opacity") == "0") {
+        $(".search_input").addClass("opened");
+    } else {
+        $(".search_input").removeClass("opened");
+    }
+}
+
 SPODPR.textLinkCard = function (e)
 {
     var cardData = {
@@ -194,6 +203,21 @@ $(document).ready(function () {
         SPODPR.modifyCard(e);
     });
 
+    $( "#search" ).on('keyup', function() {
+        var filter = this.value.toUpperCase();
+        var cards = document.querySelectorAll('.card');
+        for(var i=0; i < cards.length; i++)
+        {
+            let title = cards[i].children[2].getAttribute("preview-title").toUpperCase();
+            if(title.indexOf(filter) > -1)
+                cards[i].style.display = "inline-block";
+            else
+                cards[i].style.display = "none";
+        }
+
+        $('.card_container').masonry();
+    });
+
     // $(".modify").on('click', SPODPR.modifyCard);
     // $(".delete").on('click', SPODPR.deleteCard);
 
@@ -204,30 +228,6 @@ $(document).ready(function () {
     document.addEventListener('create-card-controllet_data', function(e){
         SPODPR.textLinkCard(e);
     });
-
-    // document.addEventListener('search-panel-controllet_content-changed', function(e){
-    //
-    //     var cards = document.querySelectorAll('paper-card-controllet');
-    //     for(var i=0; i < cards.length; i++)
-    //     {
-    //         var title   = cards[i].cardTitle;
-    //         var comment = cards[i].comment;
-    //         var type    = cards[i].cardType;
-    //
-    //         var searchFlag = title.indexOf(e.detail.searchKey) == -1 && comment.indexOf(e.detail.searchKey) == -1 && type.indexOf(e.detail.searchKey) == -1;
-    //
-    //         if(!searchFlag || e.detail.searchKey == "")
-    //         {
-    //             cards[i].style.display = "inline-block";
-    //         }
-    //         else
-    //         {
-    //             cards[i].style.display = "none";
-    //         }
-    //     }
-    //
-    //     $('.card_container').masonry();
-    // });
 
     document.addEventListener('SilverDecisionsSaveEvent', function(e) {
         var json_tree = {"json-tree" : e.detail.replace("\n", "")};

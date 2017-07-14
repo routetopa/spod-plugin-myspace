@@ -10,7 +10,7 @@
 
             {if $card->cardType == 'datalet'}
                 <!--data='{$card->data}'-->
-                <preview-datalet datalet-id="{$card->dataletId}" datalet-type="{$card->component}" {$card->parameters}></preview-datalet>
+                <preview-datalet datalet-id="{$card->dataletId}" datalet-type="{$card->component}" {$card->parameters} preview-title="{$card->dataletTitle}"></preview-datalet>
             {else}
                 <preview-link preview-type="{$card->cardType}" preview-title="{$card->card->title}" preview-description="{$card->card->comment}" preview-content="{$card->card->content}"></preview-link>
             {/if}
@@ -19,11 +19,13 @@
 
     {/foreach}
 
+    <div class="circle_button find" onclick="SPODPR.leftTrigger();"></div>
+    <div class="search_input"><input id="search"></div>
+
     <div class="circle_button add" onclick="SPODPR.dropdownTrigger();"></div>
     <div id="addSD" class="circle_button subAdd" title='{text key="spodpr+create_decisiontree"}' onclick="SPODPR.openSilverDecisions();"></div>
     <div id="addLink" class="circle_button subAdd" title='{text key="spodpr+create_link"}' onclick="SPODPR.openCardCreator('link');"></div>
     <div id="addText" class="circle_button subAdd" title='{text key="spodpr+create_text"}' onclick="SPODPR.openCardCreator('text');"></div>
     <div id="addDatalet" class="circle_button subAdd" title='{text key="spodpr+create_datalet"}' onclick="SPODPR.openOde();"></div>
-    <div class="circle_button find"></div>
 
 </div>
