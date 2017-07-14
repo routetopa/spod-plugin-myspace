@@ -42,7 +42,7 @@ class SPODPR_CLASS_Helper
                     $card->component = $datalet->component;
                     $card->data = $this->htmlSpecialChar($datalet->data);
                     $card->params = json_decode($datalet->params);
-                    $card->dataletTitle = $card->params->datalettitle;
+                    $card->dataletTitle = empty($card->params->datalettitle) ? '' : $card->params->datalettitle;
 
                     foreach ($card->params as $key => $value)
                     {
