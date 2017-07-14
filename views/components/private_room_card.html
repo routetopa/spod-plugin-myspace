@@ -1,44 +1,44 @@
-<!-- PRIVATE ROOM -->
-<link rel="import" href="{$components_url}controllets/paper-card-controllet/paper-card-controllet.html"/>
-<link rel="import" href="{$components_url}controllets/animated-button-container-controllet/animated-button-container-controllet.html"/>
-<link rel="import" href="{$components_url}controllets/generic-cards-container-controllet/generic-cards-container-controllet.html"/>
+<!--&lt;!&ndash; PRIVATE ROOM &ndash;&gt;-->
+<!--<link rel="import" href="{$components_url}controllets/paper-card-controllet/paper-card-controllet.html"/>-->
+<!--<link rel="import" href="{$components_url}controllets/animated-button-container-controllet/animated-button-container-controllet.html"/>-->
+<!--<link rel="import" href="{$components_url}controllets/generic-cards-container-controllet/generic-cards-container-controllet.html"/>-->
 
-<div class="{$css_class}">
+<!--<div class="{$css_class}">-->
 
-    <animated-button-container-controllet id="share_from_private_room" plugin-key="{$pluginKey}" tooltip="{text key="spodpr+open_my_space"}">
+    <!--<animated-button-container-controllet id="share_from_private_room" plugin-key="{$pluginKey}" tooltip="{text key="spodpr+open_my_space"}">-->
 
-        <generic-cards-container-controllet>
-            {foreach $cards as $card}
-            <paper-card-controllet
-                class="card"
-                width="200"
-                height="250"
-                datalet-id="{$card->dataletId}"
-                datalet="{$card->component}"
-                preset='{$card->preset}'
-                fields='{$card->fields}'
-                static-data='{$card->data}'
-                card-type="{$card->cardType}"
-                card-title="{$card->card->title}"
-                card-id="{$card->cardId}"
-                comment="{$card->card->comment}"
-                >
-                {if $card->isDatalet && !($card->cardType == 'link')}
-                   <link rel="import" href="{$components_url}datalets/{$card->component}/{$card->component}.html" />
-                   <{$card->component} data='{$card->data}' fields='[{$card->fields}]' {$card->parameters} export_menu="0">
-                   </{$card->component}>
-                {else}
-                   {if $card->cardType == 'text'}
-                      {$card->card->content}
-                   {else}
-                      <link rel="import" href="{$components_url}datalets/preview-datalet/preview-datalet.html" />
-                      <preview-datalet data-url="undefined" url="{$card->card->content}"></preview-datalet>
-                   {/if}
-                {/if}
-            </paper-card-controllet>
-            {/foreach}
-        </generic-cards-container-controllet>
+        <!--<generic-cards-container-controllet>-->
+            <!--{foreach $cards as $card}-->
+            <!--<paper-card-controllet-->
+                <!--class="card"-->
+                <!--width="200"-->
+                <!--height="250"-->
+                <!--datalet-id="{$card->dataletId}"-->
+                <!--datalet="{$card->component}"-->
+                <!--preset='{$card->preset}'-->
+                <!--fields='{$card->fields}'-->
+                <!--static-data='{$card->data}'-->
+                <!--card-type="{$card->cardType}"-->
+                <!--card-title="{$card->card->title}"-->
+                <!--card-id="{$card->cardId}"-->
+                <!--comment="{$card->card->comment}"-->
+                <!--&gt;-->
+                <!--{if $card->isDatalet && !($card->cardType == 'link')}-->
+                   <!--<link rel="import" href="{$components_url}datalets/{$card->component}/{$card->component}.html" />-->
+                   <!--<{$card->component} data='{$card->data}' fields='[{$card->fields}]' {$card->parameters} export_menu="0">-->
+                   <!--</{$card->component}>-->
+                <!--{else}-->
+                   <!--{if $card->cardType == 'text'}-->
+                      <!--{$card->card->content}-->
+                   <!--{else}-->
+                      <!--<link rel="import" href="{$components_url}datalets/preview-datalet/preview-datalet.html" />-->
+                      <!--<preview-datalet data-url="undefined" url="{$card->card->content}"></preview-datalet>-->
+                   <!--{/if}-->
+                <!--{/if}-->
+            <!--</paper-card-controllet>-->
+            <!--{/foreach}-->
+        <!--</generic-cards-container-controllet>-->
 
-    </animated-button-container-controllet>
-</div>
-<!-- PRIVATE ROOM -->
+    <!--</animated-button-container-controllet>-->
+<!--</div>-->
+<!--&lt;!&ndash; PRIVATE ROOM &ndash;&gt;-->
