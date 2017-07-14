@@ -20,6 +20,8 @@ body, html {
     width: 100%;
     /*height: 100%;*/
     min-height: 100%;
+
+    background-color: #FAFAFA;
 }
 
 /* MAIN CSS OVERRIDE */
@@ -52,3 +54,191 @@ body .ow_footer .ow_copyright {
     padding-top: 10px;
 }
 /* MAIN CSS OVERRIDE */
+
+div.card_container {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 0 48px 48px 0;
+    background-color: #FAFAFA;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+div.card {
+    position: relative;
+    margin: 48px 0 0 48px;
+    width: 400px;
+    height: 200px;
+
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    /*box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);*/
+    /*box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);*/
+    /*box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);*/
+}
+
+div.circle_button {
+    position: absolute;
+
+    background-color: #00BCD4;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+div.circle_button:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: #00ACC1;
+    color: #FFFFFF;
+}
+
+div.circle_button.modify {
+    top: -12px;
+    right: 24px;
+
+    height: 24px;
+    width: 24px;
+
+    background: url("../images/modify.svg") no-repeat 2px 2px;
+    background-color: #00BCD4;
+    background-size: 20px 20px;
+}
+
+div.circle_button.delete {
+    top: -12px;
+    right: -12px;
+
+    height: 24px;
+    width: 24px;
+
+    background: url("../images/delete.svg") no-repeat 2px 2px;
+    background-color: #00BCD4;
+    background-size: 20px 20px;
+}
+
+div.add {
+    position: fixed;
+    z-index: 1;
+
+    bottom: 48px;
+    right: 48px;
+
+    height: 56px;
+    width: 56px;
+
+    line-height: 56px;
+    font-size: 32px;
+    color: #212121;
+    text-align: center;
+    cursor: pointer;
+}
+
+div.add:before {
+    content: '+';
+}
+
+div.find {
+    position: absolute;
+    z-index: 1;
+
+    top: 48px;
+    right: 48px;
+
+    height: 56px;
+    width: 56px;
+
+    line-height: 56px;
+    font-size: 32px;
+    color: #212121;
+    text-align: center;
+    cursor: pointer;
+
+    background: url("../images/search.svg") center no-repeat;
+    background-color: #00BCD4;
+}
+
+div.find:hover {
+    background: url("../images/search_hover.svg") center no-repeat;
+    background-color: #00ACC1;
+}
+
+div.subAdd {
+    position: fixed;
+
+    right: 54px;
+    bottom: 54px;
+    padding: 8px;
+
+    height: 28px;
+    width: 28px;
+
+    line-height: 56px;
+    font-size: 32px;
+    color: #212121;
+    text-align: center;
+    cursor: pointer;
+
+    opacity: 0;
+
+    transition: opacity 1s, bottom 1s;
+}
+
+div#addSD {
+    background: url("../images/decisionTree.svg") center no-repeat;
+    background-color: #00BCD4;
+}
+div#addLink {
+    background: url("../images/link.svg") center no-repeat;
+    background-color: #00BCD4;
+}
+div#addText {
+    background: url("../images/text.svg") center no-repeat;
+    background-color: #00BCD4;
+}
+div#addDatalet {
+    background: url("../images/datalet.svg") center no-repeat;
+    background-color: #00BCD4;
+}
+
+div#addSD:hover {
+    background: url("../images/decisionTree_hover.svg") center no-repeat;
+    background-color: #00ACC1;
+}
+div#addLink:hover {
+    background: url("../images/link_hover.svg") center no-repeat;
+    background-color: #00ACC1;
+}
+div#addText:hover {
+    background: url("../images/text_hover.svg") center no-repeat;
+    background-color: #00ACC1;
+}
+div#addDatalet:hover {
+    background: url("../images/datalet_hover.svg") center no-repeat;
+    background-color: #00ACC1;
+}
+
+div#addSD.opened {
+    bottom: 298px;
+    opacity: 1;
+}
+div#addLink.opened {
+    bottom: 238px;
+    opacity: 1;
+}
+div#addText.opened {
+    bottom: 178px;
+    opacity: 1;
+}
+div#addDatalet.opened {
+    bottom: 118px;
+    opacity: 1;
+}
+

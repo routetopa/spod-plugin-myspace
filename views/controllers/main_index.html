@@ -1,290 +1,32 @@
-<link rel="import" href="{$components_url}bower_components/paper-drawer-panel/paper-drawer-panel.html">
-<link rel="import" href="{$components_url}bower_components/paper-toolbar/paper-toolbar.html">
-<link rel="import" href="{$components_url}bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="{$components_url}bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="{$components_url}bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
-<link rel="import" href="{$components_url}bower_components/paper-fab/paper-fab.html">
-<link rel="import" href="{$components_url}bower_components/paper-fab-transitions/paper-fab-speed-dial.html">
-<link rel="import" href="{$components_url}bower_components/paper-menu/paper-menu.html">
-<link rel="import" href="{$components_url}bower_components/paper-item/paper-item.html">
-
-<link rel="import" href="{$components_url}controllets/paper-card-controllet/paper-card-controllet.html"/>
-<link rel="import" href="{$components_url}controllets/search-panel-controllet/search-panel-controllet.html"/>
-
-<link rel="import" href="{$components_url}bower_components/paper-card/paper-card.html">
-<link rel="import" href="{$components_url}bower_components/paper-button/paper-button.html">
-<link rel="import" href="{$components_url}bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="{$components_url}bower_components/paper-styles/color.html">
-
 {$datalet_definition_import}
 
-<script type="text/javascript" src="{$plugin_root_dir}js/masonry.pkgd.min.js"></script>
+<!--{text key="spodpr+main"}-->
 
-<link rel="localization" href="{$components_url}locales/{$user_language}.l20n">
+<div class="card_container">
 
-{literal}
+    {foreach $cards as $card}
 
+        <div class="card" card-id="{$card->cardId}" card-type="{$card->cardType}" datalet-id="{$card->dataletId}" datalet-type="{$card->component}" datalet-preset='{$card->preset}'>
+            <div class="circle_button modify"></div>
+            <div class="circle_button delete"></div>
 
-<style is="custom-style">
+            {if $card->cardType == 'datalet'}
+                <!--data='{$card->data}'-->
+                <preview-datalet datalet-id="{$card->dataletId}" datalet-type="{$card->component}" {$card->parameters}></preview-datalet>
+            {else}
+                <preview-link preview-type="{$card->cardType}" preview-title="{$card->card->title}" preview-description="{$card->card->comment}" preview-content="{$card->card->content}"></preview-link>
+            {/if}
 
-    paper-toolbar.toolbar-main
-    {
-        --paper-toolbar-background:#2196F3;
-        -moz-box-shadow: 0 0 20px 5px #999;
-        -webkit-box-shadow: 0 0 20px 5px #999;
-    }
+        </div>
 
-    .paper-card-container
-    {
-        /*padding:30px 0px 0px 30px;*/
-    }
+    {/foreach}
 
-    paper-card-controllet{
-        margin: 40px 0px 0px 40px;
-    }
+    <div class="circle_button add" onclick="SPODPR.dropdownTrigger();"></div>
+    <div class="circle_button find"></div>
 
-    paper-fab.add-paper-fab {
-        position: absolute;
-        bottom: 25px;
-        right: 50px;
-        --paper-fab-background:#2196F3;
-    }
+</div>
 
-    paper-fab-speed-dial.add-paper-fab {
-        position: absolute;
-        bottom: 55px;
-        right: 40px;
-    }
-    paper-fab{
-        --paper-fab-background:#2196F3;
-    }
-
-    .grid
-    {
-        width: 100%;
-        z-index: 0;
-    }
-
-    .grid:after {
-        content: '';
-        display: block;
-        clear: both;
-    }
-
-    .grid-item {
-        float: left;
-        /*border: 2px solid #333;
-        height: 200px;
-        width: 200px;
-        overflow: hidden;*/
-        /*border-width: 1em;
-        border-radius: 0.125rem;
-        box-shadow: 0.125em 0.125em 0.1125em 0.125em rgba(0, 0, 0, 0.25);*/
-    }
-
-    body .floatbox_canvas .floatbox_container {
-        margin-top: 50px;
-    }
-
-</style>
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        //setTimeout(function() {
-            $('.grid').masonry({
-                // options
-                itemSelector: '.grid-item',
-                columnWidth: 120
-            });
-        //},1500);
-    });
-
-    function test_replace_card()
-    {
-        var data = JSON.parse('{"component": "barchart-datalet", "params": {"data-url": "http://ckan.routetopa.eu/api/action/datastore_search?resource_id=c3b52992-ba61-4a73-a637-0f2e1ca26aab", "title": "undefined", "x-axis-label": "undefined", "y-axis-label": "undefined", "suffix": "undefined" }, "_colorIndex": 0, "dataletId": "26" }');
-        data.params = JSON.stringify(data.params);
-        var id = 98;
-
-        var card = $("[card-id="+id+"]");
-        /*var sibling_card = $(card[0]).prev();
-
-        card[0].remove();
-        var mod_card = create_card(data, id);
-
-        if(sibling_card.length == 0)
-            $('.grid').prepend(mod_card);
-        else
-            $(sibling_card[0]).after(mod_card);*/
-
-        var mod_card = create_card(data, id);
-        card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
-    }
-
-
-    function replace_text_link_card(data, id)
-    {
-        var card = $("[card-id="+id+"]");
-        card[0].setAttribute('comment', data.comment);
-        card[0].setAttribute('card-title', data.title);
-        card[0].$.content.innerHTML = data.content;
-    }
-
-    function replace_datalet_card(data)
-    {
-        var card = $("[card-id="+data.cardId+"]");
-        var mod_card = create_card(data, data.cardId, data.dataletId);
-        card[0].setAttribute('preset', mod_card.getAttribute('preset'));
-        card[0].setAttribute('comment', mod_card.getAttribute('comment'));
-        card[0].setAttribute('card-title', mod_card.getAttribute('card-title'));
-        card[0].setAttribute('datalet', mod_card.getAttribute('datalet'));
-        card[0].$.content.innerHTML = mod_card.$.content.innerHTML;
-    }
-
-    function add_card(data, cardId, dataletId)
-    {
-        var card = create_card(data, cardId, dataletId);
-        //document.getElementById('grid-container').appendChild(paperCard);
-        $('.grid').masonry().append(card).masonry('appended', card).masonry();
-    }
-
-    function create_card(data, cardId, dataletId)
-    {
-        debugger
-        var paperCard = document.createElement('paper-card-controllet');
-        paperCard.setAttribute('class', 'grid-item');
-        paperCard.setAttribute('width', '200');
-        paperCard.setAttribute('height', '250');
-        paperCard.setAttribute('card-id', cardId);
-
-
-        if(data.params != undefined)
-        {
-            paperCard.setAttribute('datalet-id', dataletId);
-            paperCard.setAttribute('preset', data.params);
-            data.params = JSON.parse(data.params);
-
-            var keys = Object.keys(data.params);
-            var datalet_code = "";
-
-            for(var i = 0; i < keys.length; i++){
-                datalet_code += ' ' + keys[i] + '=\'' + data.params[keys[i]].replace(/\'/g, "&#39;") +'\'';
-            }
-
-            paperCard.setAttribute('card-type', 'datalet');
-            paperCard.setAttribute('card-title', (typeof data.params.datalettitle != 'undefined') ? data.params.datalettitle : "");
-            paperCard.setAttribute('comment',(typeof data.params.description != 'undefined') ? data.params.description : "");
-            paperCard.setAttribute('datalet', data.component);
-
-
-
-            paperCard.$.content.innerHTML = '<'+data.component+' disable_my_space data-url="'+data.params["data-url"]+'" data="" ' + datalet_code + '</'+data.component+'>';
-        }
-        else
-        {
-            paperCard.setAttribute('card-type', data.type);
-            paperCard.setAttribute('card-title', (typeof data.title != 'undefined') ? data.title : "");
-            paperCard.setAttribute('comment', (typeof data.comment != 'undefined') ? data.comment : "");
-
-            if(data.type == 'text') {
-                paperCard.$.content.innerHTML = data.content;
-            } else {
-                paperCard.setAttribute('card-link', data.content);
-                paperCard.$.content.innerHTML = '<preview-datalet data-url="undefined" url="' + data.content + '"></preview-datalet>';
-            }
-        }
-
-        return paperCard;
-
-    }
-
-    function remove_card(card)
-    {
-        $('.grid').masonry('remove',card).masonry('layout');
-    }
-
-</script>
-{/literal}
-
-<paper-drawer-panel force-narrow>
-
-    <div drawer>
-
-        <paper-toolbar class="toolbar-drawer">
-            <div class="title">Options</div>
-        </paper-toolbar>
-
-        <paper-menu selected="0">
-        <!--<paper-item>Item 1</paper-item>
-            <paper-item>Item 2</paper-item>-->
-        </paper-menu>
-
-    </div>
-
-    <div main class="fullbleed layout vertical" style="background-color:#e8e8e8">
-
-            <paper-toolbar class="toolbar-main">
-                <!--<paper-icon-button paper-drawer-toggle icon="menu" on-tap="menuAction"></paper-icon-button>-->
-                <div class="title">{text key="spodpr+main"}</div>
-                <search-panel-controllet right-direction="true"></search-panel-controllet>
-                <!--<paper-icon-button icon="more-vert" on-tap="moreAction"></paper-icon-button>-->
-            </paper-toolbar>
-
-        <paper-scroll-header-panel class="flex" fixed>
-
-            <div class="layout vertical justified paper-card-container">
-                <div class="horizontal layout">
-                    <div class="grid" id="grid-container">
-                    {foreach $cards as $card}
-                        <paper-card-controllet
-
-                            class="grid-item"
-                            width="200"
-                            height="250"
-                            datalet-id="{$card->dataletId}"
-                            datalet="{$card->component}"
-                            preset='{$card->preset}'
-                            card-type="{$card->cardType}"
-                            card-title="{$card->dataletTitle}"
-                            card-id="{$card->cardId}"
-                            comment="{$card->card->comment}"
-
-                            {if $card->cardType == 'link'}
-                                card-link="{$card->card->content}"
-                            {/if}
-
-                            >
-
-                            {if $card->isDatalet && !($card->cardType == 'link')}
-                                <{$card->component} data='{$card->data}' {$card->parameters} disable_my_space>
-                                </{$card->component}>
-                            {else}
-                                {if $card->cardType == 'text'}
-                                    {$card->card->content}
-                                {else}
-                                    <preview-datalet data-url="undefined" url="{$card->card->content}"></preview-datalet>
-                                {/if}
-                            {/if}
-
-                        </paper-card-controllet>
-                    {/foreach}
-                    </div>
-                </div>
-            </div>
-
-        </paper-scroll-header-panel>
-
-
-        <paper-fab-speed-dial direction="top" class="bottom-right add-paper-fab">
-            <paper-fab icon="add" title='{text key="spodpr+add_card"}' class="dropdown-trigger"></paper-fab>
-            <div class="dropdown-content">
-                <paper-fab title='{text key="spodpr+create_link"}'          mini icon="link" onclick="SPODPR.openCardCreator('link');"></paper-fab>
-                <paper-fab title='{text key="spodpr+create_text"}'          mini icon="text-format" onclick="SPODPR.openCardCreator('text');"></paper-fab>
-                <paper-fab title='{text key="spodpr+create_decisiontree"}'   mini icon="add-box" onclick="SPODPR.openSilverDecisions();"></paper-fab>
-                <paper-fab title='{text key="spodpr+create_datalet"}'       mini icon="assessment" onclick="SPODPR.openOde();"></paper-fab>
-            </div>
-        </paper-fab-speed-dial>
-
-    </div>
-
-</paper-drawer-panel>
+<div id="addSD" class="circle_button subAdd" title='{text key="spodpr+create_decisiontree"}' onclick="SPODPR.openSilverDecisions();"></div>
+<div id="addLink" class="circle_button subAdd" title='{text key="spodpr+create_link"}' onclick="SPODPR.openCardCreator('link');"></div>
+<div id="addText" class="circle_button subAdd" title='{text key="spodpr+create_text"}' onclick="SPODPR.openCardCreator('text');"></div>
+<div id="addDatalet" class="circle_button subAdd" title='{text key="spodpr+create_datalet"}' onclick="SPODPR.openOde();"></div>

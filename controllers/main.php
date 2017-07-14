@@ -21,7 +21,10 @@ class SPODPR_CTRL_Main extends OW_ActionController
         $this->assign('user_language', BOL_LanguageService::getInstance()->getCurrent()->tag);
 
         OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodpr')->getStaticJsUrl() . 'private-room.js', 'text/javascript');
-        //OW::getDocument()->addScript(SPODPR_COMPONENTS_URL . 'bower_components/l20n/dist/compat/web/l20n.min.js');
+        OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodpr')->getStaticJsUrl() . 'masonry.pkgd.min.js', 'text/javascript');
+
+//        OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodpr')->getStaticJsUrl() . 'perfect-scrollbar.jquery.min.js', 'text/javascript');
+//        OW::getDocument()->addStyleSheet(OW::getPluginManager()->getPlugin('spodpr')->getStaticUrl() . 'css/perfect-scrollbar.min.css');
 
         // ADD DATALET DEFINITIONS
         $this->assign('datalet_definition_import', ODE_CLASS_Tools::getInstance()->get_all_datalet_definitions());
