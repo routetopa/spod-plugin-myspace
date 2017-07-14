@@ -77,27 +77,36 @@ SPODPR.openModOde = function ()
 
 SPODPR.modifyCard = function (e)
 {
-    var cardId = e.target.parentElement.getAttribute('card-id');
-    var cardType = e.target.parentElement.getAttribute('card-type');
+    let cardId = e.target.parentElement.getAttribute('card-id');
+    let cardType = e.target.parentElement.getAttribute('card-type');
 
     switch(cardType)
     {
         case 'datalet':
-            var dataletId = e.target.parentElement.getAttribute('datalet-id');
-            var dataletType = e.target.parentElement.getAttribute('datalet-type').replace("-datalet", "");
-            var dataletPreset = e.target.parentElement.getAttribute('datalet-preset');
+            let dataletId = e.target.parentElement.getAttribute('datalet-id');
+            let dataletType = e.target.parentElement.getAttribute('datalet-type').replace("-datalet", "");
+            let dataletPreset = e.target.parentElement.getAttribute('datalet-preset');
 
             SPODPR.cardOpened = cardId;
             SPODPR.dataletOpened = dataletId;
             ODE.pluginPreview = 'private-room';
 
-            SPODPR.ControlletPresets =
+            if(dataletType === "decision-tree")
             {
-                'selected-datalet': dataletType,
-                'datalet-preset': dataletPreset
-            };
+                let json_tree = JSON.parse(dataletPreset)["json-tree"];
+                previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_SilverDecisionCreator', {json_tree:json_tree} , {top:'56px', width:'calc(100vw - 112px)', height:'calc(100vh - 112px)', iconClass: 'ow_ic_add', title: ''});
+            }
+            else
+            {
 
-            SPODPR.openModOde();
+                SPODPR.ControlletPresets =
+                    {
+                        'selected-datalet': dataletType,
+                        'datalet-preset': dataletPreset
+                    };
+
+                SPODPR.openModOde();
+            }
             break;
 
         case 'text':
