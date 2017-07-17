@@ -1,67 +1,55 @@
-<!--{style}-->
-<!--{literal}-->
-<!--body .floatbox_header-->
-<!--{-->
-<!--display: none;-->
-<!--}-->
+{style}
+    {literal}
+        body .floatbox_header
+        {
+        display: none;
+        }
 
-<!--body .floatbox_bottom-->
-<!--{-->
-<!--display: none;-->
-<!--}-->
+        body .floatbox_bottom
+        {
+        display: none;
+        }
 
-<!--body .floatbox_body-->
-<!--{-->
-<!--padding: 0px 0px 0px 0px;-->
-<!--}-->
+        body .floatbox_body
+        {
+            padding: 0px 0px 0px 0px;
+            background-color: #FAFAFA;
+        }
 
-<!--.paper_card_container {-->
-    <!--margin: 15px-->
-    <!--display:flex;-->
-    <!--flex-direction: row;-->
-    <!--flex-wrap: wrap;-->
-<!--}-->
+        div.circle_button.modify, div.circle_button.delete, div#fullscreen {
+            display: none;
+        }
 
-<!--{/literal}-->
-<!--{/style}-->
+        div.circle_button.find {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+        }
 
-<!--&lt;!&ndash;<link rel="import" href="{$components_url}controllets/paper-card-controllet/paper-card-controllet.html"/>-->
-<!--<link rel="import" href="{$components_url}controllets/generic-cards-container-controllet/generic-cards-container-controllet.html"/>&ndash;&gt;-->
+        div.search_input {
+            position: absolute;
+            top: 34px;
+            right: 96px;
+        }
+    {/literal}
+{/style}
 
-<!--{foreach $card_definition as $definition}-->
-<!--&lt;!&ndash;<link rel="import" href="{$components_url}datalets/{$definition}/{$definition}.html"/>&ndash;&gt;-->
-<!--{/foreach}-->
+<div class="import_header">
+    {text key="spodpr+main"}
+    <div class="circle_button find" onclick="SPODPR.leftTrigger();"></div>
+    <div class="search_input"><input id="search"></div>
+</div>
 
-<!--<div class="paper_card_container">-->
-    <!--<generic-cards-container-controllet>-->
-    <!--{foreach $cards as $card}-->
-    <!--<paper-card-controllet-->
+<div class="card_container import_card_container">
 
-            <!--class="grid-item"-->
-            <!--width="200"-->
-            <!--height="250"-->
-            <!--datalet-id="{$card->dataletId}"-->
-            <!--datalet="{$card->component}"-->
-            <!--preset='{$card->preset}'-->
-            <!--fields=''-->
-            <!--card-type="{$card->cardType}"-->
-            <!--card-title="{$card->card->title}"-->
-            <!--card-id="{$card->cardId}"-->
-            <!--comment="{$card->card->comment}"-->
+    {foreach $cards as $card}
 
-            <!--{if $card->cardType == 'link'}-->
-                <!--card-link="{$card->card->content}"-->
-            <!--{/if}-->
+        <div class="card" card-id="{$card->cardId}" card-type="{$card->cardType}" datalet-id="{$card->dataletId}" datalet-type="{$card->component}" datalet-preset='{$card->preset}' datalet-data='{$card->data}'>
+            <div class="circle_button modify"></div>
+            <div class="circle_button delete"></div>
+            <preview-datalet datalet-id="{$card->dataletId}" datalet-type="{$card->component}" {$card->parameters} preview-title="{$card->dataletTitle}"></preview-datalet>
+        </div>
 
-    <!--&gt;-->
+    {/foreach}
 
-        <!--{if $card->isDatalet && !($card->cardType == 'link')}-->
-            <!--<{$card->component} data='{$card->data}' {$card->parameters} disable_my_space></{$card->component}>-->
-        <!--{else}-->
-        <!--<preview-datalet data-url="undefined" url="{$card->card->content}"></preview-datalet>-->
-        <!--{/if}-->
-
-    <!--</paper-card-controllet>-->
-    <!--{/foreach}-->
-    <!--</generic-cards-container-controllet>-->
-<!--</div>-->
+</div>

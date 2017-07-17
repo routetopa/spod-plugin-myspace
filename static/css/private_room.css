@@ -320,3 +320,18 @@ div.search_input.opened input{
         /*opacity: 1;*/
     /*}*/
 /*}*/
+
+.import_header {
+    position: relative;
+
+    height: 48px;
+    width: 100%;
+
+    line-height: 48px;
+    font-size: 24px;
+
+    color: #FFFFFF;
+    background-color: #2196F3;
+
+    text-align: center;
+}

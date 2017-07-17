@@ -6,22 +6,14 @@ class SPODPR_CMP_PrivateRoomCardViewer extends OW_Component
     {
         parent::__construct();
 
+        OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodpr')->getStaticJsUrl() . 'masonry.pkgd.min.js', 'text/javascript');
+        OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodpr')->getStaticJsUrl() . 'private-room-import.js', 'text/javascript');
+        OW::getDocument()->addStyleSheet(OW::getPluginManager()->getPlugin('spodpr')->getStaticUrl() . 'css/private_room.css');
+
         $cards = SPODPR_CLASS_Helper::getInstance()->getUserPrivateRoom(OW::getUser()->getId(),$selectedType);
-        $this->assign('components_url', SPODPR_COMPONENTS_URL);
-        $this->assign('card_definition', $this->get_datalet_definition($cards));
         $this->assign('cards', $cards);
+
+        OW::getDocument()->addOnloadScript('SPODPR.init();');
     }
 
-    public function get_datalet_definition($cards)
-    {
-        $definition = [];
-
-        foreach ($cards as $card)
-        {
-            if(!in_array($card->component, $definition))
-                array_push($definition, $card->component);
-        }
-
-        return $definition;
-    }
 }
