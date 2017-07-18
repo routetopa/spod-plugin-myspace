@@ -193,7 +193,8 @@ $(document).ready(function () {
 
     $('.card_container').masonry({
         // options
-        itemSelector: '.card'
+        itemSelector: '.card',
+        columnWidth: 448
     });
 
     $('body').on('click', '.delete', function (e) {
@@ -217,7 +218,7 @@ $(document).ready(function () {
                 cards[i].style.display = "none";
         }
 
-        $('.card_container').masonry();
+        $('.card_container').masonry('layout');
     });
 
     // $(".modify").on('click', SPODPR.modifyCard);
