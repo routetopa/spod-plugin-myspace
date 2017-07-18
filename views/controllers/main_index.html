@@ -10,7 +10,7 @@
 
             {if $card->cardType == 'datalet'}
                 <!--data='{$card->data}'-->
-                <preview-datalet datalet-id="{$card->dataletId}" datalet-type="{$card->component}" {$card->parameters} preview-title="{$card->dataletTitle}"></preview-datalet>
+                <preview-datalet datalet-id="{$card->dataletId}" datalet-type="{$card->component}" {$card->parameters} preview-title="{$card->dataletTitle}" preview-description="{$card->card->comment}"></preview-datalet>
             {else}
                 <preview-link preview-type="{$card->cardType}" preview-title="{$card->card->title}" preview-description="{$card->card->comment}" preview-content="{$card->card->content}"></preview-link>
             {/if}
