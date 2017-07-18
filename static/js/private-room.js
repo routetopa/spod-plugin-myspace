@@ -44,6 +44,7 @@ SPODPR.leftTrigger = function ()
 {
     if($(".search_input").css("opacity") == "0") {
         $(".search_input").addClass("opened");
+        $("#search").focus();
     } else {
         $(".search_input").removeClass("opened");
     }
@@ -209,7 +210,8 @@ $(document).ready(function () {
         for(var i=0; i < cards.length; i++)
         {
             let title = cards[i].children[2].getAttribute("preview-title").toUpperCase();
-            if(title.indexOf(filter) > -1)
+            let description = cards[i].children[2].getAttribute("preview-description").toUpperCase();
+            if(title.indexOf(filter) > -1 || description.indexOf(filter) > -1)
                 cards[i].style.display = "inline-block";
             else
                 cards[i].style.display = "none";
