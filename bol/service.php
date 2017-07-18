@@ -114,10 +114,11 @@ class SPODPR_BOL_Service
 
         if(!empty($dataletId))
         {
-            $e = new OW_Example();
-            $e->andFieldEqual('id', $dataletId);
-            $e->andFieldEqual('ownerId', $ownerId);
-            ODE_BOL_DataletDao::getInstance()->deleteByExample($e);
+            //$e = new OW_Example();
+            //$e->andFieldEqual('id', $dataletId);
+            //$e->andFieldEqual('ownerId', $ownerId);
+            //ODE_BOL_DataletDao::getInstance()->deleteByExample($e);
+            ODE_BOL_Service::getInstance()->deleteDataletByDataletId($dataletId);
         }
 
         SPODPR_BOL_PrivateRoomDao::getInstance()->deleteByExample($ex);
