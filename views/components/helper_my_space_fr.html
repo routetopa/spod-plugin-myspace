@@ -1,8 +1,4 @@
-<link rel="import" href="{$components_url}bower_components/paper-fab/paper-fab.html">
-<link rel="import" href="{$components_url}bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
-<link rel="import" href="{$components_url}bower_components/paper-toolbar/paper-toolbar.html">
-<link rel="import" href="{$components_url}bower_components/paper-styles/color.html">
-<link rel="import" href="{$components_url}bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="{$components_url}bower_components/iron-flex-layout/classes/iron-flex-layout.html">
 
 <style>
     #scroll_content{
@@ -79,27 +75,14 @@
                         <div class="section-number">1</div>
                         <div class="section-title">Cartes</div>
                     </div>
-                    <div class="vetical layout cell">
+                    <div class="vertical layout cell">
                         <p>
                             Chaque contenu est placé dans une "carte". Vous pouvez ajouter dans une carte: un URL, un datalet
                             (visualisation de jeux de données) ou un texte entier, en cliquant sur le bouton "+" en bas à droite.
-                            Afin d'afficher le contenu de la carte, vous devez simplement cliquer sur le bouton bleu dans le milieu de la carte.
-                            Chaque carte peut également se voir attribuer un titre (en fond noir) et un commentaire (sous le titre).
+                            Afin d'afficher le contenu de la carte, vous devez simplement cliquer sur le bouton vert dans le milieu de la carte.
+                            Chaque carte peut également se voir attribuer un titre (en fond noir).
                             Pour chaque carte, sur la partie supérieure, vous pouvez le modifier (icone crayon) ou le supprimer (panier).
                             La disposition des cartes suit un ordre chronologique (les plus récents).
-                            Vous pouvez créer différents types de cartes:
-
-                        <ul class="cell-list">
-                            <li>
-                                <b> Carte liée;</b> <paper-fab mini icon="link" aria-disabled="false" elevation="1"></paper-fab>
-                            </li>
-                            <li>
-                                <b>Texte lié;</b> <paper-fab mini icon="text-format" aria-disabled="false" elevation="1"></paper-fab>
-                            </li>
-                            <li>
-                                <b>Visualisation des données ouvertes</b> <paper-fab mini icon="assessment" aria-disabled="false" elevation="1"></paper-fab>
-                            </li>
-                        </ul>
                         </p>
                         <p>
                             En haut à droite vous pouvez:
@@ -114,10 +97,43 @@
                         </p>
 
                         <p>
-                            Afin d'afficher le contenu, vous devez cliquer sur le bouton bleu dans le milieu de la carte.
+                            Afin d'afficher le contenu, vous devez cliquer sur le bouton noir dans le milieu de la carte.
                             Lorsque l'utilisateur tente de visualiser ses propres datalets dans l'espace privé,
                             le SPOD ne contacte pas les fournisseurs de données actuels mais récupère les données à partir de leur source.
                             Cela permet une meilleure expérience-utilisateur.
+                        </p>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+        <div class="sect">
+            <div class="horizontal layout cell">
+                <img src="{$staticResourcesUrl}images/myspace2.png" style="width: 50%; height: 50%;">
+
+                <div class="cell">
+                    <div class="horizontal layout cell">
+                        <div class="section-number">2</div>
+                        <div class="section-title">Types de cartes</div>
+                    </div>
+                    <div class="vertical layout cell">
+                        <p>
+                            Vous pouvez créer différents types de cartes:
+
+                        <ul class="cell-list">
+                            <li>
+                                <b> Arbre des décisions;</b> <img src="{$staticResourcesUrl}images/decisionTree.svg" style="width: 10%; height: 10%;">
+                            </li>
+                            <li>
+                                <b> Carte liée;</b> <img src="{$staticResourcesUrl}images/link.svg" style="width: 10%; height: 10%;">
+                            </li>
+                            <li>
+                                <b>Texte lié;</b> <img src="{$staticResourcesUrl}images/text.svg" style="width: 10%; height: 10%;">
+                            </li>
+                            <li>
+                                <b>Visualisation des données ouvertes</b> <img src="{$staticResourcesUrl}images/datalet.svg" style="width: 10%; height: 10%;">
+                            </li>
+                        </ul>
                         </p>
                     </div>
                 </div>
@@ -126,11 +142,11 @@
 
         <div class="sect">
             <div class="horizontal layout cell">
-                <img src="{$staticResourcesUrl}images/myspace2_fr.png" style="width: 50%; height: 50%;">
+                <img src="{$staticResourcesUrl}images/myspace3.png" style="width: 50%; height: 50%;">
 
                 <div class="cell">
                     <div class="horizontal layout cell">
-                        <div class="section-number">2</div>
+                        <div class="section-number">3</div>
                         <div class="section-title">Texte et Cartes URL</div>
                     </div>
                     <div>
@@ -143,11 +159,11 @@
 
         <div class="sect">
             <div class="horizontal layout cell">
-                <img src="{$staticResourcesUrl}images/myspace3_fr.png" style="width: 60%; height: 100%;">
+                <img src="{$staticResourcesUrl}images/myspace4_fr.png" style="width: 60%; height: 100%;">
 
                 <div class="cell">
                     <div class="horizontal layout cell">
-                        <div class="section-number">3</div>
+                        <div class="section-number">4</div>
                         <div class="section-title">Utiliser les cartes</div>
                     </div>
                     <div>

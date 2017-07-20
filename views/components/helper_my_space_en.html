@@ -1,24 +1,6 @@
-<link rel="import" href="{$components_url}bower_components/paper-fab/paper-fab.html">
-<link rel="import" href="{$components_url}bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
-<link rel="import" href="{$components_url}bower_components/paper-toolbar/paper-toolbar.html">
-<link rel="import" href="{$components_url}bower_components/paper-styles/color.html">
-<link rel="import" href="{$components_url}bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="{$components_url}bower_components/iron-flex-layout/classes/iron-flex-layout.html">
 
 <style>
-    .floatbox_header{
-        display: none;
-    }
-
-    .floatbox_body{
-        font-family: 'Roboto', sans-serif;
-        background-color: #eeeeee;
-        padding : 3px;
-    }
-
-    paper-fab.opinion-button{
-        background:#5B646A;
-        left: 15px;
-    }
 
     #scroll_content{
         position: relative;
@@ -37,14 +19,6 @@
         margin-left: 20px;
     }
 
-    paper-scroll-header-panel {
-        /*position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;*/
-        height: 70vh;
-    }
 
     .tall {
         background-color: #2196F3;
@@ -79,6 +53,8 @@
     .section-title{
         font-size: 22px; padding-top: 18px; color: #888;margin-left: 20px;
     }
+
+
 </style>
 
 <div class="layout vertical">
@@ -98,35 +74,22 @@
             <div class="horizontal layout cell">
                 <img src="{$staticResourcesUrl}images/myspace1.png" style="width: 50%; height: 50%;">
 
+
                 <div class="cell">
                     <div class="horizontal layout cell">
                         <div class="section-number">1</div>
                         <div class="section-title">Cards</div>
                     </div>
-                    <div class="vetical layout cell">
+                    <div class="vertical layout cell">
                         <p>
                             Each content is placed in a "card". You can add in a card a URL, a
                             datalet (visualization of a dataset) or plain text, simply by clicking
                             <b>on the big "+" button</b> in the bottom right.
-                            In order to display the content of a card, just click on the blue
+                            In order to display the content of a card, just click on the green
                             button in the middle of the card. Each card has also a title (in black
-                            background) and a comment (below the title). For each card, on the
+                            background). For each card, on the
                             top, you can modify (pencil icon) or delete it (basket)
                             The layout of the cards follows the temporal order (most recent first).
-                            You can create different types of cards:
-                        <ul class="cell-list">
-                            <li>
-                                <b>Link card</b> <paper-fab mini icon="link" aria-disabled="false" elevation="1"></paper-fab>
-                            </li>
-                            <li>
-                                <b>Text</b> card <paper-fab mini icon="text-format" aria-disabled="false" elevation="1"></paper-fab>
-                            </li>
-                            <li>
-                                <b>OpenData Visualization</b> <paper-fab mini icon="assessment" aria-disabled="false" elevation="1"></paper-fab>
-                            </li>
-                        </ul>
-                        </p>
-
                         <p>
                             On top-right corner you can:
                         <ul class="cell-list">
@@ -150,11 +113,46 @@
 
         <div class="sect">
             <div class="horizontal layout cell">
-                <img src="{$staticResourcesUrl}images/myspace2.png" style="width: 50%; height: 50%;">
+                <img src="{$staticResourcesUrl}images/myspace_details.png" style="width: 50%; height: 50%;">
 
                 <div class="cell">
                     <div class="horizontal layout cell">
                         <div class="section-number">2</div>
+                        <div class="section-title">Cards types </div>
+                    </div>
+                    <div class="vertical layout cell">
+                        <p>
+                            You can create different types of cards:
+                        <ul class="cell-list">
+                            <li>
+                                <b>Decision Tree </b> <img src="{$staticResourcesUrl}images/decisionTree.svg" style="width: 10%; height: 10%;">
+
+                            </li>
+                            <li>
+                                <b>Link </b> <img src="{$staticResourcesUrl}images/link.svg" style="width: 10%; height: 10%;">
+
+                            </li>
+                            <li>
+                                <b>Text</b> card <img src="{$staticResourcesUrl}images/text.svg" style="width: 10%; height: 10%;">
+                            </li>
+                            <li>
+                                <b>Open Data visualization</b> <img src="{$staticResourcesUrl}images/datalet.svg" style="width: 10%; height: 10%;">
+                            </li>
+                        </ul>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sect">
+            <div class="horizontal layout cell">
+                <img src="{$staticResourcesUrl}images/myspace3.png" style="width: 50%; height: 50%;">
+
+                <div class="cell">
+                    <div class="horizontal layout cell">
+                        <div class="section-number">3</div>
                         <div class="section-title">Text and Url cards</div>
                     </div>
                     <div>
@@ -168,11 +166,11 @@
 
         <div class="sect">
             <div class="horizontal layout cell">
-                <img src="{$staticResourcesUrl}images/myspace3.png" style="width: 60%; height: 100%;">
+                <img src="{$staticResourcesUrl}images/myspace4_en.png" style="width: 60%; height: 100%;">
 
                 <div class="cell">
                     <div class="horizontal layout cell">
-                        <div class="section-number">3</div>
+                        <div class="section-number">4</div>
                         <div class="section-title">Using the cards</div>
                     </div>
                     <div>
