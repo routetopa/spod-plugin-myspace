@@ -184,6 +184,10 @@ div#addDatalet {
     background: url("../images/datalet.svg") center no-repeat;
     background-color: #00BCD4;
 }
+div#addMaplet {
+    background: url("../images/maplocation.svg") center no-repeat;
+    background-color: #00ACC1;
+}
 
 div#addSD:hover {
     background: url("../images/decisionTree_hover.svg") center no-repeat;
@@ -201,6 +205,10 @@ div#addDatalet:hover {
     background: url("../images/datalet_hover.svg") center no-repeat;
     background-color: #00ACC1;
 }
+div#addMaplet:hover {
+    background: url("../images/maplocation_hover.svg") center no-repeat;
+    background-color: #00ACC1;
+}
 
 div#addSD.opened {
     bottom: 314px;
@@ -216,6 +224,11 @@ div#addText.opened {
 }
 div#addDatalet.opened {
     bottom: 134px;
+    opacity: 1;
+}
+
+div#addMaplet.opened {
+    bottom: 374px;
     opacity: 1;
 }
 

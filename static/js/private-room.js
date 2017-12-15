@@ -21,6 +21,16 @@ SPODPR = {};
         ODE.pluginPreview = 'private-room';
         previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {} , {top:'56px', width:'calc(100vw - 112px)', height:'calc(100vh - 112px)', iconClass: 'ow_ic_add', title: ''});
     };
+    /* MAPLET */
+    SPODPR.openMaplet = function ()
+    {
+        SPODPR.dataletOpened = undefined;
+        SPODPR.cardOpened = undefined;
+        ODE.pluginPreview = 'private-room';
+        previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {component:'map-controllet'} , {top:'56px', width:'calc(100vw - 112px)', height:'calc(100vh - 112px)', iconClass: 'ow_ic_add', title: ''});
+    };
+
+
 
 /* ON ADD CARD */
 
@@ -32,13 +42,15 @@ SPODPR.dropdownTrigger = function ()
         $("#addLink").addClass("opened");
         $("#addText").addClass("opened");
         $("#addDatalet").addClass("opened");
+        $("#addMaplet").addClass("opened");
     } else {
         $("#addSD").removeClass("opened");
         $("#addLink").removeClass("opened");
         $("#addText").removeClass("opened");
         $("#addDatalet").removeClass("opened");
+        $("#addMaplet").removeClass("opened");
     }
-}
+};
 
 SPODPR.leftTrigger = function ()
 {
@@ -48,7 +60,7 @@ SPODPR.leftTrigger = function ()
     } else {
         $(".search_input").removeClass("opened");
     }
-}
+};
 
 SPODPR.textLinkCard = function (e)
 {
