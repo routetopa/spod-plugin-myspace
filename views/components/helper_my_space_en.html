@@ -1,7 +1,7 @@
 <link rel="import" href="{$components_url}bower_components/iron-flex-layout/classes/iron-flex-layout.html">
 
-<style>
 
+<style>
     #scroll_content{
         position: relative;
         overflow: scroll;
@@ -54,7 +54,6 @@
         font-size: 22px; padding-top: 18px; color: #888;margin-left: 20px;
     }
 
-
 </style>
 
 <div class="layout vertical">
@@ -91,19 +90,27 @@
                             top, you can modify (pencil icon) or delete it (basket)
                             The layout of the cards follows the temporal order (most recent first).
                         <p>
-                            On top-right corner you can:
+                            On the top-right corner you can:
                         <ul class="cell-list">
                             <li>
-                                <b>Modify</b> the related card <paper-fab mini icon="create" aria-disabled="false" elevation="1" class="opinion-button"></paper-fab>
+                                <b> Modify</b> the related card
                             </li>
+
                             <li>
-                                <b>Delete</b> the related card <paper-fab mini icon="delete" aria-disabled="false" elevation="1" class="opinion-button"></paper-fab>
+                                <b>Delete</b> the related card
+
                             </li>
+                            <br>
+                            On the bottom-right corner you can:
+                            <li>
+                                <b>Full screen</b> the related card <img src="{$staticResourcesUrl}images/fullscreen_blue.svg"  height="40" width="40" alt="Full screen">
+                            </li>
+
                         </ul>
                         </p>
 
                         <p>
-                            To <b>display content</b> just click on the blue button in the middle of the card. When a user tries to view its own datalets in their private space, SPOD does not contacts the actual data provider but retrieves the data from its own database.
+                            To <b>display content</b> just click on the blue button on the bottom-right corner of the card. When a user tries to view its own datalets in their private space, SPOD does not contacts the actual data provider but retrieves the data from its own database.
                             This allows in a great speed improvement and in a better user experience
                         </p>
                     </div>
@@ -124,6 +131,10 @@
                         <p>
                             You can create different types of cards:
                         <ul class="cell-list">
+                            <li>
+                                <b>Maplet </b> <img src="{$staticResourcesUrl}images/maplocation.svg" style="width: 10%; height: 10%;">
+
+                            </li>
                             <li>
                                 <b>Decision Tree </b> <img src="{$staticResourcesUrl}images/decisionTree.svg" style="width: 10%; height: 10%;">
 
