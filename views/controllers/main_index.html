@@ -5,7 +5,9 @@
     {foreach $cards as $card}
 
         <div class="card" card-id="{$card->cardId}" card-type="{$card->cardType}" datalet-id="{$card->dataletId}" datalet-type="{$card->component}" datalet-preset='{$card->preset}'>
-            <div class="circle_button modify"></div>
+            {if $card->component != 'openlayers-datalet'}
+                <div class="circle_button modify"></div>
+            {/if}
             <div class="circle_button delete"></div>
 
             {if $card->cardType == 'datalet'}
