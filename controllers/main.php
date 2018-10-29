@@ -28,6 +28,7 @@ class SPODPR_CTRL_Main extends OW_ActionController
 
         // ADD DATALET DEFINITIONS
         $this->assign('datalet_definition_import', ODE_CLASS_Tools::getInstance()->get_all_datalet_definitions());
+        $this->assign('datalet_definition_import', '');
 
         $js = UTIL_JsGenerator::composeJsString('
                 SPODPR.components_url = {$components_url}
