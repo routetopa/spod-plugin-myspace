@@ -91,10 +91,10 @@ SPODPR.textLinkCard = function (e)
     });
 };
 
-SPODPR.openModOde = function ()
+SPODPR.openModOde = function (isSPLOD = false)
 {
     ODE.pluginPreview = 'private-room';
-    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {component:'datalets-modifier-controllet'} , {top:'56px', width:'calc(100vw - 112px)', height:'calc(100vh - 112px)', iconClass: 'ow_ic_add', title: ''});
+    previewFloatBox = OW.ajaxFloatBox('ODE_CMP_Preview', {component:(!isSPLOD ? 'datalets-modifier-controllet' : 'splod-modification-controllet')} , {top:'56px', width:'calc(100vw - 112px)', height:'calc(100vh - 112px)', iconClass: 'ow_ic_add', title: ''});
 };
 
 SPODPR.modifyCard = function (e)
@@ -107,6 +107,7 @@ SPODPR.modifyCard = function (e)
         case 'datalet':
             let dataletId = e.target.parentElement.getAttribute('datalet-id');
             let dataletPreset = e.target.parentElement.getAttribute('datalet-preset');
+            let parsedPreset = JSON.parse(dataletPreset);
 
             SPODPR.cardOpened = cardId;
             SPODPR.dataletOpened = dataletId;
@@ -115,19 +116,18 @@ SPODPR.modifyCard = function (e)
             let dataletType = $(e.target).next().next()[0].getAttribute('datalet-type').replace("-datalet", "");
             if(dataletType === "decision-tree")
             {
-                let json_tree = JSON.parse(dataletPreset)["json-tree"];
+                let json_tree = parsedPreset["json-tree"];
                 previewFloatBox = OW.ajaxFloatBox('SPODPR_CMP_SilverDecisionCreator', {json_tree:json_tree} , {top:'56px', width:'calc(100vw - 112px)', height:'calc(100vh - 112px)', iconClass: 'ow_ic_add', title: ''});
             }
             else
             {
-
                 SPODPR.ControlletPresets =
                     {
                         'selected-datalet': dataletType,
                         'datalet-preset': dataletPreset
                     };
 
-                SPODPR.openModOde();
+                SPODPR.openModOde(!!parsedPreset.querylogicmap || !!parsedPreset.queryLogicMap);
             }
             break;
 
