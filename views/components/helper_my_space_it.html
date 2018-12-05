@@ -1,15 +1,7 @@
 <link rel="import" href="{$components_url}bower_components/iron-flex-layout/classes/iron-flex-layout.html">
 
-<style>
-    .floatbox_header{
-        display: none;
-    }
 
-    .floatbox_body{
-        font-family: 'Roboto', sans-serif;
-        background-color: #eeeeee;
-        padding : 3px;
-    }
+<style>
 
     #scroll_content{
         position: relative;
@@ -98,6 +90,11 @@
                             <li>
                                 <b>Cancellare</b> la carta <paper-fab mini icon="delete" aria-disabled="false" elevation="1" class="opinion-button"></paper-fab>
                             </li>
+                            <br>
+                            Sull' angolo destro in basso della carta è possibile:
+                            <li>
+                                <b>Ingrandire</b> la carta <img src="{$staticResourcesUrl}images/fullscreen_blue.svg"  height="40" width="40" alt="Full screen">
+                            </li>
                         </ul>
                         </p>
 
@@ -124,6 +121,11 @@
                         <p>
                             Per creare i diversi tipi di carte dal menu:
                         <ul class="cell-list">
+                            <li>
+                                <b>Maplet </b> <img src="{$staticResourcesUrl}images/maplocation.svg" style="width: 10%; height: 10%;">
+
+                            </li>
+
                             <li>
                                 <b>Albero di decisione </b> <img src="{$staticResourcesUrl}images/decisionTree.svg" style="width: 10%; height: 10%;">
 
