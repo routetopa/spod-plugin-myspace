@@ -255,7 +255,7 @@
                             >
 
                             {if $card->isDatalet && !($card->cardType == 'link')}
-                                <{$card->component} data='{$card->data}' {$card->parameters} disable_my_space>
+                                <{$card->component} data='{$card->data}' {$card->parameters} disable_my_space disable_html_export disable_link>
                                 </{$card->component}>
                             {else}
                                 {if $card->cardType == 'text'}

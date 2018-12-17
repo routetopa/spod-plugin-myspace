@@ -42,6 +42,8 @@ class SPODPR_CLASS_Helper
                     $card->component = $datalet->component;
                     $card->data = $this->htmlSpecialChar($datalet->data);
                     $card->params = json_decode($datalet->params);
+                    if(!empty($card->params->querylogicmap))
+                        $card->params->querylogicmap = json_encode($card->params->querylogicmap);
                     $card->dataletTitle = empty($card->params->datalettitle) ? '' : $card->params->datalettitle;
 
                     foreach ($card->params as $key => $value)
