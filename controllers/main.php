@@ -5,12 +5,6 @@ class SPODPR_CTRL_Main extends OW_ActionController
 
     public function index()
     {
-//        if (!OW::getUser()->isAuthenticated())
-//        {
-//            $this->redirect(OW::getRouter()->getBaseUrl() . "openwall");
-//            //throw new Redirect404Exception();
-//        }
-
         OW::getDocument()->addStyleSheet(OW::getPluginManager()->getPlugin('spodpr')->getStaticUrl() . 'css/private_room.css');
         OW::getDocument()->getMasterPage()->setTemplate(OW::getPluginManager()->getPlugin('spodpr')->getRootDir() . 'master_pages/general.html');
         $this->assign('cards', SPODPR_CLASS_Helper::getInstance()->getUserPrivateRoom(OW::getUser()->getId()));
@@ -23,12 +17,8 @@ class SPODPR_CTRL_Main extends OW_ActionController
         OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodpr')->getStaticJsUrl() . 'private-room.js', 'text/javascript');
         OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodpr')->getStaticJsUrl() . 'masonry.pkgd.min.js', 'text/javascript');
 
-//        OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodpr')->getStaticJsUrl() . 'perfect-scrollbar.jquery.min.js', 'text/javascript');
-//        OW::getDocument()->addStyleSheet(OW::getPluginManager()->getPlugin('spodpr')->getStaticUrl() . 'css/perfect-scrollbar.min.css');
-
         // ADD DATALET DEFINITIONS
         $this->assign('datalet_definition_import', ODE_CLASS_Tools::getInstance()->get_all_datalet_definitions());
-        $this->assign('datalet_definition_import', '');
 
         $js = UTIL_JsGenerator::composeJsString('
                 SPODPR.components_url = {$components_url}
