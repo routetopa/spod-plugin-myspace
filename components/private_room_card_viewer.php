@@ -12,6 +12,7 @@ class SPODPR_CMP_PrivateRoomCardViewer extends OW_Component
 
         $cards = SPODPR_CLASS_Helper::getInstance()->getUserPrivateRoom(OW::getUser()->getId(),$selectedType);
         $this->assign('cards', $cards);
+        $this->assign('components_url', SPODPR_COMPONENTS_URL);
 
         OW::getDocument()->addOnloadScript('SPODPR.init();');
     }
